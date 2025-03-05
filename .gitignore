@@ -4,7 +4,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 package-lock.json
-
+backend/src/main/resources/credentials.json
 # Angular
 angular.json
 .browserslistrc
@@ -13,4 +13,3 @@ angular.json
 public/assets/
 dist/
 out-tsc/
-
