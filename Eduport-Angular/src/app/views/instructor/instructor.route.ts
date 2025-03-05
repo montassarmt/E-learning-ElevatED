@@ -12,6 +12,7 @@ import { SettingComponent } from './setting/setting.component'
 import { StudentlistComponent } from './studentlist/studentlist.component'
 import { HackathonComponent } from './hackathon/hackathon.component'
 import { AddHackathonsComponent } from './add-hackathons/add-hackathons.component'
+import {CalendarComponent} from "@views/instructor/calendar/calendar.component";
 
 export const INSTRUCTOR_ROUTES: Route[] = [
   {
@@ -79,5 +80,10 @@ export const INSTRUCTOR_ROUTES: Route[] = [
     component: AddHackathonsComponent,
     data: { title: 'Add Hackathon' },
   },
+  { path: 'calendar',
+    component: CalendarComponent,
+    data: { title: 'calendar' },
+  },
+
 
 ]
