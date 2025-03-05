@@ -12,9 +12,9 @@ public class PartnershipScheduledTasks {
     private PartnershipService partnershipService;
 
     // Run every 15 seconds for testing
-  // @Scheduled(cron = "*/5 * * * * *")
-    /*public void deleteExpiredPartnerships() {
+   @Scheduled(cron = "*/5 * * * * *")
+    public void deleteExpiredPartnerships() {
         System.out.println("Running scheduled task to delete expired partnerships...");
         partnershipService.deleteExpiredPartnerships();
-    }*/
+    }
 }
