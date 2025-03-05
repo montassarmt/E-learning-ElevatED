@@ -13,6 +13,7 @@ import { StudentlistComponent } from './studentlist/studentlist.component'
 import { HackathonComponent } from './hackathon/hackathon.component'
 import { AddHackathonsComponent } from './add-hackathons/add-hackathons.component'
 import {CalendarComponent} from "@views/instructor/calendar/calendar.component";
+import {EditHackathonComponent} from "@views/instructor/edit-hackathon/edit-hackathon.component";
 
 export const INSTRUCTOR_ROUTES: Route[] = [
   {
@@ -84,6 +85,12 @@ export const INSTRUCTOR_ROUTES: Route[] = [
     component: CalendarComponent,
     data: { title: 'calendar' },
   },
+  {
+    path: 'edit-hackathon/:id',
+    component: EditHackathonComponent,
+    data: { title: 'Modifier Hackathon' },
+  }
+
 
 
 ]

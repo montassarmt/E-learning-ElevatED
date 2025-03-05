@@ -1,0 +1,50 @@
+<div class="card border bg-transparent rounded-3">
+    <div class="card-header bg-transparent border-bottom">
+        <div class="row">
+            <h3 class="col-6 mb-0">Modifier un Hackathon</h3>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <form (ngSubmit)="updateHackathon()">
+            <div class="row mb-3">
+                <label for="nom" class="col-sm-3 col-form-label">Nom :</label>
+                <div class="col-sm-9">
+                    <input type="text" id="nom" class="form-control" [(ngModel)]="hackathon.nom" name="nom" required />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="theme" class="col-sm-3 col-form-label">Thème :</label>
+                <div class="col-sm-9">
+                    <input type="text" id="theme" class="form-control" [(ngModel)]="hackathon.theme" name="theme" required />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="description" class="col-sm-3 col-form-label">Description :</label>
+                <div class="col-sm-9">
+                    <textarea id="description" class="form-control" [(ngModel)]="hackathon.description" name="description" required></textarea>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="dateDebut" class="col-sm-3 col-form-label">Date Début :</label>
+                <div class="col-sm-9">
+                    <input type="datetime-local" id="dateDebut" class="form-control" [(ngModel)]="hackathon.dateDebut" name="dateDebut" required />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="dateFin" class="col-sm-3 col-form-label">Date Fin :</label>
+                <div class="col-sm-9">
+                    <input type="datetime-local" id="dateFin" class="form-control" [(ngModel)]="hackathon.dateFin" name="dateFin" required />
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-success">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>

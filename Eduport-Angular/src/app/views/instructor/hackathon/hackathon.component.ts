@@ -16,7 +16,7 @@ import { StepperDirective } from '@core/directive/stepper.directive';
 import { SelectFormInputDirective } from '@core/directive/select-form-input.directive';
 import { SidebarComponent } from '@layouts/account-layout/component/sidebar/sidebar.component';
 import { AccountLayoutComponent } from '@layouts/account-layout/account-layout.component';
-import { Router } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-hackathon',
@@ -42,6 +42,7 @@ import { Router } from '@angular/router';
     SelectFormInputDirective,
     SidebarComponent,
     AccountLayoutComponent,
+    RouterLink,
   ],
 })
 export class HackathonComponent implements OnInit {
