@@ -1,6 +1,7 @@
 package com.esprit.backend.Controllers;
 import com.esprit.backend.Entities.Hackathon;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.esprit.backend.Services.HackathonService;
@@ -32,10 +33,16 @@ public class HackathonController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<Hackathon> updateHackathon(@PathVariable Long id, @RequestBody Hackathon hackathon) {
+    public ResponseEntity<?> updateHackathon(@PathVariable Long id, @RequestBody Hackathon hackathon) {
         Hackathon updatedHackathon = hackathonService.updateHackathon(id, hackathon);
-        return updatedHackathon != null ? ResponseEntity.ok(updatedHackathon) : ResponseEntity.notFound().build();
+
+        if (updatedHackathon != null) {
+            return ResponseEntity.ok(updatedHackathon);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Hackathon non trouvé avec l'ID : " + id);
+        }
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteHackathon(@PathVariable Long id) {

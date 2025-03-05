@@ -30,4 +30,12 @@ export class HackathonService {
   deleteHackathon(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+  updateHackathon(id: number, hackathon: Hackathon): Observable<Hackathon> {
+    return this.http.put<Hackathon>(`${this.apiUrl}/${id}`, hackathon);
+  }
+
+  getHackathonById(id: number): Observable<Hackathon> {
+    return this.http.get<Hackathon>(`${this.apiUrl}/${id}`);
+  }
+
 }

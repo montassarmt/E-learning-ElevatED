@@ -27,9 +27,13 @@
                     <td>{{ hackathon.description }}</td>
                     <td>{{ hackathon.dateDebut | date:'short' }}</td>
                     <td>{{ hackathon.dateFin | date:'short' }}</td>
-                    <td>
+                    <td class="d-flex align-items-center">
                         <a href="javascript:void(0);" class="btn btn-sm btn-danger-soft btn-round mb-0 ms-1" (click)="deleteHackathon(hackathon.id!)">
                             <i class="fas fa-fw fa-times"></i>
+                        </a>
+                        <a  href="javascript:void (0)" [routerLink]="['/instructor/edit-hackathon', hackathon.id]"
+                            class="btn btn-sm btn-success-soft btn-round me-1 mb-0">
+                            <i class="far fa-fw fa-edit"></i>
                         </a>
                     </td>
                 </tr>
