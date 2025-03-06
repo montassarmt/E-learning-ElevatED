@@ -8,7 +8,7 @@
   >
     <img
       class="avatar-img rounded-circle"
-      src="assets/images/avatar/01.jpg"
+      [src]="user?.avatar || 'assets/images/avatar/01.jpg'"
       alt="avatar"
     />
   </a>
@@ -22,14 +22,14 @@
       <div class="d-flex align-items-center">
         <div class="avatar me-3">
           <img
-            class="avatar-img rounded-circle shadow"
-            src="assets/images/avatar/01.jpg"
+            class="avatar-img rounded-circle"
+            [src]="user?.avatar || 'assets/images/avatar/01.jpg'"
             alt="avatar"
           />
         </div>
         <div>
-          <a class="h6" href="javascript:void(0);">Lori Ferguson</a>
-          <p class="small m-0">example&#64;gmail.com</p>
+          <a class="h6" href="javascript:void(0);">{{ user?.username || 'Utilisateur' }}</a>
+          <p class="small m-0">{{ user?.email || 'example@gmail.com' }}</p>
         </div>
       </div>
     </li>

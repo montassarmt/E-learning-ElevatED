@@ -1,18 +1,7 @@
 <ul class="navbar-nav navbar-nav-scroll {{ menuClassName }}">
   @for (item of menuItems; track $index) {
     @if (item.subItems) {
-      <horizontal-menu-item-with-children
-        [item]="item"
-        [activeMenuItems]="activeMenuItems"
-        [itemClassName]="'nav-item dropdown'"
-        [showIcon]="showIcon!"
-        [linkClassName]="'nav-link dropdown-toggle' + getActiveClass(item)"
-      />
-    } @else {
-      <horizontal-menu-item
-        [item]="item"
-        [linkClassName]="getActiveClass(item)"
-      />
+ 
     }
   }
   <!-- Nav item 4 Megamenu-->

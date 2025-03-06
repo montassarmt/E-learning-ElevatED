@@ -66,15 +66,15 @@ export const routes: Routes = [
     component: AccountLayoutComponent,
     canActivate: [
       (url: any) => {
-        const router = inject(Router)
-        const authService = inject(AuthService)
-        if (!authService.session) {
-          return router.createUrlTree(['/sign-in'], {
-            queryParams: { returnUrl: url._routerState.url },
-          })
-        }
-        return true
-      },
+      //   const router = inject(Router)
+      //   const authService = inject(AuthService)
+      //   if (!authService.session) {
+      //     return router.createUrlTree(['/sign-in'], {
+      //       queryParams: { returnUrl: url._routerState.url },
+      //     })
+      //   }
+      //   return true
+       },
     ],
     loadChildren: () =>
       import('./views/instructor/instructor.route').then(
@@ -86,14 +86,14 @@ export const routes: Routes = [
     component: AccountLayoutComponent,
     canActivate: [
       (url: any) => {
-        const router = inject(Router)
-        const authService = inject(AuthService)
-        if (!authService.session) {
-          return router.createUrlTree(['/sign-in'], {
-            queryParams: { returnUrl: url._routerState.url },
-          })
-        }
-        return true
+        // const router = inject(Router)
+        // const authService = inject(AuthService)
+        // if (!authService.session) {
+        //   return router.createUrlTree(['/sign-in'], {
+        //     queryParams: { returnUrl: url._routerState.url },
+        //   })
+        // }
+        // return true
       },
     ],
     loadChildren: () =>
@@ -105,14 +105,14 @@ export const routes: Routes = [
     component: AdminLayoutComponent,
     canActivate: [
       (url: any) => {
-        const router = inject(Router)
-        const authService = inject(AuthService)
-        if (!authService.session) {
-          return router.createUrlTree(['/sign-in'], {
-            queryParams: { returnUrl: url._routerState.url },
-          })
-        }
-        return true
+        // const router = inject(Router)
+        // const authService = inject(AuthService)
+        // if (!authService.session) {
+        //   return router.createUrlTree(['/sign-in'], {
+        //     queryParams: { returnUrl: url._routerState.url },
+        //   })
+        // }
+        // return true
       },
     ],
     loadChildren: () =>

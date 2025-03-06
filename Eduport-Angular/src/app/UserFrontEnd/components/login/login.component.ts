@@ -31,13 +31,23 @@ export class LoginComponent {
 
   onSubmit(): void {
     this.submitted = true;
-
+  
     if (this.signinForm.invalid) {
       this.message = 'Please fill in all required fields.';
       this.isError = true;
       return;
     }
-
+  
+    const username = this.signinForm.value.username;
+    const password = this.signinForm.value.password;
+  
+    // Vérification spécifique pour l'admin
+    if (username === 'admin' && password === 'admin1234') {
+      this.router.navigate(['/admin']); // Redirection vers /admin
+      return; // Arrête l'exécution de la méthode
+    }
+  
+    // Appel normal au service d'authentification
     this.authService.login(this.signinForm.value).subscribe({
       next: (response) => {
         console.log('Login successful!', response);
@@ -45,9 +55,20 @@ export class LoginComponent {
         localStorage.setItem('user', JSON.stringify(response)); 
         this.message = 'Login successful! Redirecting...';
         this.isError = false;
-        setTimeout(() => {
+  
+        // Extraire les rôles de la réponse
+        const roles = response.roles;
+  
+        // Rediriger en fonction du rôle
+        if (roles.includes('TUTOR')) {
+          this.router.navigate(['/instructor/dashboard']); 
+        } else if (roles.includes('STUDENT')) {
+          this.router.navigate(['/student/dashboard']); 
+        } else if (roles.includes('PARTNER')) {
+          this.router.navigate(['/student/dashboard']); 
+        } else {
           this.router.navigate(['/dashboard']); 
-        }, 2000);
+        }
       },
       error: (error) => {
         console.error('Login failed', error);
