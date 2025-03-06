@@ -548,52 +548,10 @@ export const DEMO_MENU_ITEMS: MenuItemType[] = [
             parentKey: 'instructor',
           },
           {
-            key: 'manageCourses',
-            title: 'Courses',
-            icon: 'bi bi-basket-fill',
-            link: '/instructor/manage-course',
-            parentKey: 'instructor',
-          },
-          {
-            key: 'createCourse',
-            title: 'Create Course',
-            icon: 'bi bi-file-earmark-plus-fill',
-            link: '/instructor/create-course',
-            parentKey: 'instructor',
-          },
-          {
-            key: 'addCourse',
-            title: 'Course Added',
-            icon: 'bi bi-file-check-fill',
-            link: '/course-added',
-            parentKey: 'instructor',
-          },
-          {
-            key: 'quiz',
-            title: 'Quiz',
-            icon: 'bi bi-question-diamond',
-            link: '/instructor/quiz',
-            parentKey: 'instructor',
-          },
-          {
-            key: 'earnings',
-            title: 'Earnings',
-            icon: 'fas fa-chart-line',
-            link: '/instructor/earning',
-            parentKey: 'instructor',
-          },
-          {
             key: 'studentList',
             title: 'Students',
             icon: 'fas fa-user-graduate',
             link: '/instructor/studentlist',
-            parentKey: 'instructor',
-          },
-          {
-            key: 'orders',
-            title: 'Orders',
-            icon: 'bi bi-cart-check-fill',
-            link: '/instructor/order',
             parentKey: 'instructor',
           },
           {
@@ -912,52 +870,28 @@ export const INSTRUCTOR_MENU_ITEMS: MenuItemType[] = [
     link: '/instructor/add-hackathons',
   },
   {
-    key: 'courses',
-    title: 'My Courses',
-    icon: 'bi bi-basket',
-    link: '/instructor/manage-course',
+    key: 'modifyHackathons',
+    title: 'Modify Hackathons', // ✅ Ajout de Hackathons ici
+    icon: 'bi bi-code-slash', // Icône pour représenter Hackathons
+    link: '/instructor/edit-hackathon/:id',
   },
   {
-    key: 'quiz',
-    title: 'Quiz',
-    icon: 'bi bi-question-diamond',
-    link: '/instructor/quiz',
+    key: 'eventCalendar',
+    title: 'Calendar', // ✅ Ajout de Hackathons ici
+    icon: 'bi bi-code-slash', // Icône pour représenter Hackathons
+    link: '/instructor/calendar',
   },
   {
-    key: 'earnings',
-    title: 'Earnings',
-    icon: 'bi bi-graph-up',
-    link: '/instructor/earning',
+    key: 'addHackathons',
+    title: 'Add Hackathon', // ✅ Ajout de Hackathons ici
+    icon: 'bi bi-code-slash', // Icône pour représenter Hackathons
+    link: '/instructor/add-hackathons',
   },
   {
-    key: 'students',
-    title: 'Students',
-    icon: 'bi bi-people',
-    link: '/instructor/studentlist',
-  },
-  {
-    key: 'orders',
-    title: 'Orders',
-    icon: 'bi bi-folder-check',
-    link: '/instructor/order',
-  },
-  {
-    key: 'reviews',
-    title: 'Reviews',
-    icon: 'bi bi-star',
-    link: '/instructor/review',
-  },
-  {
-    key: 'editProfile',
-    title: 'Edit Profile',
-    icon: 'bi bi-pencil-square',
-    link: '/instructor/edit-profile',
-  },
-  {
-    key: 'payouts',
-    title: 'Payouts',
-    icon: 'bi bi-wallet2',
-    link: '/instructor/payout',
+    key: 'coaching',
+    title: 'Coaching', // ✅ Ajout de Hackathons ici
+    icon: 'bi bi-code-slash', // Icône pour représenter Hackathons
+    link: '/instructor/add-hackathons',
   },
   {
     key: 'settings',
