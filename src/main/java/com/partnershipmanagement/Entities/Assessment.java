@@ -32,7 +32,6 @@ public class Assessment {
     boolean adminAcceptance;
     boolean partnerAacceptance;
 
-    @JsonIgnore
     @ManyToOne
     Partnership partnership;
 }

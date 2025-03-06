@@ -23,17 +23,14 @@ public class Partnership {
     @Enumerated(EnumType.STRING)
     PartnershipStatus partnershipStatus;
 
-    @JsonIgnore
     @ManyToOne
     Entreprise entreprise;
 
     // Many-to-one relationship: Many applications can be related to one proposal
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "proposal_id",referencedColumnName = "idProposal")
     private Proposal proposals;
 
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy="partnership")
     private Set<Assessment> Assesements;
 

@@ -20,6 +20,8 @@ public class EntrepriseController {
     private EntrepriseService serviceEntreprise;
     @Autowired
     EntrepriseRepository entrepriseRepisitory;
+    @Autowired
+    private EntrepriseService entrepriseService;
 
     // Get all entreprises
     @GetMapping("/getListEntreprise")
@@ -63,6 +65,11 @@ public class EntrepriseController {
     @PutMapping("/assignEntrepriseToUser/{entrepriseName}/{cin}")
     public String assignEntrepriseToUser(@RequestParam String entrepriseName, @RequestParam String cin) {
         return serviceEntreprise.assignEntrepriseToUser(entrepriseName, cin);
+    }
+
+    @GetMapping("/{id}")
+    public Entreprise getEntrepriseById(@PathVariable int id) {
+         return entrepriseService.getEntrepriseById(id);
     }
 
 }

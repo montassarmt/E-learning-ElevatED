@@ -58,6 +58,11 @@ public class EntrepriseService implements IEntrepriseService{
         return entrepriseRepository.findAll();
     }
 
+    public Entreprise getEntrepriseById(int id) {
+        return entrepriseRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Entreprise not found with ID: " + id));
+    }
+
     public String assignEntrepriseToUser(String nameEnt, String cin) {
         Entreprise ent = entrepriseRepository.findByName(nameEnt);
         if (ent == null) {
