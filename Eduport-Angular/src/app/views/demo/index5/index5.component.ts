@@ -22,6 +22,7 @@ import { FooterComponent } from '@/app/components/footers/footer/footer.componen
     EventComponent,
     NgbAlertModule,
     FooterComponent,
+    EventComponent
   ],
   templateUrl: './index5.component.html',
   styles: ``,
@@ -29,3 +30,6 @@ import { FooterComponent } from '@/app/components/footers/footer/footer.componen
 export class Index5Component {
   showAlert = true
 }
+
+
+
