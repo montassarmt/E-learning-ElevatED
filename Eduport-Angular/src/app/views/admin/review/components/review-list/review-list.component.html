@@ -1,0 +1,133 @@
+<div class="card card-body bg-transparent pb-0 border mb-4">
+  <div class="table-responsive border-0">
+    <table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
+      <thead>
+        <tr>
+          <th scope="col" class="border-0 rounded-start">#</th>
+          <th scope="col" class="border-0">User Name</th>
+          <th scope="col" class="border-0">Feedback Type</th>
+          <th scope="col" class="border-0">Rating</th>
+          <th scope="col" class="border-0">Comments</th>
+          <th scope="col" class="border-0">Audio File</th>
+          <th scope="col" class="border-0 rounded-end">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (feedback of feedbacks; track $index) {
+          <tr>
+            <td>{{ feedback.feedbackId | number: '2.0' }}</td>
+
+            <td>
+              <div class="d-flex align-items-center position-relative">
+                <div class="avatar avatar-xs mb-2 mb-md-0">
+                  <!-- Assuming you have a user image property -->
+                  <!--<img [src]="feedback.user.image" class="rounded-circle" alt="" />-->
+                </div>
+                <div class="mb-0 ms-2">
+                  <h6 class="mb-0">
+                    <!--<a href="javascript:void(0);" class="stretched-link">{{
+                      feedback.user.name
+                    }}</a>-->
+                  </h6>
+                </div>
+              </div>
+            </td>
+
+            <td>
+              <h6 class="table-responsive-title mb-0">
+                {{ feedback.feedbackType }}
+              </h6>
+            </td>
+
+            <td>
+              <ul class="list-inline mb-0">
+                <ng-template #t let-fill="fill">
+                  <i class="far fa-star text-warning me-1">
+                    @if (fill > 0) {
+                      <i
+                        class="fas fa-star text-warning filled"
+                        [style.width.%]="fill"
+                      ></i>
+                    }
+                  </i>
+                </ng-template>
+
+                <ngb-rating
+                  [(rate)]="feedback.rating"
+                  [starTemplate]="t"
+                  [readonly]="true"
+                  [max]="5"
+                />
+              </ul>
+            </td>
+
+            <td>
+              <p class="mb-0">{{ feedback.comments }}</p>
+            </td>
+
+            <td>
+              @if (feedback.feedbackType === 'AUDIO') {
+                <audio controls>
+                  <source [src]="feedback.audioFilePath" type="audio/mpeg" />
+                  Your browser does not support the audio element.
+                </audio>
+              } @else {
+                <p class="mb-0">N/A</p>
+              }
+            </td>
+
+            <td>
+              <a
+                href="javascript:void(0);"
+                class="btn btn-success-soft btn-round me-1 mb-1 mb-md-0"
+                placement="top"
+                ngbTooltip="Edit"
+              >
+                <i class="bi bi-pencil-square"></i>
+              </a>
+              <button
+                class="btn btn-danger-soft btn-round me-1 mb-1 mb-md-0 ms-1"
+                placement="top"
+                ngbTooltip="Delete"
+                (click)="deleteFeedback(feedback.feedbackId!)"
+              >
+                <i class="bi bi-trash"></i>
+              </button>
+              <!--<a
+                href="javascript:void(0);"
+                class="btn btn-sm btn-info-soft mb-0 ms-1"
+                (click)="openModal(feedback)"
+                >View</a
+              >-->
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-footer bg-transparent px-0">
+    <div class="d-sm-flex justify-content-sm-between align-items-sm-center">
+      <p class="mb-0 text-center text-sm-start">Showing 1 to {{ feedbacks.length }} of {{ totalFeedbacks }} entries</p>
+
+      <nav class="d-flex justify-content-center mb-0" aria-label="navigation">
+        <ngb-pagination
+          [collectionSize]="totalFeedbacks"
+          [(page)]="currentPage"
+          [pageSize]="itemsPerPage"
+          size="sm"
+          class="pagination pagination-sm pagination-primary-soft d-inline-block d-md-flex rounded mb-0"
+          (pageChange)="onPageChange($event)"
+        >
+          <ng-template ngbPaginationPrevious
+            ><i class="fas fa-angle-left"></i>
+          </ng-template>
+          <ng-template ngbPaginationNext
+            ><i class="fas fa-angle-right"></i>
+          </ng-template>
+        </ngb-pagination>
+      </nav>
+    </div>
+  </div>
+</div>
