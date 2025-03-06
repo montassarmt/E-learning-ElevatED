@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Test } from '../Entity/Test';
+import { Question } from '../Entity/Question';
 
 @Injectable({
   providedIn: 'root',
@@ -43,6 +44,19 @@ export class QuizService {
     return this.http.delete<void>(`${this.apiUrl}/tests/${id}`).pipe(
       catchError((error) => {
         console.error('Error deleting test:', error);
+        throw error;
+      })
+    );
+  }
+
+  getQuestionsByTestId(testId: number): Observable<Question[]> {
+    return this.http.get<Question[]>(`${this.apiUrl}/tests/${testId}/questions`);
+  }
+
+  createQuestion(question: Question): Observable<Question> {
+    return this.http.post<Question>(`${this.apiUrl}/questions`, question).pipe(
+      catchError((error) => {
+        console.error('Error saving question:', error);
         throw error;
       })
     );

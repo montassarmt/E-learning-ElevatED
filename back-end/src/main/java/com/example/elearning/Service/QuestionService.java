@@ -23,26 +23,21 @@ public class QuestionService {
     }
 
     public Question createQuestion(Question question) {
-        // Ensure the Test object is not null and has a valid ID
         if (question.getTest() == null || question.getTest().getId() == 0) {
             throw new RuntimeException("Test ID must be provided");
         }
 
-        // Fetch the Test entity
         Test test = testRepository.findById(question.getTest().getId())
                 .orElseThrow(() -> new RuntimeException("Test not found"));
 
-        // Set the Test entity in the Question
         question.setTest(test);
 
-        // Ensure the Question is set in each Answer
         if (question.getAnswers() != null) {
             for (Answer answer : question.getAnswers()) {
-                answer.setQuestion(question); // Set the parent Question for each Answer
+                answer.setQuestion(question);
             }
         }
 
-        // Save the Question (this will cascade to save the Answers)
         return questionRepository.save(question);
     }
 

@@ -12,6 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 public class Certificate {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCertificate;
@@ -22,5 +23,4 @@ public class Certificate {
 
     private Date date;
     private String nomCertificate;
-
 }

@@ -11,11 +11,12 @@ import {
 import { BackToTopComponent } from './components/back-to-top.component';
 import { TitleService } from './core/service/title.service';
 import { NgProgressComponent, NgProgressModule } from 'ngx-progressbar';
+import { ReactiveFormsModule } from '@angular/forms'; // Add this import
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, BackToTopComponent, NgProgressModule],
+  imports: [RouterOutlet, BackToTopComponent, NgProgressModule, ReactiveFormsModule,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

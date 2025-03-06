@@ -10,6 +10,7 @@ import { QuizComponent } from './quiz-component/quiz-component.component'
 import { ReviewComponent } from './review/review.component'
 import { SettingComponent } from './setting/setting.component'
 import { StudentlistComponent } from './studentlist/studentlist.component'
+import { AddQuestionToQuizComponent } from './add-question-to-quiz/add-question-to-quiz.component'
 
 export const INSTRUCTOR_ROUTES: Route[] = [
   {
@@ -68,8 +69,13 @@ export const INSTRUCTOR_ROUTES: Route[] = [
     data: { title: 'Delete Account' },
   },
   {
-  path:'quiz',
+  path:'Tests',
   component: QuizComponent,
   data: { title: 'Instructor Quiz' },
-  }
+  },
+  {
+    path:'AddQuestionToQuizComponent',
+    component: AddQuestionToQuizComponent,
+    data: { title: 'Instructor AddQuestionToQuizComponent' },
+  },
 ]

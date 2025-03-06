@@ -569,10 +569,10 @@ export const DEMO_MENU_ITEMS: MenuItemType[] = [
             parentKey: 'instructor',
           },
           {
-            key: 'quiz',
-            title: 'Quiz',
+            key: 'Tests',
+            title: 'Tests',
             icon: 'bi bi-question-diamond',
-            link: '/instructor/quiz',
+            link: '/instructor/Tests',
             parentKey: 'instructor',
           },
           {
@@ -907,9 +907,15 @@ export const INSTRUCTOR_MENU_ITEMS: MenuItemType[] = [
   },
   {
     key: 'quiz',
-    title: 'Quiz',
+    title: 'Tests',
     icon: 'bi bi-question-diamond',
-    link: '/instructor/quiz',
+    link: '/instructor/Tests',
+  },
+  {
+    key: 'Add Questions',
+    title: 'Add Questions',
+    icon: 'bi bi-question-diamond',
+    link: '/instructor/AddQuestionToQuizComponent',
   },
   {
     key: 'earnings',

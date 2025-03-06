@@ -21,6 +21,7 @@ import { AuthenticationEffects } from './store/authentication/authentication.eff
 import { provideStore } from '@ngrx/store';
 import { rootReducer } from './store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { ReactiveFormsModule } from '@angular/forms'; // Add this import
 
 // Scroll configuration
 const scrollConfig: InMemoryScrollingOptions = {

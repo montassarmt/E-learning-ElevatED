@@ -27,10 +27,11 @@ public class QuestionController {
             Question createdQuestion = questionService.createQuestion(question);
             return ResponseEntity.ok(createdQuestion);
         } catch (Exception e) {
-            e.printStackTrace(); // Log the exception
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
     @DeleteMapping("/{id}")
     public void deleteQuestion(@PathVariable int id) {
         questionService.deleteQuestion(id);

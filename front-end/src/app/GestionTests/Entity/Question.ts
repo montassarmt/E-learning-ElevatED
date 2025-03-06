@@ -4,7 +4,8 @@ import { Test } from "./Test";
 export interface Question {
   id: number;
   text: string;
-  testId: number;
-  answers: Answer[];
-  correctAnswerIndex?: number; // Add correctAnswerIndex
- }
+  test: {
+    id: number;  // Only the ID of the Test, not the full object
+  };
+  answers: Answer[]; // Assuming Answer is another interface
+}

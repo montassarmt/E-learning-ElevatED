@@ -19,10 +19,10 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "test_id", nullable = false)
-    @ToString.Exclude // Exclude this field from toString()
+    @ToString.Exclude
     private Test test;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
-    @ToString.Exclude // Exclude this field from toString()
+    @ToString.Exclude
     private List<Answer> answers;
 }

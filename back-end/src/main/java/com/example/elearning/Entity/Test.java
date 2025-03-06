@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 public class Test {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -27,5 +28,4 @@ public class Test {
     @OneToOne(mappedBy = "test", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private Certificate certificate;
-
 }

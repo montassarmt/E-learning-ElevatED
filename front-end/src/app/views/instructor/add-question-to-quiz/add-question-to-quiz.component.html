@@ -1,0 +1,55 @@
+<div class="card border bg-transparent rounded-3">
+ <div class="card-header bg-transparent border-bottom px-3">
+   <div class="row g-4 align-items-center">
+     <div class="col-md-10">
+       <h3 class="card-title mb-0">Add Question to Quiz</h3>
+     </div>
+   </div>
+ </div>
+
+ <div class="card-body p-4">
+  <form [formGroup]="questionForm">
+   <!-- Quiz Selection -->
+   <div class="mb-3">
+     <label for="quizSelect" class="form-label">Select Quiz</label>
+     <select class="form-select" id="quizSelect" formControlName="quizSelect" required>
+       <option value="" disabled>Select a quiz</option>
+       <option *ngFor="let quiz of quizzes; trackBy: trackById" [value]="quiz.id">
+         {{ quiz.title }}
+       </option>
+     </select>
+   </div>
+ 
+   <!-- Question Input -->
+   <div class="mb-3">
+     <label for="questionText" class="form-label">Question</label>
+     <input type="text" class="form-control" id="questionText" formControlName="questionText" required />
+   </div>
+ 
+   <!-- Answer Options -->
+   <div class="mb-3">
+     <label class="form-label">Answer Options</label>
+     <div class="row g-3" formArrayName="answers">
+       <div *ngFor="let answer of answers.controls; let i = index" [formGroupName]="i" class="col-md-6">
+         <input type="text" class="form-control" formControlName="text" placeholder="Option {{ i + 1 }}" required />
+         <div class="form-check mt-2">
+           <input
+             class="form-check-input"
+             type="radio"
+             [value]="i"
+             (change)="setCorrectAnswer(i)"
+             [checked]="questionForm.value.correctAnswerIndex === i"
+           />
+           <label class="form-check-label">Correct Answer</label>
+         </div>
+       </div>
+     </div>
+   </div>
+ 
+   <!-- Save Button -->
+   <button type="button" class="btn btn-primary" (click)="saveQuestion()" [disabled]="questionForm.invalid">
+     Save Question
+   </button>
+ </form>
+ </div>
+</div>

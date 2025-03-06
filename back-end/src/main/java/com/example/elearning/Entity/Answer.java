@@ -13,6 +13,7 @@ public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String text;
     private boolean isCorrect;
 

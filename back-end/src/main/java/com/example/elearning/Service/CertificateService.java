@@ -15,14 +15,13 @@ public class CertificateService {
     private CertificateRepository certificateRepository;
 
     @Autowired
-    private TestRepository testRepository; // Add this to fetch the Test entity
+    private TestRepository testRepository;
 
     public List<Certificate> getAllCertifs() {
         return certificateRepository.findAll();
     }
 
     public Certificate createCertif(Certificate certif) {
-        // Ensure the associated Test exists
         if (certif.getTest() != null && certif.getTest().getId() != 0) {
             Test test = testRepository.findById(certif.getTest().getId())
                     .orElseThrow(() -> new RuntimeException("Test not found"));
@@ -39,14 +38,12 @@ public class CertificateService {
         Certificate certif = certificateRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Certificate not found"));
 
-        // Update the Test reference if provided
         if (certifDetails.getTest() != null && certifDetails.getTest().getId() != 0) {
             Test test = testRepository.findById(certifDetails.getTest().getId())
                     .orElseThrow(() -> new RuntimeException("Test not found"));
             certif.setTest(test);
         }
 
-        // Update other fields
         certif.setDate(certifDetails.getDate());
         certif.setNomCertificate(certifDetails.getNomCertificate());
 
