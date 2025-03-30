@@ -3,7 +3,6 @@ import { DashboardComponent } from './dashboard/dashboard.component'
 import { DeleteAccountComponent } from './delete-account/delete-account.component'
 import { EarningComponent } from './earning/earning.component'
 import { EditProfileComponent } from './edit-profile/edit-profile.component'
-import { ManageCourseComponent } from './manage-course/manage-course.component'
 import { OrderComponent } from './order/order.component'
 import { PayoutComponent } from './payout/payout.component'
 import { QuizComponent } from './quiz/quiz.component'
@@ -20,11 +19,6 @@ export const INSTRUCTOR_ROUTES: Route[] = [
     path: 'dashboard',
     component: DashboardComponent,
     data: { title: 'Instructor Dashboard' },
-  },
-  {
-    path: 'manage-course',
-    component: ManageCourseComponent,
-    data: { title: 'Manage Course' },
   },
   {
     path: 'quiz',
