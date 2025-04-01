@@ -10,6 +10,7 @@ import { Index8Component } from './index8/index8.component'
 import { Index9Component } from './index9/index9.component'
 import { Index10Component } from './index10/index10.component'
 import { Index11Component } from './index11/index11.component'
+import {VideocallComponent} from "@views/demo/videocall/videocall.component";
 
 export const DEMO_ROUTES: Route[] = [
   {
@@ -67,4 +68,9 @@ export const DEMO_ROUTES: Route[] = [
     component: Index11Component,
     data: { title: 'Home - Workshop' },
   },
+  {
+    path:'video-call',
+    component: VideocallComponent,
+    data: { title: 'Video Call' }
+  }
 ]

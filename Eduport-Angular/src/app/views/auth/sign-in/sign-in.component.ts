@@ -1,54 +1,44 @@
-import { login } from '@/app/store/authentication/authentication.actions'
-import { CommonModule } from '@angular/common'
-import { Component, inject } from '@angular/core'
-import {
-  FormsModule,
-  ReactiveFormsModule,
-  UntypedFormBuilder,
-  Validators,
-  type UntypedFormGroup,
-} from '@angular/forms'
-import { RouterLink } from '@angular/router'
-import { Store } from '@ngrx/store'
+// signin.component.ts
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-sign-in',
-  standalone: true,
-  imports: [RouterLink, FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './sign-in.component.html',
-  styles: ``,
+  standalone: true,
+  imports: [ReactiveFormsModule]
 })
 export class SignInComponent {
-  signinForm!: UntypedFormGroup
-  submitted: boolean = false
-  passwordType: boolean = true
+  loginForm: FormGroup;
 
-  public fb = inject(UntypedFormBuilder)
-  store = inject(Store)
-
-  constructor() {
-    this.signinForm = this.fb.group({
-      email: ['user@demo.com', [Validators.required, Validators.email]],
-      password: ['123456', [Validators.required]],
-    })
-  }
-
-  get form() {
-    return this.signinForm.controls
+  constructor(
+      private fb: FormBuilder,
+      private http: HttpClient,
+      private router: Router
+  ) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
   }
 
   onLogin() {
-    this.submitted = true
-    if (this.signinForm.valid) {
-      const email = this.form['email'].value // Get the username from the form
-      const password = this.form['password'].value // Get the password from the form
+    if (this.loginForm.invalid) return;
 
-      // Login Api
-      this.store.dispatch(login({ email: email, password: password }))
-    }
-  }
+    const user = this.loginForm.value;
 
-  changeType() {
-    this.passwordType = !this.passwordType
+    this.http.post<any>('http://localhost:8087/api/v1/users/login', user)
+        .subscribe({
+          next: (response) => {
+            localStorage.setItem('connectedUser', JSON.stringify(response));
+            this.router.navigate(['/index-1']);
+          },
+          error: () => {
+            alert('Login and / or password is incorrect');
+          }
+        });
   }
 }
