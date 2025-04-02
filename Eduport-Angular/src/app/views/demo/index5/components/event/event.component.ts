@@ -13,6 +13,7 @@ import { HackathonService, Hackathon } from '@/app/services/hackathon.service';
 })
 export class EventComponent implements OnInit {
   hackathons: Hackathon[] = [];
+  upcomingHackathons: Hackathon[] = [];
 
   // ✅ Store hackathon-specific images in a dictionary
   hackathonImages: { [key: string]: string } = {
@@ -47,7 +48,20 @@ export class EventComponent implements OnInit {
   ngOnInit(): void {
     this.hackathonService.getAllHackathons().subscribe(data => {
       this.hackathons = data;
+      this.loadUpcomingHackathons();
     });
+  }
+  loadUpcomingHackathons(): void {
+    const today = new Date();
+
+    this.hackathonService.getAllHackathons().subscribe({
+      next: (data: Hackathon[]) => {
+        this.upcomingHackathons = data
+            .filter(h => new Date(h.dateFin) >= today)
+            .sort((a, b) => new Date(a.dateDebut).getTime() - new Date(b.dateDebut).getTime());
+      },
+      error: (err) => console.error('Error loading hackathons', err),
+    })
   }
 
   // ✅ Function to get an image dynamically based on hackathon name
