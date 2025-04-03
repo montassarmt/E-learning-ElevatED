@@ -882,10 +882,10 @@ export const INSTRUCTOR_MENU_ITEMS: MenuItemType[] = [
     link: '/instructor/calendar',
   },
   {
-    key: 'addHackathons',
-    title: 'Add Hackathon', // ✅ Ajout de Hackathons ici
-    icon: 'bi bi-code-slash', // Icône pour représenter Hackathons
-    link: '/instructor/add-hackathons',
+    key: 'addCoaching',
+    title: 'Add Coaching sessions',
+    icon: 'bi bi-ui-checks-grid',
+    link: '/instructor/add-coaching',
   },
   {
     key: 'coaching',
@@ -911,6 +911,7 @@ export const INSTRUCTOR_MENU_ITEMS: MenuItemType[] = [
     icon: 'fas fa-sign-out-alt',
     link: '/sign-in',
   },
+
 ]
 
 export const STUDENT_MENU_ITEMS: MenuItemType[] = [
