@@ -16,8 +16,6 @@ public class Utilisateur {
         @Enumerated(EnumType.STRING)
         private Role role;
 
-        @ManyToMany(mappedBy = "etudiants")
-        private Set<SeanceCoaching> seances = new HashSet<>();
 
         public Utilisateur() {}
 
@@ -61,11 +59,5 @@ public class Utilisateur {
                 this.role = role;
         }
 
-        public Set<SeanceCoaching> getSeances() {
-                return seances;
-        }
 
-        public void setSeances(Set<SeanceCoaching> seances) {
-                this.seances = seances;
-        }
 }

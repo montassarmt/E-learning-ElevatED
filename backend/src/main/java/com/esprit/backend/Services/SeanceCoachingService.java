@@ -1,74 +1,59 @@
 package com.esprit.backend.Services;
 
 import com.esprit.backend.Entities.SeanceCoaching;
-import com.esprit.backend.Entities.Utilisateur;
-import com.esprit.backend.Entities.Role;
 import com.esprit.backend.Repositories.SeanceCoachingRepository;
-import com.esprit.backend.Repositories.UtilisateurRepository;
+import com.google.api.services.calendar.model.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class SeanceCoachingService {
+
     @Autowired
     private SeanceCoachingRepository seanceCoachingRepository;
 
     @Autowired
-    private UtilisateurRepository utilisateurRepository;
+    private GoogleCalendarService googleCalendarService;
 
-    // ✅ 1. Lister toutes les séances
     public List<SeanceCoaching> getAllSeances() {
         return seanceCoachingRepository.findAll();
     }
 
-    // ✅ 2. Récupérer une séance par ID
-    public SeanceCoaching getSeanceById(Long id) {
+    public SeanceCoaching createSeance(SeanceCoaching seance) {
+        String roomId = "coaching-" + UUID.randomUUID();
+        seance.setLienMeet("http://localhost:4200/video-call?roomID=" + roomId);
+
+        SeanceCoaching saved = seanceCoachingRepository.save(seance);
+
+        try {
+            Date start = Date.from(seance.getDateDebut().atZone(ZoneId.systemDefault()).toInstant());
+            Date end = Date.from(seance.getDateFin().atZone(ZoneId.systemDefault()).toInstant());
+
+            Event googleEvent = googleCalendarService.createGoogleCalendarEvent(
+                    seance.getNom(),
+                    start,
+                    end,
+                    seance.getDescription() + "\nLien : " + seance.getLienMeet()
+            );
+
+            googleCalendarService.addEventToCalendar(googleEvent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return saved;
+    }
+
+    public SeanceCoaching getById(Long id) {
         return seanceCoachingRepository.findById(id).orElse(null);
     }
 
-    // ✅ 3. Créer une séance
-    public SeanceCoaching createSeance(SeanceCoaching seanceCoaching) {
-        return seanceCoachingRepository.save(seanceCoaching);
-    }
-
-    // ✅ 4. Modifier une séance
-    public SeanceCoaching updateSeance(Long id, SeanceCoaching newSeance) {
-        return seanceCoachingRepository.findById(id).map(existingSeance -> {
-            existingSeance.setNom(newSeance.getNom());
-            existingSeance.setDescription(newSeance.getDescription());
-            existingSeance.setDateDebut(newSeance.getDateDebut());
-            existingSeance.setDateFin(newSeance.getDateFin());
-            existingSeance.setLienMeet(newSeance.getLienMeet());
-            return seanceCoachingRepository.save(existingSeance);
-        }).orElseThrow(() -> new IllegalArgumentException("Séance non trouvée"));
-    }
-
-    // ✅ 5. Supprimer une séance
     public void deleteSeance(Long id) {
         seanceCoachingRepository.deleteById(id);
-    }
-
-    // ✅ 6. Ajouter un étudiant à une séance
-    public SeanceCoaching addEtudiantToSeance(Long seanceId, Long etudiantId) {
-        SeanceCoaching seance = getSeanceById(seanceId);
-        Utilisateur etudiant = utilisateurRepository.findById(etudiantId)
-                .orElseThrow(() -> new IllegalArgumentException("Étudiant non trouvé"));
-
-        if (!etudiant.getRole().equals(Role.ETUDIANT)) {
-            throw new IllegalArgumentException("Seuls les étudiants peuvent rejoindre une séance.");
-        }
-
-        seance.getEtudiants().add(etudiant);
-        return seanceCoachingRepository.save(seance);
-    }
-
-    // ✅ 7. Affecter un lien Meet
-    public SeanceCoaching assignMeetLink(Long seanceId, String lienMeet) {
-        SeanceCoaching seance = getSeanceById(seanceId);
-        seance.setLienMeet(lienMeet);
-        return seanceCoachingRepository.save(seance);
     }
 }

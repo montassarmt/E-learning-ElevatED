@@ -8,22 +8,30 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/seances")
+@CrossOrigin(origins = "http://localhost:4200")
 public class SeanceCoachingController {
+
     @Autowired
-    private SeanceCoachingService seanceCoachingService;
+    private SeanceCoachingService seanceService;
 
     @GetMapping
     public List<SeanceCoaching> getAllSeances() {
-        return seanceCoachingService.getAllSeances();
+        return seanceService.getAllSeances();
     }
 
     @PostMapping
-    public SeanceCoaching createSeance(@RequestBody SeanceCoaching seanceCoaching) {
-        return seanceCoachingService.createSeance(seanceCoaching);
+    public SeanceCoaching createSeance(@RequestBody SeanceCoaching seance) {
+        return seanceService.createSeance(seance);
     }
 
-    @PutMapping("/{id}/assignMeet")
-    public ResponseEntity<SeanceCoaching> assignMeetLink(@PathVariable Long id, @RequestBody String lienMeet) {
-        return ResponseEntity.ok(seanceCoachingService.assignMeetLink(id, lienMeet));
+    @GetMapping("/{id}")
+    public SeanceCoaching getSeance(@PathVariable Long id) {
+        return seanceService.getById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteSeance(@PathVariable Long id) {
+        seanceService.deleteSeance(id);
     }
 }
+
