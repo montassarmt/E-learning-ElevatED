@@ -1,16 +1,16 @@
-import {Component, CUSTOM_ELEMENTS_SCHEMA, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TinySliderComponent } from '@/app/components/tiny-slider/tiny-slider.component';
 import type { TinySliderSettings } from 'tiny-slider';
 import { HackathonService, Hackathon } from '@/app/services/hackathon.service';
 
 @Component({
-  selector: 'index5-event',
+  selector: 'index1-event',
   standalone: true,
   imports: [CommonModule, TinySliderComponent],
   templateUrl: './event.component.html',
-  styles: ``,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styleUrls: ['./event.component.scss'],
+
 })
 export class EventComponent implements OnInit {
   hackathons: Hackathon[] = [];
@@ -47,11 +47,23 @@ export class EventComponent implements OnInit {
   constructor(private hackathonService: HackathonService) {}
 
   ngOnInit(): void {
-    this.hackathonService.getAllHackathons().subscribe(data => {
-      this.hackathons = data;
-      this.loadUpcomingHackathons();
+    this.hackathonService.getAllHackathons().subscribe({
+      next: (data: Hackathon[]) => {
+        this.hackathons = data;
+
+        const today = new Date();
+        this.upcomingHackathons = this.hackathons
+            .filter(h => new Date(h.dateFin) >= today)
+            .sort((a, b) => new Date(a.dateDebut).getTime() - new Date(b.dateDebut).getTime());
+
+        // ✅ Forcer Angular à finaliser son render
+        setTimeout(() => {
+          this.sliderConfig = { ...this.sliderConfig }; // re-trigger config
+        }, 200);
+      }
     });
   }
+
   loadUpcomingHackathons(): void {
     const today = new Date();
 

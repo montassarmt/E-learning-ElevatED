@@ -1,130 +1,49 @@
-<section class="pb-5 pt-0 pt-lg-5">
-  <div class="container">
-    <div class="row mb-4">
-      <div class="col-lg-8 mx-auto text-center">
-        <h2 class="fs-1">Our Trending Courses</h2>
-        <p class="mb-0">Check out most 🔥 courses in the market</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="tiny-slider arrow-round arrow-blur arrow-hover">
-        <ng-tiny-slider
-          [config]="SliderSetting"
-          class="tiny-slider-inner pb-1"
-          data-autoplay="true"
-          data-arrow="true"
-          data-edge="2"
-          data-dots="false"
-          data-items="3"
-          data-items-lg="2"
-          data-items-sm="1"
-        >
-          @for (item of courseList; track $index) {
-            <div>
-              <div class="card action-trigger-hover border bg-transparent">
-                <img
-                  [src]="item.image"
-                  class="card-img-top"
-                  alt="course image"
-                />
+<ng-tiny-slider *ngIf="sliderReady" [config]="SliderSetting" class="tiny-slider-inner pb-1">
+    <div *ngFor="let hackathon of upcomingHackathons">
+        <div>
+            <div class="card shadow-sm border rounded-4" style="width: 300px; margin: auto; max-height: 310px;">
 
-                @if (item.ribbon) {
-                  <div class="ribbon mt-3">
-                    <span>{{ item.ribbon }}</span>
-                  </div>
-                }
+                <!-- ✅ Image -->
+                <div class="position-relative">
+                    <img [src]="getHackathonImage(hackathon.nom)"
+                         class="card-img-top"
+                         alt="Hackathon image"
+                         style="height: 160px; width: 100%; object-fit: cover; border-top-left-radius: 1rem; border-top-right-radius: 1rem; display: block;" />
 
-                <div class="card-body pb-0">
-                  <div class="d-flex justify-content-between mb-3">
-                    <span class="hstack gap-2">
-                      @for (badge of item.badges; track badge) {
-                        <a
-                          href="javascript:void(0);"
-                          class="badge"
-                          [ngClass]="
-                            badge.class == 'dark'
-                              ? 'text-bg-dark'
-                              : 'bg-primary text-primary bg-opacity-10'
-                          "
-                          >{{ badge.text }}</a
-                        >
-                      }
-                    </span>
-                    <a href="javascript:void(0);" class="h6 fw-light mb-0"
-                      ><i class="far fa-bookmark"></i
-                    ></a>
-                  </div>
+                    <!-- ❤️ Icon -->
 
-                  <h5 class="card-title">
-                    <a href="javascript:void(0);">{{ item.title }}</a>
-                  </h5>
+                </div>
+                <div class="card-body d-flex flex-column" style="height: 220px;">
 
-                  <div class="d-flex justify-content-between mb-2">
-                    <div class="hstack gap-2">
-                      <p class="text-warning m-0">
-                        {{ item.rating
-                        }}<i class="fas fa-star text-warning ms-1"></i>
-                      </p>
-                      <span class="small">({{ item.reviews }})</span>
+                    <h5 class="card-title mb-1">
+                        <a href="javascript:void(0);" style="text-decoration: none; ">
+                            {{ hackathon.nom }}
+                        </a>
+                    </h5>
+
+                    <p class="mb-0" style="
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    color: #6c757d;
+    min-height: 40px;
+  ">
+                        {{ hackathon.description }}
+                    </p>
+
+                    <!-- ✅ Badge en bas -->
+                    <div class="w-100 mt-auto">
+                        <a href="javascript:void(0);" class="badge text-bg-white fs-6 rounded-1 d-inline-block text-truncate"
+                           style="display: block; max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                            <i class="far fa-calendar-alt text-orange me-2"></i>
+                            {{ hackathon.dateDebut | date:'short' }} - {{ hackathon.dateFin | date:'short' }}
+                        </a>
                     </div>
-                    <div class="hstack gap-2">
-                      <p class="h6 fw-light mb-0 m-0">{{ item.students }}</p>
-                      <span class="small">(Student)</span>
-                    </div>
-                  </div>
 
-                  <div class="hstack gap-3">
-                    <span class="h6 fw-light mb-0"
-                      ><i class="far fa-clock text-danger me-2"></i
-                      >{{ item.time }}</span
-                    >
-                    <span class="h6 fw-light mb-0"
-                      ><i class="fas fa-table text-orange me-2"></i
-                      >{{ item.lectures }} lectures</span
-                    >
-                  </div>
                 </div>
 
-                <div class="card-footer pt-0 bg-transparent">
-                  <hr />
-
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="d-flex align-items-center">
-                      <div class="avatar avatar-sm">
-                        <img
-                          class="avatar-img rounded-1"
-                          [src]="item.instructor.avatar"
-                          alt="avatar"
-                        />
-                      </div>
-                      <p class="mb-0 ms-2">
-                        <a
-                          href="javascript:void(0);"
-                          class="h6 fw-light mb-0"
-                          >{{ item.instructor.name }}</a
-                        >
-                      </p>
-                    </div>
-
-                    <div>
-                      <h4 class="text-success mb-0 item-show">
-                        {{ item.price }}
-                      </h4>
-                      <a
-                        href="javascript:void(0);"
-                        class="btn btn-sm btn-success-soft item-show-hover"
-                        ><i class="fas fa-shopping-cart me-2"></i>Add to cart</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
-          }
-        </ng-tiny-slider>
-      </div>
+        </div>
     </div>
-  </div>
-</section>
+</ng-tiny-slider>
