@@ -10,8 +10,8 @@ import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router'
 import { FormsModule } from '@angular/forms'
 import { NgClass, NgForOf } from '@angular/common'
-import {EventComponent} from "@views/demo/index5/components/event/event.component";
 import {BannerComponent} from "@views/demo/index2/components/banner/banner.component";
+import {EventComponent} from "@views/demo/index1/component/event/event.component";
 
 @Component({
     selector: 'app-index1',
@@ -30,6 +30,7 @@ import {BannerComponent} from "@views/demo/index2/components/banner/banner.compo
         NgForOf,
         EventComponent,
         BannerComponent,
+        EventComponent,
     ],
     templateUrl: './index1.component.html',
     styles: ``,
