@@ -891,7 +891,7 @@ export const INSTRUCTOR_MENU_ITEMS: MenuItemType[] = [
     key: 'coaching',
     title: 'Coaching', // ✅ Ajout de Hackathons ici
     icon: 'bi bi-code-slash', // Icône pour représenter Hackathons
-    link: '/instructor/add-hackathons',
+    link: '/instructor/coaching',
   },
   {
     key: 'settings',
