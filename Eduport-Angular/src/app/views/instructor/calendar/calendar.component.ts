@@ -5,6 +5,7 @@ import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { HackathonService, Hackathon } from '@/app/services/hackathon.service';
+import {CoachingService, SeanceCoaching} from "@/app/services/coaching.service";
 
 @Component({
   selector: 'app-calendar',
@@ -30,10 +31,15 @@ export class CalendarComponent implements OnInit {
 
   currentDate: Date = new Date(); // Stocke la date actuelle
 
-  constructor(private hackathonService: HackathonService) {}
+  constructor(private hackathonService: HackathonService,
+              private seanceService: CoachingService
+
+  ) {}
 
   ngOnInit(): void {
     this.loadHackathons();
+    this.loadSeances();
+
   }
 
   loadHackathons(): void {
@@ -45,6 +51,22 @@ export class CalendarComponent implements OnInit {
         description: hackathon.description,
         classNames: ['event'],
       }));
+    });
+  }
+  loadSeances(): void {
+    this.seanceService.getAllSeances().subscribe((seances: SeanceCoaching[]) => {
+      const seanceEvents = seances.map((seance) => ({
+        title: `Coaching: ${seance.nom} (${this.formatTime(seance.dateDebut)} - ${this.formatTime(seance.dateFin)})`,
+        start: seance.dateDebut,
+        end: seance.dateFin,
+        description: seance.description,
+        url: seance.lienMeet,
+        classNames: ['event', 'coaching'],
+      }));
+      this.calendarOptions.events = [
+        ...(this.calendarOptions.events as any[]),
+        ...seanceEvents,
+      ];
     });
   }
 
