@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms'
 import { NgClass, NgForOf } from '@angular/common'
 import {BannerComponent} from "@views/demo/index2/components/banner/banner.component";
 import {EventComponent} from "@views/demo/index1/component/event/event.component";
+import {LiveCourseComponent} from "@views/demo/index1/component/live-course/live-course.component";
 
 @Component({
     selector: 'app-index1',
@@ -31,6 +32,7 @@ import {EventComponent} from "@views/demo/index1/component/event/event.component
         EventComponent,
         BannerComponent,
         EventComponent,
+        LiveCourseComponent,
     ],
     templateUrl: './index1.component.html',
     styles: ``,

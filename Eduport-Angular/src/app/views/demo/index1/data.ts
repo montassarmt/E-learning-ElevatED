@@ -8,6 +8,7 @@ export type UserType = {
   avatar: string
 }
 
+
 export type CourseType = {
   image: string
   badge: BadgeType
@@ -18,6 +19,12 @@ export type CourseType = {
   duration: string
   lectures: number
   type: string
+}
+export type LiveCourseType = {
+  title: string
+  image: string
+  video_link: string
+  students: string[]
 }
 
 export type TrendingType = {
