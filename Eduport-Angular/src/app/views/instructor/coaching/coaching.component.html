@@ -1,0 +1,43 @@
+<div class="card border bg-transparent rounded-3">
+    <div class="card-header bg-transparent border-bottom">
+        <div class="row">
+            <h3 class="col-6 mb-0">Coaching list</h3>
+            <div class="col-3"></div>
+            <button class="col-2 btn btn-success" style="margin-left: 40px" routerLink="/add-coaching">Ajouter</button>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive border-0">
+            <table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
+                <thead>
+                <tr>
+                    <th class="border-0 rounded-start">Nom</th>
+                    <th class="border-0">Description</th>
+                    <th class="border-0">Date Début</th>
+                    <th class="border-0">Date Fin</th>
+                    <th class="border-0">Lien </th>
+                    <th class="border-0 rounded-end">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let seance of seances">
+                    <td>{{ seance.nom }}</td>
+                    <td>{{ seance.description }}</td>
+                    <td>{{ seance.dateDebut | date:'short' }}</td>
+                    <td>{{ seance.dateFin | date:'short' }}</td>
+                    <td><a [href]="seance.lienMeet" target="_blank">Lien</a></td>
+                    <td class="d-flex align-items-center">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="d-sm-flex justify-content-sm-between align-items-sm-center mt-4 mt-sm-3">
+            <p class="mb-0 text-center text-sm-start">
+                Affichage de 1 à {{ seances.length }} séances de coaching
+            </p>
+        </div>
+    </div>
+</div>

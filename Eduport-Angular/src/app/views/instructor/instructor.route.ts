@@ -13,6 +13,7 @@ import { HackathonComponent } from './hackathon/hackathon.component'
 import { AddHackathonsComponent } from './add-hackathons/add-hackathons.component'
 import {CalendarComponent} from "@views/instructor/calendar/calendar.component";
 import {EditHackathonComponent} from "@views/instructor/edit-hackathon/edit-hackathon.component";
+import {CoachingComponent} from "@views/instructor/coaching/coaching.component";
 import {AddCoachingComponent} from "@views/instructor/add-coaching/add-coaching.component";
 
 export const INSTRUCTOR_ROUTES: Route[] = [
@@ -81,9 +82,19 @@ export const INSTRUCTOR_ROUTES: Route[] = [
     data: { title: 'calendar' },
   },
   {
+    path: 'edit-hackathon/:id',
+    component: EditHackathonComponent,
+    data: { title: 'Modifier Hackathon' },
+  },
+  {
     path: 'add-coaching',
     component:AddCoachingComponent,
     data: { title: 'Add Coaching Session' },
+  },
+  {
+    path: 'coaching',
+    component:CoachingComponent,
+    data: { title: 'Coaching Sessions' },
   }
 
 
