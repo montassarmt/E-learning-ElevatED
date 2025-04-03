@@ -1,0 +1,33 @@
+<div class="card bg-transparent border rounded-3">
+    <div class="card-header bg-transparent border-bottom">
+        <h3 class="card-header-title mb-0">Ajouter une Séance de Coaching</h3>
+    </div>
+
+    <div class="card-body">
+        <form class="row g-4">
+            <div class="col-12">
+                <label class="form-label">Nom</label>
+                <input type="text" [(ngModel)]="newSeance.nom" name="nom" class="form-control" required />
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" rows="3" [(ngModel)]="newSeance.description" name="description"></textarea>
+            </div>
+
+            <div class="col-6">
+                <label class="form-label">Date Début</label>
+                <input type="datetime-local" [(ngModel)]="newSeance.dateDebut" name="dateDebut" class="form-control" required />
+            </div>
+
+            <div class="col-6">
+                <label class="form-label">Date Fin</label>
+                <input type="datetime-local" [(ngModel)]="newSeance.dateFin" name="dateFin" class="form-control" required />
+            </div>
+
+            <div class="d-sm-flex justify-content-end">
+                <button type="button" class="btn btn-primary mb-0" (click)="addSeance()">Ajouter</button>
+            </div>
+        </form>
+    </div>
+</div>

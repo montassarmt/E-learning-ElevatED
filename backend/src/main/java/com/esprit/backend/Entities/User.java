@@ -7,6 +7,7 @@ public class User {
     private String password;
     private String status;
 
+
     // 🔸 Getters & Setters
     public String getUsername() {
         return username;
