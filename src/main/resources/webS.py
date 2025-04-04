@@ -7,6 +7,19 @@ from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 import time
 
+
+# Wait for the cookie popup to appear and click "Deny all cookies"
+try:
+    deny_button = WebDriverWait(driver, 5).until(
+        EC.element_to_be_clickable((By.XPATH, "//button[@data-cookiefirst-action='reject']"))
+    )
+    deny_button.click()
+    print("Cookie popup handled.")
+except:
+    print("No cookie popup found or timeout reached.")
+
+
+
 # Scroll multiple times to trigger lazy loading
 scroll_attempts = 20
 max_items = 50  # Limit the number of items to scrape
