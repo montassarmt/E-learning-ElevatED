@@ -7,29 +7,23 @@ from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 import time
 
-# Set path to ChromeDriver
-chrome_driver_path = "C:\\Users\\hp\\Downloads\\chromedriver-win64\\chromedriver.exe"  
+# Scroll multiple times to trigger lazy loading
+scroll_attempts = 20
+max_items = 50  # Limit the number of items to scrape
+scraped_items = 0  # Track the number of items scraped
 
-# Create a Service object for ChromeDriver
-service = Service(executable_path=chrome_driver_path)
-
-# Initialize the WebDriver with the Service object
-driver = webdriver.Chrome(service=service)
-
-# Open the webpage
-url = "https://elearningindustry.com/directory/software-categories/learning-management-systems"
-driver.get(url)
-
-# Wait for the element to load completely
-WebDriverWait(driver, 15).until(
-    EC.presence_of_element_located((By.CLASS_NAME, "listings"))
-)
-
-# Scroll down to trigger JavaScript loading multiple times
-scroll_attempts = 20  # You can adjust this number based on how much data you need
-for _ in range(scroll_attempts):
+last_number = driver.execute_script('return document.body.scrollHeight')
+print("initial height : ", last_number)
+while True:
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    time.sleep(3)  # Wait for new content to load
+    time.sleep(5)  # Allow time for new content to load
+    newHeight = driver.execute_script('return document.body.scrollHeight')
+    print("new height 1 : ",newHeight)
+    if newHeight == last_number:
+        print("new height 2: ",newHeight)
+        break
+    last_number = newHeight
+    print("new height final : ", newHeight)
 
 # Now parse the page after scrolling and loading all items
 soup = BeautifulSoup(driver.page_source, 'html.parser')
