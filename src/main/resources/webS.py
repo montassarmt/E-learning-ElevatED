@@ -23,10 +23,13 @@ WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.CLASS_NAME, "
 # Handle cookie popup if it appears
 
 # Scroll until all elements are loaded
-last_height = driver.execute_script("return document.body.scrollHeight")
+#last_height = driver.execute_script("return document.body.scrollHeight")
+last_height=42729
 
+scroll_count = 0
 while True:
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    driver.execute_script("window.scrollTo(0, 42729);")
+    scroll_count += 1
     time.sleep(3)  # Allow time for lazy loading
 
     new_height = driver.execute_script("return document.body.scrollHeight")
