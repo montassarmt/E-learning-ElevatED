@@ -1,52 +1,71 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from bs4 import BeautifulSoup
 import time
+import pandas as pd
 
+# Set up ChromeDriver
+chrome_driver_path = "C:\\Users\\hp\\Downloads\\chromedriver-win64\\chromedriver.exe"
+service = Service(executable_path=chrome_driver_path)
+options = webdriver.ChromeOptions()
+options.add_argument("--headless")  # Run headless for performance
+driver = webdriver.Chrome(service=service, options=options)
 
-# Wait for the cookie popup to appear and click "Deny all cookies"
-try:
-    deny_button = WebDriverWait(driver, 5).until(
-        EC.element_to_be_clickable((By.XPATH, "//button[@data-cookiefirst-action='reject']"))
-    )
-    deny_button.click()
-    print("Cookie popup handled.")
-except:
-    print("No cookie popup found or timeout reached.")
+# Open the webpage
+url = "https://elearningindustry.com/directory/software-categories/learning-management-systems"
+driver.get(url)
 
+# Wait for the main content to load
+WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.CLASS_NAME, "columns")))
 
+# Handle cookie popup if it appears
 
-# Scroll multiple times to trigger lazy loading
-scroll_attempts = 20
-max_items = 50  # Limit the number of items to scrape
-scraped_items = 0  # Track the number of items scraped
+# Scroll until all elements are loaded
+last_height = driver.execute_script("return document.body.scrollHeight")
 
-last_number = driver.execute_script('return document.body.scrollHeight')
-print("initial height : ", last_number)
 while True:
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    time.sleep(5)  # Allow time for new content to load
-    newHeight = driver.execute_script('return document.body.scrollHeight')
-    print("new height 1 : ",newHeight)
-    if newHeight == last_number:
-        print("new height 2: ",newHeight)
+    time.sleep(3)  # Allow time for lazy loading
+
+    new_height = driver.execute_script("return document.body.scrollHeight")
+    if new_height == last_height:
         break
-    last_number = newHeight
-    print("new height final : ", newHeight)
+    last_height = new_height
 
-# Now parse the page after scrolling and loading all items
-soup = BeautifulSoup(driver.page_source, 'html.parser')
-data = soup.find('div', class_='listings js-entries')
+print("✅ Scrolling complete. Extracting data...")
 
-if data:
-    titles = data.find_all('h3', class_='listing-title')
-    print([title.text.strip() for title in titles])
+# Extract elements using Selenium (not BeautifulSoup)
+results = []
+listings = driver.find_elements(By.CLASS_NAME, "listing")
+
+for item in listings:
+    try:
+        title = item.find_element(By.CLASS_NAME, "listing-title").text.strip()
+    except:
+        title = "N/A"
+
+    try:
+        description = item.find_element(By.CLASS_NAME, "listing-description").text.strip()
+    except:
+        description = "N/A"
+
+    try:
+        reviews = item.find_element(By.CLASS_NAME, "fs-15").text.strip()
+    except:
+        reviews = "N/A"
+
+    results.append({"Title": title, "Description": description, "Reviews": reviews})
+
+# Convert to Pandas DataFrame
+df = pd.DataFrame(results)
+
+if df.empty:
+    print("❌ No data found. The page may be loading dynamically.")
 else:
-    print("Element not found. Page may be dynamically loading data.") 
+    print(df)
 
-# Close the driver after scraping
+
+# Close WebDriver
 driver.quit()
