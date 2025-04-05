@@ -12,6 +12,7 @@ target/
 .settings
 .springBeans
 .sts4-cache
+backend/micro-event/src/main/resources/credentials.json
 
 ### IntelliJ IDEA ###
 .idea
