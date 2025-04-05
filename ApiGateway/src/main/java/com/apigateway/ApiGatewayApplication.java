@@ -22,6 +22,12 @@ public class ApiGatewayApplication {
                         .uri("lb://Partnership-Management"))
                 .route("Partnership-Management", r -> r.path("/entreprise/**")
                         .uri("lb://Partnership-Management"))
+                .route("hackathon-Management", r -> r.path("/api/hackathons/**")
+                        .uri("lb://backend2"))
+
+                // 🔹 Séances de coaching
+                .route("coaching-Management", r -> r.path("/api/seances/**")
+                        .uri("lb://backend2"))
                 .build();
     }
 
