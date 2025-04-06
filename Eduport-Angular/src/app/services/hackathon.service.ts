@@ -38,4 +38,10 @@ export class HackathonService {
     return this.http.get<Hackathon>(`${this.apiUrl}/${id}`);
   }
 
+
+  getMyHackathons(email: string) {
+    return this.http.get(`/api/participations/my?email=${email}`);
+  }
+
+
 }

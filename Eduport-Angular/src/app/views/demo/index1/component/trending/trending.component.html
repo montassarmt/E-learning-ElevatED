@@ -6,6 +6,7 @@
                 <!-- ✅ Image -->
                 <div class="position-relative">
                     <img [src]="getHackathonImage(hackathon.nom)"
+                         (error)="onImageError($event)"
                          class="card-img-top"
                          alt="Hackathon image"
                          style="height: 160px; width: 100%; object-fit: cover; border-top-left-radius: 1rem; border-top-right-radius: 1rem; display: block;" />
@@ -38,6 +39,19 @@
                             {{ hackathon.dateDebut | date:'short' }} - {{ hackathon.dateFin | date:'short' }}
                         </a>
                     </div>
+                    <!-- Ajoute dans ton fichier de la section TrendingComponent -->
+                    <button
+                            (click)="toggleParticipation(hackathon)"
+                            [disabled]="isPast(hackathon) || isParticipating(hackathon)"
+                            class="btn"
+                            [class.btn-secondary]="isPast(hackathon)"
+                            [class.btn-primary]="!isPast(hackathon) && !isParticipating(hackathon)">
+                        {{ isPast(hackathon) ? 'Clôturé' : (isParticipating(hackathon) ? 'Déjà inscrit' : 'Participer') }}
+                    </button>
+
+
+
+
 
                 </div>
 

@@ -1,14 +1,32 @@
 package com.esprit.backend.Entities;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+@Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String username;
+    @Column(unique = true)
     private String email;
     private String password;
     private String status;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Participation> participations;
 
     // 🔸 Getters & Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -39,43 +57,5 @@ public class User {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    // 🔸 Méthode pour accéder au builder
-    public static Builder builder() {
-        return new Builder();
-    }
-
-    // 🔸 Classe interne Builder
-    public static class Builder {
-        private final User user;
-
-        public Builder() {
-            user = new User();
-        }
-
-        public Builder username(String username) {
-            user.setUsername(username);
-            return this;
-        }
-
-        public Builder email(String email) {
-            user.setEmail(email);
-            return this;
-        }
-
-        public Builder password(String password) {
-            user.setPassword(password);
-            return this;
-        }
-
-        public Builder status(String status) {
-            user.setStatus(status);
-            return this;
-        }
-
-        public User build() {
-            return user;
-        }
     }
 }

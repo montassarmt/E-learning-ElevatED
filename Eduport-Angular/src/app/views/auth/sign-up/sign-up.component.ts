@@ -37,7 +37,7 @@ export class SignUpComponent {
         .subscribe({
           next: () => {
             localStorage.setItem('connectedUser', JSON.stringify(user));
-            this.router.navigate(['/index-1']);
+            this.router.navigate(['/sign-in']);
           },
           error: (err) => {
             console.error('Registration error:', err);
