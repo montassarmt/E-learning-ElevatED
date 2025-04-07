@@ -103,6 +103,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/auth/**").permitAll() // Autoriser l'accès sans authentification
                         .requestMatchers("/api/test/**").permitAll()
+                        .requestMatchers("/api/users/**").permitAll()
                         .anyRequest().authenticated() // Toutes les autres requêtes nécessitent une authentification
                 )
                 .authenticationProvider(authenticationProvider()) // Configurer le fournisseur d'authentification

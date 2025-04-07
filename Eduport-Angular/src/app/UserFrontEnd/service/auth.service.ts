@@ -18,7 +18,7 @@ export class AuthService {
   getTemporaryEmail(): string | null {
     return this.temporaryEmail;
   }
-  private apiUrl = 'http://localhost:8081/api/auth'; // URL de votre API backend
+  private apiUrl = 'http://localhost:8082/api/auth'; // URL de votre API backend
 
   constructor(private http: HttpClient) {}
 
