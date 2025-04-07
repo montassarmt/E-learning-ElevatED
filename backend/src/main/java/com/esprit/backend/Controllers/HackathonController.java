@@ -49,4 +49,5 @@ public class HackathonController {
         hackathonService.deleteHackathon(id);
         return ResponseEntity.noContent().build();
     }
+
 }

@@ -16,17 +16,21 @@ public class Hackathon {
     private String theme;
     private String description;
     private LocalDateTime dateDebut; // ✅ Ajout de la date de début
-    private LocalDateTime dateFin;   // ✅ Ajout de la date de fin
+    private LocalDateTime dateFin;// ✅ Ajout de la date de fin
+    private String googleCalendarEventId;
+
 
     public Hackathon() {
     }
 
-    public Hackathon(String nom, String theme, String description, LocalDateTime dateDebut, LocalDateTime dateFin) {
+    public Hackathon(String nom, String theme, String description, LocalDateTime dateDebut, LocalDateTime dateFin, String googleCalendarEventId) {
         this.nom = nom;
         this.theme = theme;
         this.description = description;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
+        this.googleCalendarEventId = googleCalendarEventId;
+
     }
 
     public Long getId() {
@@ -75,5 +79,13 @@ public class Hackathon {
 
     public void setDateFin(LocalDateTime dateFin) {
         this.dateFin = dateFin;
+    }
+
+    public String getGoogleCalendarEventId() {
+        return googleCalendarEventId;
+    }
+
+    public void setGoogleCalendarEventId(String googleCalendarEventId) {
+        this.googleCalendarEventId = googleCalendarEventId;
     }
 }

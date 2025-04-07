@@ -3,12 +3,13 @@ package com.esprit.backend.Services;
 import com.esprit.backend.Entities.Hackathon;
 import com.esprit.backend.Repositories.HackathonRepository;
 import com.google.api.services.calendar.model.Event;
+import com.google.api.services.calendar.model.EventDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class HackathonService {
@@ -28,8 +29,6 @@ public class HackathonService {
 
     public Hackathon createHackathon(Hackathon hackathon) {
         Hackathon savedHackathon = hackathonRepository.save(hackathon);
-
-        // Ajouter le Hackathon à Google Calendar
         try {
             Date startDate = Date.from(hackathon.getDateDebut().atZone(ZoneId.systemDefault()).toInstant());
             Date endDate = Date.from(hackathon.getDateFin().atZone(ZoneId.systemDefault()).toInstant());
@@ -38,45 +37,44 @@ public class HackathonService {
                     hackathon.getNom(), startDate, endDate, hackathon.getDescription()
             );
 
-            // Suppression de "primary"
-            googleCalendarService.addEventToCalendar(googleEvent);
+            Event createdEvent = googleCalendarService.addEventToCalendar(googleEvent);
+            savedHackathon.setGoogleCalendarEventId(createdEvent.getId());
+            return hackathonRepository.save(savedHackathon);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return savedHackathon;
     }
 
     public Hackathon updateHackathon(Long id, Hackathon newHackathon) {
         return hackathonRepository.findById(id).map(existingHackathon -> {
-            // Vérifier si l'événement a changé
             boolean dateChanged = !existingHackathon.getDateDebut().equals(newHackathon.getDateDebut()) ||
                     !existingHackathon.getDateFin().equals(newHackathon.getDateFin());
 
             boolean infoChanged = !existingHackathon.getNom().equals(newHackathon.getNom()) ||
                     !existingHackathon.getDescription().equals(newHackathon.getDescription());
 
-            // Mettre à jour les champs
             existingHackathon.setNom(newHackathon.getNom());
             existingHackathon.setTheme(newHackathon.getTheme());
             existingHackathon.setDescription(newHackathon.getDescription());
             existingHackathon.setDateDebut(newHackathon.getDateDebut());
             existingHackathon.setDateFin(newHackathon.getDateFin());
 
-            // Sauvegarde en base
             Hackathon updatedHackathon = hackathonRepository.save(existingHackathon);
 
-            // Si des modifications nécessitent une mise à jour sur Google Calendar
-            if (dateChanged || infoChanged) {
+            if ((dateChanged || infoChanged) && existingHackathon.getGoogleCalendarEventId() != null) {
                 try {
                     Date startDate = Date.from(newHackathon.getDateDebut().atZone(ZoneId.systemDefault()).toInstant());
                     Date endDate = Date.from(newHackathon.getDateFin().atZone(ZoneId.systemDefault()).toInstant());
 
-                    Event googleEvent = googleCalendarService.createGoogleCalendarEvent(
-                            newHackathon.getNom(), startDate, endDate, newHackathon.getDescription()
-                    );
+                    Event updatedEvent = new Event()
+                            .setSummary(newHackathon.getNom())
+                            .setDescription(newHackathon.getDescription())
+                            .setStart(new EventDateTime().setDateTime(new com.google.api.client.util.DateTime(startDate)))
+                            .setEnd(new EventDateTime().setDateTime(new com.google.api.client.util.DateTime(endDate)));
 
-                    googleCalendarService.addEventToCalendar(googleEvent);
+                    googleCalendarService.updateGoogleCalendarEvent(existingHackathon.getGoogleCalendarEventId(), updatedEvent);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -87,6 +85,15 @@ public class HackathonService {
     }
 
     public void deleteHackathon(Long id) {
-        hackathonRepository.deleteById(id);
+        hackathonRepository.findById(id).ifPresent(h -> {
+            try {
+                if (h.getGoogleCalendarEventId() != null) {
+                    googleCalendarService.deleteGoogleCalendarEvent(h.getGoogleCalendarEventId());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            hackathonRepository.deleteById(id);
+        });
     }
 }
