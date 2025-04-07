@@ -20,4 +20,5 @@ export class ParticipationService {
   getMyHackathons(email: string): Observable<Hackathon[]> {
     return this.http.get<Hackathon[]>(`${this.baseUrl}/my?email=${email}`);
   }
+
 }
