@@ -21,4 +21,63 @@
   th {
     background-color: #f2f2f2;
   }
+
+  /* Center the search bar and apply styling */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* Style for the input field */
+.search-input {
+  width: 100%;
+  max-width: 600px; /* Increase the width */
+  padding: 12px; /* Slightly larger padding */
+  font-size: 18px; /* Increase font size */
+  border: 2px solid #ccc;
+  border-radius: 5px; /* Make the corners less rounded */
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Focus effect */
+.search-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+/* Placeholder styling */
+.search-input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Optional: Add a magnifying glass icon inside the input */
+.search-input-container {
+  position: relative;
+}
+
+.search-input-container::before {
+  content: '\1F50D'; /* Unicode for magnifying glass */
+  font-size: 18px;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #007bff;
+}
+.form-control {
+  width: 300px;  /* Smaller width */
+}
+.search-input {
+  width: 100%;  /* Full width of the parent container */
+  padding: 5px 10px;  /* Smaller padding for reduced height */
+  font-size: 14px;  /* Smaller font size */
+  height: 30px;  /* Explicitly set the height */
+  border-radius: 4px;  /* Optional: for rounded corners */
+  border: 1px solid #ccc;  /* Optional: border styling */
+}
+
+
   

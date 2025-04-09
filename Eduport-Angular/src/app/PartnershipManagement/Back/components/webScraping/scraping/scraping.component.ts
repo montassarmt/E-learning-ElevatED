@@ -1,19 +1,22 @@
 import { ScrapingService } from '@/app/PartnershipManagement/Services/scraping.service';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-scraping',
   standalone: true,
-  imports: [CommonModule,],
+  imports: [CommonModule,FormsModule],
   templateUrl: './scraping.component.html',
   styleUrl: './scraping.component.scss'
 })
 export class ScrapingComponent implements OnInit {
   scrapedData: any[] = [];
+  filteredData: any[] = [];
   isLoading: boolean = false;
   errorMessage: string = '';
+  searchTerm: string = '';
 
   constructor(private scrapingService: ScrapingService) {}
 
@@ -26,6 +29,7 @@ export class ScrapingComponent implements OnInit {
     this.scrapingService.getScrapedData().subscribe(
       (data) => {
         this.scrapedData = data;
+        this.filteredData = data; // Initialize filtered data with all items
         this.isLoading = false;
       },
       (error) => {
@@ -34,6 +38,23 @@ export class ScrapingComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  onSearch(): void {
+    if (this.searchTerm) {
+      this.filteredData = this.scrapedData.filter(item =>
+        (item.Title && item.Title.toLowerCase().includes(this.searchTerm.toLowerCase())) ||
+        (item.Description && item.Description.toLowerCase().includes(this.searchTerm.toLowerCase()))
+      );
+    } else {
+      this.filteredData = [...this.scrapedData]; // Reset to all data if no search term
+    }
+  }
+  
+  // Method to sort the table by highest score (descending)
+  filterByHighestScore(): void {
+    this.filteredData = [...this.scrapedData]
+      .sort((a, b) => b.score - a.score); // Sort by score in descending order
   }
 
 }
