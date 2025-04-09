@@ -1,0 +1,56 @@
+<div class="offcanvas-body sidebar-content d-flex flex-column bg-dark">
+  <ul class="navbar-nav flex-column" id="navbar-sidebar">
+    <li class="nav-item">
+      <a [routerLink]="'/admin/partnerships'" class="nav-link">
+        <i class="fas fa-handshake fa-fw me-2"></i> Partnerships
+      </a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="'/admin/proposals'" class="nav-link">
+        <i class="fas fa-file-alt fa-fw me-2"></i> Proposals
+      </a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="'/admin/entreprises'" class="nav-link">
+        <i class="fas fa-building fa-fw me-2"></i> Entreprises
+      </a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="'/admin/webScraping'" class="nav-link">
+        <i class="fas fa-building fa-fw me-2"></i> Search the web
+      </a>
+    </li>
+  </ul>
+  
+
+  <div class="px-3 mt-auto pt-3">
+    <div
+      class="d-flex align-items-center justify-content-between text-primary-hover"
+    >
+      <a
+        class="h5 mb-0 text-body"
+        routerLink="/admin/setting"
+        placement="top"
+        ngbTooltip="Settings"
+      >
+        <i class="bi bi-gear-fill"></i>
+      </a>
+      <a
+        class="h5 mb-0 text-body"
+        routerLink="/"
+        placement="top"
+        ngbTooltip="Home"
+      >
+        <i class="bi bi-globe"></i>
+      </a>
+      <a
+        class="h5 mb-0 text-body"
+        (click)="logout()"
+        placement="top"
+        ngbTooltip="Sign out"
+      >
+        <i class="bi bi-power"></i>
+      </a>
+    </div>
+  </div>
+</div>

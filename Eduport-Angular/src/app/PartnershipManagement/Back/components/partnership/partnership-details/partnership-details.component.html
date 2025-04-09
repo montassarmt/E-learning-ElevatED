@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-header">
+      <h2>Partnership Details</h2>
+    </div>
+  
+    <div class="card-body" *ngIf="partnership; else loading">
+      <p><strong>ID:</strong> {{ partnership.idPartnership }}</p>
+      <p><strong>Score:</strong> {{ partnership.score }}</p>
+      <p><strong>Status:</strong> {{ partnership.partnershipStatus }}</p>
+  
+      <div *ngIf="partnership.entreprise" class="section">
+        <h3>Entreprise Details</h3>
+        <p><strong>Name:</strong> {{ partnership.entreprise?.nameEntreprise }}</p>
+        <p><strong>Industry:</strong> {{ partnership.entreprise?.descriptionEntreprise }}</p>
+      </div>
+  
+      <div *ngIf="partnership.proposals" class="section">
+        <h3>Proposals</h3>
+        <div class="proposal-card">
+          <p><strong>ID:</strong> {{ partnership.proposals.idProposal }}</p>
+          <p><strong>Title:</strong> {{ partnership.proposals.proposalName }}</p>
+          <p><strong>Description:</strong> {{ partnership.proposals.proposalDescription }}</p>
+          <p><strong>Start Date:</strong> {{ partnership.proposals.startDate }}</p>
+          <p><strong>End Date:</strong> {{ partnership.proposals.endDate }}</p>
+          <p><strong>Planned Amount:</strong> {{ partnership.proposals.plannedAmount | currency }}</p>
+          <p><strong>Status:</strong> {{ partnership.proposals.proposalStatus }}</p>
+          <p><strong>Type:</strong> {{ partnership.proposals.proposalType }}</p>
+        </div>
+      </div>
+  
+      <!-- Only show the Add Agreement button if the partnershipStatus is 'Approved' -->
+      <div class="card-footer" *ngIf="partnership.partnershipStatus === 'Approved'">
+        <button class="btn btn-success"  (click)="addAssessment()">Add Agreement</button>
+      </div>
+  
+      <div class="card-footer">
+        <button (click)="downloadPDF()" class="btn btn-primary">Download PDF</button>
+      </div>
+    </div>
+  
+    <ng-template #loading>
+      <div class="loading">Loading partnership details...</div>
+    </ng-template>
+  </div>
+  
