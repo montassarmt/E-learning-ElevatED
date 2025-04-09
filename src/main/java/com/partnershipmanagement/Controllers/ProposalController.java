@@ -37,7 +37,7 @@ public class ProposalController {
     }
 
     // Update a proposal
-    @PutMapping("/update/{id}")
+        @PutMapping("/update/{id}")
     public ResponseEntity<Proposal> updateProposal(@PathVariable int id, @RequestBody Proposal proposal) {
         Proposal updatedProposal = proposalService.updateProposal(id, proposal);
         return ResponseEntity.ok(updatedProposal);

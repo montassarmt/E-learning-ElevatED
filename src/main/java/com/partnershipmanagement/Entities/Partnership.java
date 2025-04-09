@@ -29,9 +29,11 @@ public class Partnership {
     // Many-to-one relationship: Many applications can be related to one proposal
     @ManyToOne
     @JoinColumn(name = "proposal_id",referencedColumnName = "idProposal")
+    @JsonIgnore
     private Proposal proposals;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="partnership")
+    @JsonIgnore
     private Set<Assessment> Assesements;
 
 }

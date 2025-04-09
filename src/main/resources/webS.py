@@ -10,6 +10,11 @@ import pandas as pd
 chrome_driver_path = "C:\\Users\\hp\\Downloads\\chromedriver-win64\\chromedriver.exe"
 service = Service(executable_path=chrome_driver_path)
 options = webdriver.ChromeOptions()
+
+# 🚀 Block Images for Faster Scraping
+prefs = {"profile.managed_default_content_settings.images": 2}
+options.add_experimental_option("prefs", prefs)
+
 options.add_argument("--headless")  # Run headless for performance
 driver = webdriver.Chrome(service=service, options=options)
 
@@ -18,28 +23,41 @@ url = "https://elearningindustry.com/directory/software-categories/learning-mana
 driver.get(url)
 
 # Wait for the main content to load
-WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.CLASS_NAME, "columns")))
-
-# Handle cookie popup if it appears
+WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.CLASS_NAME, "listings")))
 
 # Scroll until all elements are loaded
-#last_height = driver.execute_script("return document.body.scrollHeight")
-last_height=42729
+#last_number = driver.execute_script("return document.body.scrollHeight")
+last_number=42729
 
 scroll_count = 0
 while True:
     driver.execute_script("window.scrollTo(0, 42729);")
     scroll_count += 1
-    time.sleep(3)  # Allow time for lazy loading
-
-    new_height = driver.execute_script("return document.body.scrollHeight")
-    if new_height == last_height:
+    
+    try:
+        # Wait for new elements to load
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.CLASS_NAME, "listings"))
+        )
+    except:
+        print("No new elements detected")
         break
-    last_height = new_height
+
+    time.sleep(5)
+    newHeight = driver.execute_script('return document.body.scrollHeight')
+    print("new height:", newHeight)
+
+    if newHeight == last_number:
+        break
+
+    last_number = newHeight
+
+print(f"Total scrolls performed: {scroll_count}")
+
 
 print("✅ Scrolling complete. Extracting data...")
 
-# Extract elements using Selenium (not BeautifulSoup)
+# Extract elements using Selenium
 results = []
 listings = driver.find_elements(By.CLASS_NAME, "listing")
 
@@ -48,7 +66,7 @@ for item in listings:
         title = item.find_element(By.CLASS_NAME, "listing-title").text.strip()
     except:
         title = "N/A"
-
+    
     try:
         description = item.find_element(By.CLASS_NAME, "listing-description").text.strip()
     except:
@@ -69,6 +87,7 @@ if df.empty:
 else:
     print(df)
 
-
+    # Save to CSV file
+    
 # Close WebDriver
 driver.quit()
