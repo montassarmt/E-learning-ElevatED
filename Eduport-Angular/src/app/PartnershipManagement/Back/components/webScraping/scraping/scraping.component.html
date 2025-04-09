@@ -8,22 +8,25 @@
 
 <div *ngIf="scrapedData.length > 0">
   <h2>Scraped Data</h2>
-  <button (click)="filterByHighestScore()" class="filter-button">
-    Sort by Highest Score
-  </button>
-  <!-- Search Bar Container -->
-  <div class="search-container">
-    <div class="form-control">
-      <input
-        type="text"
-        [(ngModel)]="searchTerm"
-        (input)="onSearch()"
-        class="search-input"
-        placeholder="Search by title or description"
-      />
+  <div class="filter-container">
+    <!-- Search Bar Container -->
+    <div class="search-container">
+      <div class="form-control">
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()"
+          class="search-input"
+          placeholder="Search by title or description"
+        />
+      </div>
     </div>
+
+    <!-- Filter Button -->
+    <button (click)="filterByHighestScore()" class="filter-button">
+      Sort by Highest Score
+    </button>
   </div>
-  
   <table>
     <thead>
       <tr>

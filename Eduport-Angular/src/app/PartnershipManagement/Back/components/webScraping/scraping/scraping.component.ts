@@ -54,7 +54,8 @@ export class ScrapingComponent implements OnInit {
   // Method to sort the table by highest score (descending)
   filterByHighestScore(): void {
     this.filteredData = [...this.scrapedData]
-      .sort((a, b) => b.score - a.score); // Sort by score in descending order
+      .sort((a, b) => b.Score - a.Score);
   }
+  
 
 }
