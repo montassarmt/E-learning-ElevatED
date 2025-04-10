@@ -22,33 +22,32 @@ export class ForgetPasswordComponent {
   ) {}
 
   onResetPassword() {
-    this.message = null; // Réinitialiser le message
-    this.isError = false; // Réinitialiser l'état d'erreur
-
+    this.message = null; // Reset the message
+    this.isError = false; // Reset the error state
+  
     if (!this.email) {
       this.message = 'Veuillez entrer une adresse email valide.';
       this.isError = true;
       return;
     }
-
-    
+  
     this.authService.forgotPassword(this.email).subscribe(
       (response) => {
         console.log('Réponse du serveur :', response);
-        const verificationCode = response.verificationCode; // Récupérer le code de vérification
-
-        // Stocker le code de vérification pour la comparaison ultérieure
+        const verificationCode = response.verificationCode; // Get the verification code
+  
+        // Store the verification code for later comparison
         localStorage.setItem('verificationCode', verificationCode);
         this.authService.setTemporaryEmail(this.email);
-
-        // Afficher un message de succès
+  
+        // Display a success message
         this.message = response.message || 'Un code de vérification a été envoyé à votre adresse email.';
         this.isError = false;
-
-        // Rediriger l'utilisateur vers la page de vérification du code
+  
+        // Redirect the user to the verification page
         setTimeout(() => {
           this.router.navigate(['/verify-code']);
-        }, 3000); // Redirection après 3 secondes
+        }, 3000); // Redirect after 3 seconds
       },
       (error) => {
         console.error('Erreur :', error);

@@ -101,8 +101,7 @@ public class WebSecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Politique de session sans état
                 )
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/auth/**").permitAll() // Autoriser l'accès sans authentification
-                        .requestMatchers("/api/users/**").permitAll()
+                        .requestMatchers("/api/**").permitAll() // Autoriser l'accès sans authentification
                         .anyRequest().authenticated() // Toutes les autres requêtes nécessitent une authentification
                 )
                 .authenticationProvider(authenticationProvider()) // Configurer le fournisseur d'authentification
