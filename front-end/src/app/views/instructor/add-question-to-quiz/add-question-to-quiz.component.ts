@@ -61,20 +61,19 @@ export class AddQuestionToQuizComponent implements OnInit {
     const formValue = this.questionForm.value;
     const correctIndex = formValue.correctAnswerIndex;
   
-    // Create the new Question object with the testId
+    // Construction correcte de l'objet Question
     const newQuestion: Question = {
       id: 0,
       text: formValue.questionText,
-      test: { id: formValue.quizSelect },  // Pass the testId here, not the whole test object
+      test: { id: +formValue.quizSelect },  // convert to number
       answers: formValue.answers.map((answer: any, index: number) => ({
-        id: index, 
         text: answer.text,
         isCorrect: index === correctIndex,
-        questionId: 0,
       })),
     };
   
-    // Make the API call to save the question
+    console.log('Sending question:', newQuestion);
+  
     this.quizService.createQuestion(newQuestion).subscribe({
       next: (savedQuestion) => {
         console.log('Question saved:', savedQuestion);
@@ -87,6 +86,7 @@ export class AddQuestionToQuizComponent implements OnInit {
       },
     });
   }
+  
   
   
   

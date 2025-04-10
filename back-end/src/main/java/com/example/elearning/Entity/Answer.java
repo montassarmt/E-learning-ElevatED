@@ -1,5 +1,7 @@
 package com.example.elearning.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,9 +17,11 @@ public class Answer {
     private int id;
 
     private String text;
-    private boolean isCorrect;
+    @JsonProperty("isCorrect")
+    private boolean isCorrect ;
 
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
+    @JsonBackReference
     private Question question;
 }

@@ -1,6 +1,7 @@
 package com.example.elearning.Controllers;
 
 import com.example.elearning.Entity.Test;
+import com.example.elearning.Entity.TestType;
 import com.example.elearning.Service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,10 @@ public class TestController {
     public List<Test> getAllTests() {
         return testService.getAllTests();
     }
-
+    @GetMapping("/type/quiz")
+    public List<Test> getQuizTests() {
+        return testService.getTestsByType(TestType.QUIZ);
+    }
     @PostMapping
     public ResponseEntity<Test> createTest(@RequestBody Test test) {
         Test createdTest = testService.createTest(test);

@@ -1,5 +1,7 @@
 package com.example.elearning.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,10 +24,11 @@ public class Test {
     private String resultat;
 
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     @ToString.Exclude
     private List<Question> questions;
 
     @OneToOne(mappedBy = "test", cascade = CascadeType.ALL, orphanRemoval = true)
-    @ToString.Exclude
+    @JsonIgnore
     private Certificate certificate;
 }

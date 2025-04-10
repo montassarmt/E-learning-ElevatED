@@ -1,6 +1,7 @@
 package com.example.elearning.Service;
 
 import com.example.elearning.Entity.Test;
+import com.example.elearning.Entity.TestType;
 import com.example.elearning.Repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class TestService {
 
     public List<Test> getAllTests() {
         return testRepository.findAll();
+    }
+    public List<Test> getTestsByType(TestType type) {
+        return testRepository.findByType(type);
     }
 
     public Test createTest(Test test) {
