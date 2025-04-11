@@ -34,6 +34,10 @@ public class ApiGatewayApplication {
                 //route de feedbacks
                 .route("E-learning", r->r.path("/E-learning/**")
                         .uri("http://localhost:8089"))
+                //route de user
+                .route("userBackend", r->r.path("/api/**")
+                        .uri("http://localhost:8081"))
+
                 .build();
 
 
