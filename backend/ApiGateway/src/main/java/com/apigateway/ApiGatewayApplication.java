@@ -37,6 +37,7 @@ public class ApiGatewayApplication {
                 //route de user
                 .route("userBackend", r->r.path("/api/**")
                         .uri("http://localhost:8081"))
+
                 .build();
 
 
