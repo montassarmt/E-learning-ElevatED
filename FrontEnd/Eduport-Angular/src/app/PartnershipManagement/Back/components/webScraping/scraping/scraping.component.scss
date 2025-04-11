@@ -1,0 +1,74 @@
+.loading {
+    text-align: center;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+
+ /* Container for the search bar and filter button */
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Vertically align items */
+  margin-bottom: 20px;
+}
+
+/* Style for search bar container */
+.search-container {
+  flex-grow: 1; /* Let the search bar take available space */
+  max-width: 80%; /* Optional: adjust the width of the search bar */
+  margin-right: 10px; /* Space between search bar and filter button */
+}
+
+/* Style for input field */
+.search-input {
+  width: 100%;
+  padding: 5px 10px;  /* Smaller padding for reduced height */
+  font-size: 14px;  /* Smaller font size */
+  height: 36px;  /* Set a fixed height */
+  border-radius: 4px;  /* Optional: for rounded corners */
+  border: 1px solid #ccc;  /* Optional: border styling */
+  box-sizing: border-box; /* Ensure padding does not affect total width */
+}
+
+/* Container for the filter buttons */
+.filter-buttons {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+/* Filter button styling */
+.filter-button {
+  padding: 0 20px;  /* Adjust padding for consistent height */
+  font-size: 16px;
+  background-color: #4CAF50; /* Green background */
+  color: white;
+  border: none;
+  cursor: pointer;
+  height: 36px; /* Same height as search bar */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.filter-button:hover {
+  background-color: #45a049;
+}
+
+
+  

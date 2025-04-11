@@ -1,0 +1,46 @@
+<div class="partnership-list-container">
+  <h2>Partnerships</h2>
+
+  <!-- Table to display the list of partnerships -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Proposal ID</th>
+        <th>Entreprise</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let partnership of partnerships">
+        <td>{{ partnership.idPartnership}}</td>
+        <td>{{ partnership.proposals?.proposalName }}</td>
+        <td>{{ partnership.entreprise?.nameEntreprise }}</td>
+        <td>{{ partnership.partnershipStatus }}</td>
+        <td>
+          <!-- View details button -->
+          <a class="btn btn-info" href="/proposalf/partnership/details/{{ partnership.idPartnership }}">View Details</a>
+
+          <!-- Delete button -->
+          <button class="btn btn-danger" (click)="deletePartnership(partnership.idPartnership)">Delete</button>
+
+          <!-- Accept button, only shown when partnership status is 'Pending' -->
+          <button *ngIf="partnership.partnershipStatus === PartnershipStatus.PENDING"
+        class="btn btn-success"
+        [disabled]="buttonClicked[partnership.idPartnership]"
+        (click)="acceptPartnership(partnership.idPartnership, partnership.entreprise?.idEntreprise || 0)">
+  Accept
+</button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- No partnerships message -->
+  <div *ngIf="partnerships.length === 0" class="alert alert-warning">
+    No partnerships available.
+  </div>
+
+</div>
