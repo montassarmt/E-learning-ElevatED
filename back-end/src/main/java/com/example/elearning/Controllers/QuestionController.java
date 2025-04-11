@@ -45,4 +45,8 @@ public class QuestionController {
     public Question updateQuestion(@PathVariable int id, @RequestBody Question questionDetails) {
         return questionService.updateQuestion(id, questionDetails);
     }
+    @GetMapping
+    public List<Question> getAllQuestions() {
+        return questionService.getAllQuestions();
+    }
 }

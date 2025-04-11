@@ -11,6 +11,7 @@ import { ReviewComponent } from './review/review.component'
 import { SettingComponent } from './setting/setting.component'
 import { StudentlistComponent } from './studentlist/studentlist.component'
 import { AddQuestionToQuizComponent } from './add-question-to-quiz/add-question-to-quiz.component'
+import { QuizManagementComponent } from './quiz-management/quiz-management.component'
 
 export const INSTRUCTOR_ROUTES: Route[] = [
   {
@@ -77,5 +78,10 @@ export const INSTRUCTOR_ROUTES: Route[] = [
     path:'AddQuestionToQuizComponent',
     component: AddQuestionToQuizComponent,
     data: { title: 'Instructor AddQuestionToQuizComponent' },
+  },
+  {
+    path:'QuizManagementComponent',
+    component: QuizManagementComponent,
+    data: { title: 'QuizManagement' },
   },
 ]

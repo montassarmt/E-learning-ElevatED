@@ -70,4 +70,7 @@ public class QuestionService {
         question.setText(questionDetails.getText());
         return questionRepository.save(question);
     }
+    public List<Question> getAllQuestions() {
+        return questionRepository.findAll();
+    }
 }

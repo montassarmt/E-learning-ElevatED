@@ -1,0 +1,49 @@
+.card {
+ margin: 20px;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+ th {
+   background-color: #f8f9fa;
+   font-weight: 600;
+ }
+ 
+ tr:hover {
+   background-color: rgba(0, 0, 0, 0.02);
+ }
+}
+
+.badge {
+ font-size: 0.8rem;
+ padding: 0.35em 0.65em;
+}
+
+.list-group-item {
+ &.correct-answer {
+   background-color: rgba(25, 135, 84, 0.1);
+   border-left: 3px solid #198754;
+ }
+}
+
+.input-group-text {
+ input[type="radio"] {
+   cursor: pointer;
+ }
+}
+
+.modal-content {
+ border: none;
+ box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.text-danger {
+ font-size: 0.85rem;
+ margin-top: 0.25rem;
+}
+
+.btn-outline-danger {
+ &:hover {
+   color: white !important;
+ }
+}

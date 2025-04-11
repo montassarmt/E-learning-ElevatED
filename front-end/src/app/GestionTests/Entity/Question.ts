@@ -9,3 +9,7 @@ export interface Question {
   };
   answers: Answer[]; // Assuming Answer is another interface
 }
+export interface ExpandedQuestion extends Question {
+  testTitle?: string;
+  expanded?: boolean;
+}

@@ -905,6 +905,8 @@ export const INSTRUCTOR_MENU_ITEMS: MenuItemType[] = [
     icon: 'bi bi-basket',
     link: '/instructor/manage-course',
   },
+
+  // ###################################################################################
   {
     key: 'quiz',
     title: 'Tests',
@@ -917,6 +919,13 @@ export const INSTRUCTOR_MENU_ITEMS: MenuItemType[] = [
     icon: 'bi bi-question-diamond',
     link: '/instructor/AddQuestionToQuizComponent',
   },
+  {
+    key: 'Questions',
+    title: 'Questions',
+    icon: 'bi bi-question-diamond',
+    link: '/instructor/QuizManagementComponent',
+  },
+  // #############################################################################################
   {
     key: 'earnings',
     title: 'Earnings',

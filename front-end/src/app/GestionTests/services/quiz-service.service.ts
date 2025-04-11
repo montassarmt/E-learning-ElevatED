@@ -49,9 +49,7 @@ export class QuizService {
     );
   }
 
-  getQuestionsByTestId(testId: number): Observable<Question[]> {
-    return this.http.get<Question[]>(`${this.apiUrl}/tests/${testId}/questions`);
-  }
+  
 
   createQuestion(question: Question): Observable<Question> {
     return this.http.post<Question>(`${this.apiUrl}/questions`, question).pipe(
@@ -61,4 +59,31 @@ export class QuizService {
       })
     );
   }
+  getQuestionsByTestId(testId: number): Observable<Question[]> {
+    return this.http.get<Question[]>(`${this.apiUrl}/questions/test/${testId}`).pipe(
+      catchError((error) => {
+        console.error('Error fetching questions:', error);
+        return of([]);
+      })
+    );
+  }
+
+  updateQuestion(id: number, question: Question): Observable<Question> {
+    return this.http.put<Question>(`${this.apiUrl}/questions/${id}`, question).pipe(
+      catchError((error) => {
+        console.error('Error updating question:', error);
+        throw error;
+      })
+    );
+  }
+
+  deleteQuestion(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/questions/${id}`).pipe(
+      catchError((error) => {
+        console.error('Error deleting question:', error);
+        throw error;
+      })
+    );
+  }
+  
 }

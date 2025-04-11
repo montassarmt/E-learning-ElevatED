@@ -1,0 +1,121 @@
+<div class="card border bg-transparent rounded-3">
+  <div class="card-header bg-transparent border-bottom">
+    <div class="row g-4 align-items-center">
+      <div class="col-md-12">
+        <h3 class="mb-0">Quiz Management</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <!-- Search and Test Selector -->
+    <div class="row g-3 align-items-center justify-content-between mb-4">
+      <div class="col-md-8">
+        <form class="rounded position-relative">
+          <input
+            class="form-control pe-5 bg-transparent"
+            type="search"
+            placeholder="Search questions..."
+            [(ngModel)]="searchQuery"
+            (ngModelChange)="filterQuestions()"
+            name="searchQuery"
+          />
+          <button
+            class="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset"
+            type="submit"
+          >
+            <i class="fas fa-search fs-6"></i>
+          </button>
+        </form>
+      </div>
+
+      <div class="col-md-4">
+        <form>
+          <select
+            class="form-select js-choice border-0 z-index-9 bg-transparent"
+            (change)="onTestChange($event)"
+            [(ngModel)]="selectedTestId"
+            name="testSelect"
+          >
+            <option *ngFor="let test of tests" [value]="test.id">
+              {{ test.title }}
+            </option>
+          </select>
+        </form>
+      </div>
+    </div>
+
+    <!-- Questions List -->
+    <div *ngIf="filteredQuestions.length > 0">
+      <div *ngFor="let question of filteredQuestions | slice: (page - 1) * pageSize : page * pageSize" class="card mb-2">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <strong>{{ question.text }}</strong>
+          <div>
+            <button class="btn btn-sm btn-primary-soft btn-round me-2" (click)="toggleExpand(question)">
+              <i class="fas" [ngClass]="question.expanded ? 'fa-minus' : 'fa-plus'"></i>
+            </button>
+            <button
+              class="btn btn-sm btn-danger-soft btn-round"
+              (click)="deleteQuestion(question.id)"
+            >
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </div>
+        <div *ngIf="question.expanded" class="card-body">
+          <ul class="list-group">
+            <li
+              *ngFor="let answer of question.answers"
+              class="list-group-item"
+              [class.list-group-item-success]="answer.isCorrect"
+            >
+              {{ answer.text }} <span *ngIf="answer.isCorrect">(Correct)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="filteredQuestions.length === 0" class="alert alert-info">
+      No questions found.
+    </div>
+
+    <!-- Pagination -->
+    <div class="d-sm-flex justify-content-sm-between align-items-sm-center mt-4 mt-sm-3">
+      <p class="mb-0 text-center text-sm-start">
+        Showing {{ (page - 1) * pageSize + 1 }} to {{ getMinValue(page * pageSize, filteredQuestions.length) }} of {{ filteredQuestions.length }} entries
+      </p>
+
+      <nav class="d-flex justify-content-center mb-0" aria-label="navigation">
+        <ngb-pagination
+          [collectionSize]="filteredQuestions.length"
+          [(page)]="page"
+          [pageSize]="pageSize"
+          size="sm"
+          class="pagination pagination-sm pagination-primary-soft d-inline-block d-md-flex rounded mb-0"
+        >
+          <ng-template ngbPaginationPrevious>
+            <i class="fas fa-angle-left"></i>
+          </ng-template>
+          <ng-template ngbPaginationNext>
+            <i class="fas fa-angle-right"></i>
+          </ng-template>
+        </ngb-pagination>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<ng-template #deleteConfirmationModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Confirm Delete</h5>
+    <button type="button" class="btn-close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete this question?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="confirmDelete()">Delete</button>
+  </div>
+</ng-template>
