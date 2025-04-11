@@ -28,7 +28,12 @@ public class ApiGatewayApplication {
                 // 🔹 Séances de coaching
                 .route("coaching-Management", r -> r.path("/api/seances/**")
                         .uri("lb://backend2"))
+                //route de test et examens
+                .route("e-learning", r->r.path("/api/**")
+                        .uri("http://localhost:8089"))
                 .build();
+
+
     }
 
 
