@@ -4,7 +4,7 @@ import com.example.elearning.services.UserTuteurSatutsService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/userss")
 public class UserTuteurSatutsController {
     private  UserTuteurSatutsService userTuteurSatutsService;
     @PutMapping("/{userId}/status")

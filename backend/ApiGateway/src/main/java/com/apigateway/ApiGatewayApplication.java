@@ -18,25 +18,40 @@ public class ApiGatewayApplication {
     @Bean
     public RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("Partnership-Management", r -> r.path("/partnerships/**")
-                        .uri("lb://Partnership-Management"))
-                .route("Partnership-Management", r -> r.path("/entreprise/**")
-                        .uri("lb://Partnership-Management"))
+                .route("partnership-management", r -> r.path("/Partnership/partnerships/**")
+                        .uri("lb://partnershipmanagement"))
+                .route("entreprise-management", r -> r.path("/Partnership/entreprises/**")
+                        .uri("lb://partnershipmanagement"))
+                .route("proposal-management", r -> r.path("/Partnership/proposals/**")
+                        .uri("lb://partnershipmanagement"))
+
+                //route de zeineb
                 .route("hackathon-Management", r -> r.path("/api/hackathons/**")
                         .uri("lb://backend2"))
 
                 // 🔹 Séances de coaching
                 .route("coaching-Management", r -> r.path("/api/seances/**")
                         .uri("lb://backend2"))
-                //route de test et examens
-                .route("e-learning", r->r.path("/api/**")
-                        .uri("http://localhost:8089"))
                 //route de feedbacks
-                .route("E-learning", r->r.path("/E-learning/**")
-                        .uri("http://localhost:8090"))
+                .route("feedback", r->r.path("/api/feedbacks/**")
+                        .uri("lb://e-learning"))
+                .route("chatbot", r->r.path("/api/chatbot/**")
+                        .uri("lb://e-learning"))
+                .route("userss", r->r.path("/api/userss/**")
+                        .uri("lb://e-learning"))
+                .route("chat", r->r.path("/chat")
+                        .uri("lb://e-learning"))
                 //route de user
-                .route("userBackend", r->r.path("/api/**")
-                        .uri("http://localhost:8081"))
+                .route("user-auth", r -> r.path("/api/auth/**")
+                        .uri("lb://userbackend"))
+                .route("user-crud", r -> r.path("/api/users/**")
+                        .uri("lb://userbackend"))
+                //route de test et examens
+                .route("test", r->r.path("/api/tests/**")
+                        .uri("lb://learning"))
+                .route("question", r->r.path("/api/questions/**")
+                        .uri("lb://learning"))
+
 
                 .build();
 
