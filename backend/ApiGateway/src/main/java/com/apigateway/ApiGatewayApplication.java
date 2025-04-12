@@ -33,7 +33,7 @@ public class ApiGatewayApplication {
                         .uri("http://localhost:8089"))
                 //route de feedbacks
                 .route("E-learning", r->r.path("/E-learning/**")
-                        .uri("http://localhost:8089"))
+                        .uri("http://localhost:8090"))
                 //route de user
                 .route("userBackend", r->r.path("/api/**")
                         .uri("http://localhost:8081"))
