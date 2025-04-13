@@ -1,6 +1,8 @@
 package com.esprit.backend.Services;
 
 import com.esprit.backend.Entities.User;
+import com.esprit.backend.Repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,35 +12,56 @@ import java.util.stream.IntStream;
 @Service
 public class UserService {
 
-    private static final List<User> USERS_LIST = new ArrayList<>();
 
     public void register(User user) {
         user.setStatus("online");
-        USERS_LIST.add(user);
+        userRepository.save(user); // ✅ Enregistre en BDD !
     }
 
     public User login(User user) {
-        var userIndex = IntStream.range(0, USERS_LIST.size())
-                .filter(i -> USERS_LIST.get(i).getEmail().equals(user.getEmail()))
-                .findAny()
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        var cUser = USERS_LIST.get(userIndex);
-        if (!cUser.getPassword().equals(user.getPassword())) {
-            throw new RuntimeException("Password incorrect");
+        try {
+            User cUser = userRepository.findByEmail(user.getEmail());
+
+            if (cUser == null) {
+                throw new RuntimeException("User not found");
+            }
+
+            if (!cUser.getPassword().equals(user.getPassword())) {
+                throw new RuntimeException("Password incorrect");
+            }
+
+            cUser.setStatus("online");
+            return userRepository.save(cUser); // Optionnel : met à jour le status
+
+        } catch (Exception e) {
+            // Log l'erreur dans la console
+            e.printStackTrace();
+
+            // Tu peux aussi logger avec un vrai logger : log.error("Login error", e);
+
+            // Rejette l’erreur pour qu’elle soit attrapée dans ton @ExceptionHandler dans le controller
+            throw new RuntimeException("Login failed: " + e.getMessage());
         }
-        cUser.setStatus("online");
-        return cUser;
     }
+
 
     public void logout(String email) {
-        var userIndex = IntStream.range(0, USERS_LIST.size())
-                .filter(i -> USERS_LIST.get(i).getEmail().equals(email))
-                .findAny()
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        USERS_LIST.get(userIndex).setStatus("offline");
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            throw new RuntimeException("User not found");
+        }
+        user.setStatus("offline");
+        userRepository.save(user); // ✅ Mise à jour persistée
     }
 
-    public List<User> findAll() {
-        return USERS_LIST;
+
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
+
+
 }

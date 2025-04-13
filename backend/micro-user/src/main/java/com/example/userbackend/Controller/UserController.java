@@ -44,6 +44,14 @@ public class UserController {
                 .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
         return ResponseEntity.ok(user);
     }
+    // Lire un utilisateur par email
+    @GetMapping("/email/{email}")
+    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+        return userRepository.findByEmail(email)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 
     // Modifier un utilisateur
     @PutMapping("/{id}")

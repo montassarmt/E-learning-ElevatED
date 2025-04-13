@@ -14,9 +14,10 @@ public class Config {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowedOrigins(List.of("http://localhost:4200")); // Frontend Angular
+        corsConfig.setAllowedOrigins(List.of("http://localhost:4200")); // 👈 Frontend origin
         corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         corsConfig.setAllowedHeaders(List.of("*"));
+        corsConfig.setAllowCredentials(true); // 👈 REQUIRED to support withCredentials: true
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfig);

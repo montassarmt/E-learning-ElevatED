@@ -15,15 +15,17 @@ public class SeanceCoaching {
 
     private LocalDateTime dateDebut;
     private LocalDateTime dateFin;
+    private String googleCalendarEventId;
 
     public SeanceCoaching() {}
 
-    public SeanceCoaching(String nom, String description, String lienMeet, LocalDateTime dateDebut, LocalDateTime dateFin) {
+    public SeanceCoaching(String nom, String description, String lienMeet, LocalDateTime dateDebut, LocalDateTime dateFin, String googleCalendarEventId) {
         this.nom = nom;
         this.description = description;
         this.lienMeet = lienMeet;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
+        this.googleCalendarEventId = googleCalendarEventId;
     }
 
     public Long getId() { return id; }
@@ -43,4 +45,13 @@ public class SeanceCoaching {
 
     public LocalDateTime getDateFin() { return dateFin; }
     public void setDateFin(LocalDateTime dateFin) { this.dateFin = dateFin; }
+
+
+    public String getGoogleCalendarEventId() {
+        return googleCalendarEventId;
+    }
+
+    public void setGoogleCalendarEventId(String googleCalendarEventId) {
+        this.googleCalendarEventId = googleCalendarEventId;
+    }
 }

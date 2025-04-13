@@ -1,23 +1,13 @@
-package com.esprit.backend.Entities;
+package com.esprit.backend.DTO;
 
-import jakarta.persistence.*;
-
-import java.util.List;
-@Entity
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String username;
-    @Column(unique = true)
     private String email;
     private String password;
+    private String specialty;
     private String status;
 
-
-
-    // 🔸 Getters & Setters
     public Long getId() {
         return id;
     }
@@ -50,6 +40,14 @@ public class User {
         this.password = password;
     }
 
+    public String getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -57,4 +55,6 @@ public class User {
     public void setStatus(String status) {
         this.status = status;
     }
+
+// getters & setters
 }

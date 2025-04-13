@@ -1,6 +1,8 @@
 package com.esprit.backend.Controllers;
 import com.esprit.backend.Entities.User;
+import com.esprit.backend.Repositories.UserRepository;
 import com.esprit.backend.Services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,6 +19,8 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 @RequestMapping("/api/v1/users")
 @CrossOrigin(origins = "*")
 public class UserController {
+    @Autowired
+    private UserRepository userRepository;
 
     private final UserService service;
 
@@ -32,9 +36,15 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public User login(@RequestBody User user) {
-        return service.login(user);
+    public ResponseEntity<?> login(@RequestBody User user) {
+        try {
+            User loggedUser = service.login(user);
+            return ResponseEntity.ok(loggedUser);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage()); // Renvoie 400 au lieu de 500
+        }
     }
+
     @PostMapping("/logout")
 
     public void logout(@RequestBody User user) {
@@ -43,9 +53,8 @@ public class UserController {
 
     @GetMapping
     public List<User> findAll() {
-        return service.findAll();
+        return userRepository.findAll();
     }
-
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handle(Exception ex) {
         ex.printStackTrace();

@@ -1,7 +1,5 @@
 package com.esprit.backend.Services;
 
-import com.google.auth.http.HttpCredentialsAdapter;
-import com.google.auth.oauth2.GoogleCredentials;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.HttpTransport;
@@ -10,6 +8,8 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
+import com.google.auth.http.HttpCredentialsAdapter;
+import com.google.auth.oauth2.GoogleCredentials;
 import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
@@ -32,7 +32,7 @@ public class GoogleCalendarService {
         return new HttpCredentialsAdapter(credentials);
     }
 
-    public void addEventToCalendar(Event event) throws GeneralSecurityException, IOException {
+    public Event addEventToCalendar(Event event) throws GeneralSecurityException, IOException {
         HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
         HttpRequestInitializer credential = getCredentials();
 
@@ -40,7 +40,7 @@ public class GoogleCalendarService {
                 .setApplicationName(APPLICATION_NAME)
                 .build();
 
-        service.events().insert(CALENDAR_ID, event).execute();
+        return service.events().insert(CALENDAR_ID, event).execute();
     }
 
     public Event createGoogleCalendarEvent(String title, Date startDate, Date endDate, String description) {
@@ -57,5 +57,27 @@ public class GoogleCalendarService {
         event.setEnd(end);
 
         return event;
+    }
+
+    public void updateGoogleCalendarEvent(String eventId, Event updatedEvent) throws GeneralSecurityException, IOException {
+        HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
+        HttpRequestInitializer credential = getCredentials();
+
+        Calendar service = new Calendar.Builder(httpTransport, JSON_FACTORY, credential)
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+
+        service.events().update(CALENDAR_ID, eventId, updatedEvent).execute();
+    }
+
+    public void deleteGoogleCalendarEvent(String eventId) throws GeneralSecurityException, IOException {
+        HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
+        HttpRequestInitializer credential = getCredentials();
+
+        Calendar service = new Calendar.Builder(httpTransport, JSON_FACTORY, credential)
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+
+        service.events().delete(CALENDAR_ID, eventId).execute();
     }
 }
