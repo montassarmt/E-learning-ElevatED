@@ -5,6 +5,7 @@
 
   <div class="card-body">
     <p><strong>Status:</strong> {{ partnership.partnershipStatus }}</p>
+    <p><strong>Score:</strong> {{ partnership.score }}</p>
     <p *ngIf="partnership.entreprise">
       <strong>Entreprise:</strong> {{ partnership.entreprise.nameEntreprise }}
     </p>
