@@ -86,11 +86,6 @@ export class AddQuestionToQuizComponent implements OnInit {
       },
     });
   }
-  
-  
-  
-  
-  
 
   resetForm(): void {
     this.questionForm.reset();
