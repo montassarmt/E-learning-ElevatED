@@ -39,4 +39,194 @@
     font-size: 18px;
     color: #555;
   }
+  .assessment-list {
+    list-style: none;
+    padding: 0;
+  
+    li {
+      background: #f1f1f1;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 8px;
+    }
+  }
+  
+  .add-form {
+    margin-top: 20px;
+  
+    textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+  
+    button {
+      margin-top: 10px;
+    }
+
+    /* Thinner agreement cards */
+.agreement-card {
+  max-width: 600px; /* Set the maximum width for each agreement */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Style for the "Check Done" checkbox */
+.check-done-label {
+  display: flex;
+  align-items: center;
+}
+
+.check-done-checkbox {
+  display: none; /* Hide the actual checkbox */
+}
+
+.check-done-square {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #007bff;
+  border-radius: 4px;
+  margin-right: 8px;
+  position: relative;
+  cursor: pointer;
+}
+
+.check-done-checkbox:checked + .check-done-square {
+  background-color: #007bff;
+}
+
+.check-done-square::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+}
+//check button
+.check-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
+  font-family: Arial, sans-serif;
+}
+
+.check-button:hover {
+  background-color: #45a049;
+  transform: translateY(-3px);
+}
+
+.check-button:active {
+  transform: translateY(1px);
+}
+
+.check-icon {
+  margin-right: 8px;
+  font-size: 20px;
+  transition: transform 0.2s;
+}
+
+.check-button:hover .check-icon {
+  transform: scale(1.2);
+}
+
+.card {
+  position: relative; /* Required for the positioning of the status badge */
+}
+
+.status-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+}
+
+.status-approved {
+  background-color: green;
+}
+
+.status-pending {
+  background-color: yellow;
+  color: black; /* Black text for better visibility on yellow */
+}
+
+.status-rejected {
+  background-color: red;
+}
+.status-approved {
+  background-color: green;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.status-pending {
+  background-color: yellow;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.status-rejected {
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}}
+.cyberpunk-checkbox {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #30cfd0;
+  border-radius: 3px;
+  background-color: transparent;
+  display: inline-block;
+  position: relative;
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+.cyberpunk-checkbox:before {
+  content: "";
+  background-color: #30cfd0;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+.cyberpunk-checkbox:checked:before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.cyberpunk-checkbox-label {
+  font-size: 14px;
+  color: #30cfd0;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+}
+
+  
   

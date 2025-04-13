@@ -23,9 +23,15 @@
     </div>
 
     <!-- Filter Button -->
-    <button (click)="filterByHighestScore()" class="filter-button">
-      Sort by Highest Score
-    </button>
+    <!-- Filter Buttons -->
+    <div class="filter-buttons">
+      <button (click)="filterByHighestScore()" class="filter-button">
+        Sort by Highest Score
+      </button>
+      <button (click)="filterByMostPopular()" class="filter-button">
+        Filter by Most Popular
+      </button>
+    </div>
   </div>
   <table>
     <thead>

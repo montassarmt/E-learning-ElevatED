@@ -33,7 +33,7 @@
               <label for="proposals" class="form-label">Proposals</label>
               <select id="proposals" formControlName="proposals" class="form-control dropdown-black-text">
                 <option value="" disabled>Select a Proposal</option>
-                <option *ngFor="let proposal of proposals" [value]="proposal.idProposal">{{proposal.nameProposal}}</option>
+                <option *ngFor="let proposal of proposals" [value]="proposal.idProposal">{{proposal.proposalName}}</option>
               </select>
             </div>
 

@@ -33,6 +33,11 @@ export class AgreementsService {
     return this.http.get<Assessment>(url);
   }
 
+  getAssessmentsByPartnershipId(partnershipId: number): Observable<Assessment[]> {
+    return this.http.get<Assessment[]>(`${this.apiUrl}/partnership/${partnershipId}`);
+  }
+  
+
   // Update an assessment
   updateAssessment(id: number, assessment: Assessment): Observable<Assessment> {
     const url = `${this.apiUrl}/update/${id}`;
@@ -52,18 +57,41 @@ export class AgreementsService {
   }
 
   // Update status by admin
-  updateStatusAdmin(id: number, status: AcceptanceStatus): Observable<Assessment> {
+  /*updateStatusAdmin(id: number, status: AcceptanceStatus): Observable<Assessment> {
     const url = `${this.apiUrl}/${id}/update-status-admin`;
     return this.http.put<Assessment>(url, null, {
       params: new HttpParams().set('status', status),
     });
-  }
+  }*/
 
   // Update status by partner
-  updateStatusPartner(id: number, status: AcceptanceStatus): Observable<Assessment> {
+  /*updateStatusPartner(id: number, status: AcceptanceStatus): Observable<Assessment> {
     const url = `${this.apiUrl}/${id}/update-status-partner`;
     return this.http.put<Assessment>(url, null, {
       params: new HttpParams().set('status', status),
     });
-  }
+  }*/
+
+    // assessment.service.ts
+    updateStatusAdmin(id: number, status: 'Accept' | 'Reject') {
+      return this.http.put(`http://localhost:8088/Partnership/assessments/${id}/update-status-admin?status=${status}`, {});
+    }
+    
+
+    updateStatusPartner(id: number, status: 'Accept' | 'Reject') {
+      return this.http.put(`http://localhost:8088/Partnership/assessments/${id}/update-status-partner?status=${status}`, {});
+    }
+    
+    markAsCompleted(id: number): Observable<Assessment> {
+      return this.http.patch<Assessment>(`http://localhost:8088/Partnership/assessments/${id}/complete`, {});
+    }
+      
+    // Mark an assessment as completed
+ /* markAsCompleted(assessmentId: number): Observable<Assessment> {
+    return this.http.patch<Assessment>(
+      `http://localhost:8088/Partnership/assessments/{{id}}/complete`,
+      {} // Empty body (since the backend handles logic)
+    );
+  } */
+
 }

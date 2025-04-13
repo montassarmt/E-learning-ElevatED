@@ -56,6 +56,14 @@ export class ScrapingComponent implements OnInit {
     this.filteredData = [...this.scrapedData]
       .sort((a, b) => b.Score - a.Score);
   }
+
+  // Method to sort the table by most popular (by number of reviews, descending)
+  filterByMostPopular(): void {
+    //console.log('Sorting by most popular (number of reviews)...');
+    this.filteredData = [...this.scrapedData]
+      .sort((a, b) => b.Reviews - a.Reviews); // Sort by number of reviews in descending order
+    //console.log(this.filteredData); // Debug output to verify sorting
+  }
   
 
 }

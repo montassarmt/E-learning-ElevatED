@@ -1,45 +1,107 @@
-<div class="card">
-    <div class="card-header">
-      <h2>Partnership Details</h2>
+<div class="card" *ngIf="partnership">
+  <div class="card-header">
+    <h2>Partnership Details</h2>
+  </div>
+
+  <div class="card-body">
+    <p><strong>Status:</strong> {{ partnership.partnershipStatus }}</p>
+    <p *ngIf="partnership.entreprise">
+      <strong>Entreprise:</strong> {{ partnership.entreprise.nameEntreprise }}
+    </p>
+
+    <div *ngIf="partnership.proposals" class="section">
+      <p><strong>Proposal Start Date:</strong> {{ partnership.proposals.startDate | date }}</p>
+      <p><strong>Proposal End Date:</strong> {{ partnership.proposals.endDate | date }}</p>
+      <p><strong>Amount Agreed:</strong> {{ partnership.proposals.plannedAmount }} TND</p>
     </div>
-  
-    <div class="card-body" *ngIf="partnership; else loading">
-      <p><strong>ID:</strong> {{ partnership.idPartnership }}</p>
-      <p><strong>Score:</strong> {{ partnership.score }}</p>
-      <p><strong>Status:</strong> {{ partnership.partnershipStatus }}</p>
-  
-      <div *ngIf="partnership.entreprise" class="section">
-        <h3>Entreprise Details</h3>
-        <p><strong>Name:</strong> {{ partnership.entreprise?.nameEntreprise }}</p>
-        <p><strong>Industry:</strong> {{ partnership.entreprise?.descriptionEntreprise }}</p>
-      </div>
-  
-      <div *ngIf="partnership.proposals" class="section">
-        <h3>Proposals</h3>
-        <div class="proposal-card">
-          <p><strong>ID:</strong> {{ partnership.proposals.idProposal }}</p>
-          <p><strong>Title:</strong> {{ partnership.proposals.proposalName }}</p>
-          <p><strong>Description:</strong> {{ partnership.proposals.proposalDescription }}</p>
-          <p><strong>Start Date:</strong> {{ partnership.proposals.startDate }}</p>
-          <p><strong>End Date:</strong> {{ partnership.proposals.endDate }}</p>
-          <p><strong>Planned Amount:</strong> {{ partnership.proposals.plannedAmount | currency }}</p>
-          <p><strong>Status:</strong> {{ partnership.proposals.proposalStatus }}</p>
-          <p><strong>Type:</strong> {{ partnership.proposals.proposalType }}</p>
+
+    <!-- Assessments Section -->
+    <div *ngIf="partnership.partnershipStatus === 'Approved'" class="mt-4">
+      <h3>Agreements (Assessments)</h3>
+
+      <p *ngIf="assessments.length === 0" class="text-muted">No agreements added yet.</p>
+
+      <div *ngFor="let a of assessments" class="card mb-3 p-3 shadow-sm border">
+        <p><strong> Subject </strong>
+            {{ a.feedback }}
+        </p>
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <p class="mb-0">
+            <strong>Status:</strong> {{ a.status }}
+          </p>
+          <label class="cyberpunk-checkbox-label">
+            <input 
+                  type="checkbox" 
+                  class="cyberpunk-checkbox" 
+                  [checked]="a.status === 'Done'" 
+                  [disabled]="a.status === 'Done' || a.status === 'Undone'"
+                  (change)="markAsCompleted(a.idAssessment)" />
+            Completed
+          </label>
+        </div>
+        
+        <!-- Acceptance Status with Dynamic Styling -->
+        <p><strong>Acceptance status : </strong>
+          <span [ngClass]="getAcceptanceStatusClass(a.acceptanceStatus)">
+            {{ a.acceptanceStatus }}
+          </span>
+        </p>
+
+        <div class="d-flex gap-3 flex-wrap align-items-center">
+          <!-- Admin Actions -->
+          <div class="d-flex gap-2">
+            <button 
+              class="btn btn-outline-success btn-sm" 
+              (click)="onAdminDecision(a.idAssessment, 'Accept')" 
+              [disabled]="a.acceptanceStatus !== 'Pending'">
+              Accept Agreement (Admin)
+            </button>
+            <button 
+              class="btn btn-outline-danger btn-sm" 
+              (click)="onAdminDecision(a.idAssessment, 'Reject')" 
+              [disabled]="a.acceptanceStatus !== 'Pending'">
+              Reject Agreement (Admin)
+            </button>
+          </div>
+
+          <!-- Partner Actions -->
+          <div class="d-flex gap-2">
+            <button 
+              class="btn btn-outline-success btn-sm" 
+              (click)="onPartnerDecision(a.idAssessment, 'Accept')" 
+              [disabled]="a.acceptanceStatus !== 'Pending'">
+              Accept Agreement (Partner)
+            </button>
+            <button 
+              class="btn btn-outline-danger btn-sm" 
+              (click)="onPartnerDecision(a.idAssessment, 'Reject')" 
+              [disabled]="a.acceptanceStatus !== 'Pending'">
+              Reject Agreement (Partner)
+            </button>
+          </div>
         </div>
       </div>
-  
-      <!-- Only show the Add Agreement button if the partnershipStatus is 'Approved' -->
-      <div class="card-footer" *ngIf="partnership.partnershipStatus === 'Approved'">
-        <button class="btn btn-success"  (click)="addAssessment()">Add Agreement</button>
-      </div>
-  
-      <div class="card-footer">
-        <button (click)="downloadPDF()" class="btn btn-primary">Download PDF</button>
+
+      <!-- Add agreement toggle -->
+      <button class="btn btn-outline-primary" (click)="showAdd = !showAdd">
+        {{ showAdd ? 'Cancel' : 'Add Agreement' }}
+      </button>
+
+      <!-- New agreement form -->
+      <div *ngIf="showAdd" class="mt-3">
+        <textarea [(ngModel)]="newFeedback" class="form-control" rows="3" placeholder="Enter your agreement/feedback..."></textarea>
+        <button class="btn btn-success mt-2" (click)="saveAgreement()">Save</button>
       </div>
     </div>
-  
-    <ng-template #loading>
-      <div class="loading">Loading partnership details...</div>
-    </ng-template>
+
+    <!-- Download button -->
+    <div class="mt-4">
+      <button class="btn btn-primary" (click)="downloadPDF()">Download PDF</button>
+    </div>
   </div>
-  
+</div>
+
+<!-- Fallback for missing partnership -->
+<div *ngIf="!partnership" class="text-center text-muted mt-5">
+  <p>Loading partnership details...</p>
+</div>

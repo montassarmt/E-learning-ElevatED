@@ -48,7 +48,13 @@
   box-sizing: border-box; /* Ensure padding does not affect total width */
 }
 
-/* Filter button on the right */
+/* Container for the filter buttons */
+.filter-buttons {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+/* Filter button styling */
 .filter-button {
   padding: 0 20px;  /* Adjust padding for consistent height */
   font-size: 16px;
@@ -56,11 +62,10 @@
   color: white;
   border: none;
   cursor: pointer;
-  height: 36px; /* Set same height as search input */
-  border-radius: 4px; /* Optional: rounded corners */
+  height: 36px; /* Same height as search bar */
+  border-radius: 4px; /* Rounded corners */
 }
 
-/* Hover effect for filter button */
 .filter-button:hover {
   background-color: #45a049;
 }
