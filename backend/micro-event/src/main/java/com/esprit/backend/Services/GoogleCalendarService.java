@@ -13,7 +13,9 @@ import com.google.auth.oauth2.GoogleCredentials;
 import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.Date;
@@ -26,8 +28,11 @@ public class GoogleCalendarService {
     private static final String CALENDAR_ID = "e3316dce20a429fd2de6edbe2b7b48b086088036d5f9a90f0cf196495a378efd@group.calendar.google.com";
 
     private HttpRequestInitializer getCredentials() throws IOException {
-        FileInputStream credentialsStream = new FileInputStream(CREDENTIALS_FILE_PATH);
-        GoogleCredentials credentials = GoogleCredentials.fromStream(credentialsStream)
+        // 👉 Charge depuis le classpath
+        InputStream credentialsStream = getClass().getClassLoader().getResourceAsStream("credentials.json");
+        if (credentialsStream == null) {
+            throw new FileNotFoundException("credentials.json not found in classpath");
+        }        GoogleCredentials credentials = GoogleCredentials.fromStream(credentialsStream)
                 .createScoped(Collections.singletonList("https://www.googleapis.com/auth/calendar.events"));
         return new HttpCredentialsAdapter(credentials);
     }

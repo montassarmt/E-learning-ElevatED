@@ -1,0 +1,42 @@
+<section class="pt-0">
+    <div class="container">
+        <div class="row mb-4">
+            <h2 class="mb-0">Upcoming Hackathons</h2>
+        </div>
+
+        <div class="row">
+            <div class="tiny-slider arrow-round arrow-creative arrow-blur">
+                <ng-tiny-slider [config]="sliderConfig" class="tiny-slider-inner">
+                    <div *ngFor="let hackathon of upcomingHackathons">
+                        <div class="position-relative">
+                            <!-- ✅ Use dynamic image based on hackathon name -->
+                            <img [src]="getHackathonImage(hackathon.nom)" class="card-img" alt="hackathon image"  />
+
+                            <div class="card-img-overlay d-flex align-items-start flex-column p-3">
+                                <div class="w-100 mb-auto d-flex justify-content-end">
+                                    <a href="javascript:void(0);" class="icon-sm bg-white rounded-2">
+                                        <i class="fas fa-heart text-danger"></i>
+                                    </a>
+                                </div>
+
+                                <div class="w-100 mt-auto">
+                                    <a href="javascript:void(0);" class="badge text-bg-white fs-6 rounded-1">
+                                        <i class="far fa-calendar-alt text-orange me-2"></i>
+                                        {{ hackathon.dateDebut | date:'short' }} - {{ hackathon.dateFin | date:'short' }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-body px-2">
+                            <h5 class="card-title" style="margin-top: 10px">
+                                <a href="javascript:void(0);"  >{{ hackathon.nom }} </a>
+                            </h5>
+                            <p class="mb-0 text-truncate-2" > {{ hackathon.description }}</p>
+                        </div>
+                    </div>
+                </ng-tiny-slider>
+            </div>
+        </div>
+    </div>
+</section>

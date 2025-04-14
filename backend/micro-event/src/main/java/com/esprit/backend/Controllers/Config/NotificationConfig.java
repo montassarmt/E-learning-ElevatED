@@ -19,7 +19,7 @@ public class NotificationConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws")
-                .setAllowedOrigins("http://localhost:4200") // ✅ Replace with your frontend URL
+                .setAllowedOrigins("http://localhost:5200") // ✅ Replace with your frontend URL
                 .withSockJS()
                 .setSessionCookieNeeded(true); // ✅ Important to allow credentials
     }

@@ -6,6 +6,8 @@ import com.esprit.backend.Entities.Hackathon;
 import com.esprit.backend.Entities.Participation;
 import com.esprit.backend.Repositories.HackathonRepository;
 import com.esprit.backend.Repositories.ParticipationRepository;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -14,6 +16,8 @@ import org.springframework.http.HttpStatus;
 
 import java.util.List;
 import java.util.Objects;
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"user_email", "hackathon_id"})
+)
 
 @Service
 public class ParticipationService {

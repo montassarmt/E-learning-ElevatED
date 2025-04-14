@@ -111,18 +111,4 @@ public class WebSecurityConfig {
 
         return http.build();
     }
-    @Bean
-    public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:4200")); // Autoriser Angular
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Méthodes autorisées
-        config.setAllowedHeaders(List.of("*")); // Autoriser tous les headers
-        config.setAllowCredentials(true); // Permettre les cookies/authentification
-        source.registerCorsConfiguration("/**", config);
-
-        System.out.println("✅ CORS filter is applied!");
-
-        return new CorsFilter(source);
-    }
 }

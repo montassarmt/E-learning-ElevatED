@@ -1,0 +1,81 @@
+<div class="card bg-transparent border rounded-3">
+    <div class="card-header bg-transparent border-bottom">
+        <h3 class="card-header-title mb-0">Add new coaching session</h3>
+    </div>
+
+    <div class="card-body">
+        <form class="row g-4" #coachingForm="ngForm" (ngSubmit)="addSeance()">
+            <!-- Nom -->
+            <div class="col-12">
+                <label class="form-label">Nom</label>
+                <input
+                        type="text"
+                        [(ngModel)]="newSeance.nom"
+                        name="nom"
+                        #nom="ngModel"
+                        required
+                        class="form-control"
+                />
+                <small class="text-danger" *ngIf="nom.invalid && nom.touched">Le nom est requis.</small>
+            </div>
+
+            <!-- Description -->
+            <div class="col-12">
+                <label class="form-label">Description</label>
+                <textarea
+                        class="form-control"
+                        rows="3"
+                        [(ngModel)]="newSeance.description"
+                        name="description"
+                        #description="ngModel"
+                        required
+                ></textarea>
+                <small class="text-danger" *ngIf="description.invalid && description.touched">La description est requise.</small>
+            </div>
+
+            <!-- Date Début -->
+            <div class="col-6">
+                <label class="form-label">Date Début</label>
+                <input
+                        type="datetime-local"
+                        [(ngModel)]="newSeance.dateDebut"
+                        name="dateDebut"
+                        #dateDebut="ngModel"
+                        required
+                        class="form-control"
+                        [min]="minDate"
+                        (change)="onDateDebutChange()"
+                />
+                <small class="text-danger" *ngIf="dateDebut.invalid && dateDebut.touched">Date début requise ou invalide.</small>
+            </div>
+
+            <!-- Date Fin -->
+            <div class="col-6">
+                <label class="form-label">Date Fin</label>
+                <input
+                        type="datetime-local"
+                        [(ngModel)]="newSeance.dateFin"
+                        name="dateFin"
+                        #dateFin="ngModel"
+                        required
+                        class="form-control"
+                        [min]="newSeance.dateDebut"
+                />
+                <small class="text-danger" *ngIf="dateFin.invalid && dateFin.touched">
+                    La date de fin est requise et ne peut pas précéder la date de début.
+                </small>
+            </div>
+
+            <!-- Bouton Ajouter -->
+            <div class="d-sm-flex justify-content-end">
+                <button
+                        type="submit"
+                        class="btn btn-primary mb-0"
+                        [disabled]="coachingForm.invalid"
+                >
+                    Add
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
