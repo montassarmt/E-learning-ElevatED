@@ -14,19 +14,16 @@ public class StripeService {
     @Value("${stripe.secret.key}")
     private String stripeSecretKey;
 
-    public String charge(String token, Double amount) {
+    public String charge(String token, Double amount) throws StripeException {
         Stripe.apiKey = stripeSecretKey;
 
         Map<String, Object> chargeParams = new HashMap<>();
-        chargeParams.put("amount", (int) (amount * 100)); // en cents
+        chargeParams.put("amount", (int) Math.round(amount * 100)); // in cents
         chargeParams.put("currency", "usd");
         chargeParams.put("source", token);
-        chargeParams.put("description", "Paiement test via Stripe");
+        chargeParams.put("description", "Payment via Stripe");
 
-        try {
-            Charge charge = Charge.create(chargeParams);
-            return charge.getId(); // ou charge.getStatus(), selon ce que tu veux
-        } catch (StripeException e) {
-            throw new RuntimeException("Paiement échoué: " + e.getMessage());
-        }
-}}
+        Charge charge = Charge.create(chargeParams);
+        return charge.getId();
+    }
+}

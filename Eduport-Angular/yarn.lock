@@ -185,6 +185,15 @@
     vite "5.2.11"
     watchpack "2.4.1"
 
+"@angular/cdk@^18.2.14":
+  version "18.2.14"
+  resolved "https://registry.npmjs.org/@angular/cdk/-/cdk-18.2.14.tgz"
+  integrity sha512-vDyOh1lwjfVk9OqoroZAP8pf3xxKUvyl+TVR8nJxL4c5fOfUFkD7l94HaanqKSRwJcI2xiztuu92IVoHn8T33Q==
+  dependencies:
+    tslib "^2.3.0"
+  optionalDependencies:
+    parse5 "^7.1.2"
+
 "@angular/cli@^18.0.3":
   version "18.0.6"
   resolved "https://registry.npmjs.org/@angular/cli/-/cli-18.0.6.tgz"
@@ -264,10 +273,10 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/forms@^18.0.0":
-  version "18.0.5"
-  resolved "https://registry.npmjs.org/@angular/forms/-/forms-18.0.5.tgz"
-  integrity sha512-nO7bN+nO2/czgKSvPx6ewqpfb8xXOyns06uovWpAXSH4jYoiZ6CHTHhOKrOL/3SRkhUV9u+EUXTTAOSBkS+OBA==
+"@angular/forms@^18.2.13":
+  version "18.2.13"
+  resolved "https://registry.npmjs.org/@angular/forms/-/forms-18.2.13.tgz"
+  integrity sha512-A67D867fu3DSBhdLWWZl/F5pr7v2+dRM2u3U7ZJ0ewh4a+sv+0yqWdJW+a8xIoiHxS+btGEJL2qAKJiH+MCFfg==
   dependencies:
     tslib "^2.3.0"
 
@@ -280,6 +289,13 @@
     "@types/babel__core" "7.20.5"
     fast-glob "3.3.2"
     yargs "^17.2.1"
+
+"@angular/material@^18.2.14":
+  version "18.2.14"
+  resolved "https://registry.npmjs.org/@angular/material/-/material-18.2.14.tgz"
+  integrity sha512-28pxzJP49Mymt664WnCtPkKeg7kXUsQKTKGf/Kl95rNTEdTJLbnlcc8wV0rT0yQNR7kXgpfBnG7h0ETLv/iu5Q==
+  dependencies:
+    tslib "^2.3.0"
 
 "@angular/platform-browser-dynamic@^18.0.0":
   version "18.0.5"
@@ -1436,10 +1452,10 @@
   resolved "https://registry.npmjs.org/@msgpackr-extract/msgpackr-extract-win32-x64/-/msgpackr-extract-win32-x64-3.0.3.tgz"
   integrity sha512-x0fWaQtYp4E6sktbsdAqnehxDgEc/VwM7uLsRCYWaiGu0ykYdZPiS8zCWdnjHwyiumousxfBm4SO31eXqwEZhQ==
 
-"@ng-bootstrap/ng-bootstrap@^17.0.0":
-  version "17.0.0"
-  resolved "https://registry.npmjs.org/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-17.0.0.tgz"
-  integrity sha512-hTbBtozJlpevF1RO6J2adCoXiAkMTPV3wmXIyK05dVha4VsKjHibgaL6YldToKoh6ElQnIYkPEIJHX9z5EtyMw==
+"@ng-bootstrap/ng-bootstrap@^15.0.0":
+  version "15.0.0"
+  resolved "https://registry.npmjs.org/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-15.0.0.tgz"
+  integrity sha512-BA/SI7sURpKwIex6bj2ujL+xUh8oYMrc5POdGC8sVe+yX3NRS0xNbozI6oke6pL2PpYq+/zaJTmuEJsEMCplZA==
   dependencies:
     tslib "^2.3.0"
 
@@ -1682,6 +1698,11 @@
   version "3.1.2"
   resolved "https://registry.npmjs.org/@socket.io/component-emitter/-/component-emitter-3.1.2.tgz"
   integrity sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==
+
+"@stripe/stripe-js@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.npmjs.org/@stripe/stripe-js/-/stripe-js-7.0.0.tgz"
+  integrity sha512-0AWkP+hoIXB5O34FGY7jh687ZPlOqLqMkJDkiSXcp4TaWWidnxjsZSp0xkjyAWbIz4+j1BFXDAK01Rqb7ceBRA==
 
 "@tufjs/canonical-json@2.0.0":
   version "2.0.0"
@@ -5955,6 +5976,13 @@ ngx-scrollspy@^1.2.1:
     "@angular/cli" "^6.1.4"
     rxjs-tslint "^0.1.5"
 
+ngx-stripe@^18.0.0:
+  version "18.0.0"
+  resolved "https://registry.npmjs.org/ngx-stripe/-/ngx-stripe-18.0.0.tgz"
+  integrity sha512-AT67vLeqEUDMnK5TfEaorumYJyOWqecbrh/1UWNtN8vF6Yzb0L/Dty3ANAa/QQi0OvBg6gXrudrhEnT8pT5lng==
+  dependencies:
+    tslib "^2.3.0"
+
 node-addon-api@^6.1.0:
   version "6.1.0"
   resolved "https://registry.npmjs.org/node-addon-api/-/node-addon-api-6.1.0.tgz"
@@ -6543,7 +6571,7 @@ parse5-sax-parser@^7.0.0:
   dependencies:
     parse5 "^7.0.0"
 
-parse5@^7.0.0:
+parse5@^7.0.0, parse5@^7.1.2:
   version "7.1.2"
   resolved "https://registry.npmjs.org/parse5/-/parse5-7.1.2.tgz"
   integrity sha512-Czj1WaSVpaoj0wbhMzLmWD69anp2WH7FXMB9n1Sy8/ZFF9jolSQVMu1Ij5WIyGmcBmhk7EOndpO4mIpihVqAXw==

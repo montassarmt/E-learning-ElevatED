@@ -17,6 +17,8 @@ import { AuthGuard } from './UserFrontEnd/authHelpers/AuthGuard'
 import { ForgetPasswordComponent } from './UserFrontEnd/components/forget-password/forget-password.component'
 import { VerifyCodeComponent } from './UserFrontEnd/components/verify-code/verify-code.component'
 import { ResetPasswordComponent } from './UserFrontEnd/components/reset-password/reset-password.component'
+import { SubscriptionPlansComponent } from './UserFrontEnd/components/subscription-plans/subscription-plans.component';
+import { UserSubscriptionsComponent } from './UserFrontEnd/components/user-subscriptions/user-subscriptions.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -24,6 +26,8 @@ export const routes: Routes = [
   { path: 'forget-password', component: ForgetPasswordComponent }, 
   { path: 'verify-code', component: VerifyCodeComponent },
   { path: 'reset-password', component: ResetPasswordComponent }, 
+  { path: 'subscrptionplan', component: SubscriptionPlansComponent },
+  { path: 'usersubscription', component: UserSubscriptionsComponent },
   //{ path: '', redirectTo: '/student/dashboard', canActivate: [AuthGuard] }, // Protégée par AuthGuard
   { path: '', redirectTo: '/login', pathMatch: 'full' }, 
   {

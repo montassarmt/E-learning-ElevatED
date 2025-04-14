@@ -6,32 +6,69 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/subscriptions")
 public class UserSubscriptionController {
-    @Autowired
-    private SubscriptionService subscriptionService;
+    private final SubscriptionService subscriptionService;
 
-    @PostMapping("/subscribe")
-    public ResponseEntity<UserSubscription> subscribe(
+    @Autowired
+    public UserSubscriptionController(SubscriptionService subscriptionService) {
+        this.subscriptionService = subscriptionService;
+    }
+
+    @PostMapping
+    public ResponseEntity<UserSubscription> createSubscription(
             @RequestParam Long userId,
             @RequestParam Long planId,
-            @RequestParam String paymentToken
-    ) {
-        return ResponseEntity.ok(subscriptionService.subscribe(userId, planId, paymentToken));
+            @RequestParam String paymentMethodId,
+            @RequestParam(required = false, defaultValue = "false") boolean autoRenew) {
+        try {
+            return ResponseEntity.ok(
+                    subscriptionService.subscribe(userId, planId, paymentMethodId, autoRenew)
+            );
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
-    @PutMapping("/{subscriptionId}/upgrade")
-    public ResponseEntity<UserSubscription> upgradeSubscription(
+    @PutMapping("/{subscriptionId}")
+    public ResponseEntity<UserSubscription> updateSubscription(
             @PathVariable Long subscriptionId,
-            @RequestParam Long newPlanId
-    ) {
-        return ResponseEntity.ok(subscriptionService.updateSubscription(subscriptionId, newPlanId));
+            @RequestParam Long newPlanId,
+            @RequestParam(required = false) Boolean autoRenew) {
+        return subscriptionService.updateSubscription(subscriptionId, newPlanId, autoRenew)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{subscriptionId}/cancel")
+    @DeleteMapping("/{subscriptionId}")
     public ResponseEntity<Void> cancelSubscription(@PathVariable Long subscriptionId) {
-        subscriptionService.cancelSubscription(subscriptionId);
-        return ResponseEntity.noContent().build();
+        if (subscriptionService.cancelSubscription(subscriptionId)) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
-}
+
+    @PatchMapping("/{subscriptionId}/auto-renew")
+    public ResponseEntity<UserSubscription> updateAutoRenew(
+            @PathVariable Long subscriptionId,
+            @RequestParam boolean autoRenew) {
+        try {
+            return ResponseEntity.ok(
+                    subscriptionService.setAutoRenew(subscriptionId, autoRenew)
+            );
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<UserSubscription>> getUserSubscriptions(
+            @PathVariable Long userId,
+            @RequestParam(required = false, defaultValue = "false") boolean activeOnly) {
+        return ResponseEntity.ok(
+                subscriptionService.getUserSubscriptions(userId, activeOnly)
+        );
+    }}

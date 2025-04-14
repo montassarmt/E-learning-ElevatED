@@ -24,7 +24,9 @@ public class UserSubscription {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private boolean isActive;
-    private String paymentId; // Référence Stripe/PayPal
+    private String paymentId;
+    private String paymentMethodId;
+    private boolean autoRenew = false;// Référence Stripe/PayPal
 
 
 }
