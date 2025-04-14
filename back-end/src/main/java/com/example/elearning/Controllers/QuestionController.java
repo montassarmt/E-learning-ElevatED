@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -49,4 +51,18 @@ public class QuestionController {
     public List<Question> getAllQuestions() {
         return questionService.getAllQuestions();
     }
+
+    @PostMapping("/bulk")
+    public ResponseEntity<?> createMultipleQuestions(@RequestBody List<Question> questions) {
+        try {
+            List<Question> created = new ArrayList<>();
+            for (Question question : questions) {
+                created.add(questionService.createQuestion(question));
+            }
+            return ResponseEntity.ok(created);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
 }

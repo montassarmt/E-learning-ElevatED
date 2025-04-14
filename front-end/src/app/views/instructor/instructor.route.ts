@@ -12,6 +12,8 @@ import { SettingComponent } from './setting/setting.component'
 import { StudentlistComponent } from './studentlist/studentlist.component'
 import { AddQuestionToQuizComponent } from './add-question-to-quiz/add-question-to-quiz.component'
 import { QuizManagementComponent } from './quiz-management/quiz-management.component'
+import { AddQuestionComponent } from './add-question/add-question.component'
+import { ExamenManagementComponent } from './examen-management/examen-management.component'
 
 export const INSTRUCTOR_ROUTES: Route[] = [
   {
@@ -82,6 +84,19 @@ export const INSTRUCTOR_ROUTES: Route[] = [
   {
     path:'QuizManagementComponent',
     component: QuizManagementComponent,
-    data: { title: 'QuizManagement' },
+    data: { title: 'Quiz Management' },
   },
+  {
+    path:'AddQuestionComponent',
+    component: AddQuestionComponent,
+    data: { title: 'Add Questions Exam' },
+  },
+  {
+    path:'ExamenManagementComponent',
+    component: ExamenManagementComponent,
+    data: { title: 'Examen Management' },
+  },
+
+  
+  
 ]

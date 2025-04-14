@@ -910,21 +910,35 @@ export const INSTRUCTOR_MENU_ITEMS: MenuItemType[] = [
   {
     key: 'quiz',
     title: 'Tests',
-    icon: 'bi bi-question-diamond',
+    icon: 'bi bi-clipboard-data', // Represents general tests
     link: '/instructor/Tests',
   },
   {
+    key: 'AddQuestionComponent',
+    title: 'Add Exam Question',
+    icon: 'bi bi-journal-text', // Suitable for written exams
+    link: '/instructor/AddQuestionComponent',
+  },
+  {
+    key: 'ExamenManagementComponent',
+    title: 'Exam Management',
+    icon: 'bi bi-collection', // Represents grouped management
+    link: '/instructor/ExamenManagementComponent',
+  },
+  {
     key: 'Add Questions',
-    title: 'Add Questions',
-    icon: 'bi bi-question-diamond',
+    title: 'Add Quiz Questions',
+    icon: 'bi bi-ui-checks', // Represents quiz questions
     link: '/instructor/AddQuestionToQuizComponent',
   },
   {
     key: 'Questions',
-    title: 'Questions',
-    icon: 'bi bi-question-diamond',
+    title: 'Quiz Management',
+    icon: 'bi bi-collection', // Represents grouped management
     link: '/instructor/QuizManagementComponent',
   },
+  
+  
   // #############################################################################################
   {
     key: 'earnings',

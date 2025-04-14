@@ -40,4 +40,11 @@ public class TestController {
         Test updatedTest = testService.updateTest(id, testDetails);
         return ResponseEntity.ok(updatedTest);
     }
+
+
+    @GetMapping("/type/examen")
+    public List<Test> getExamenTests() {
+        return testService.getTestsByType(TestType.EXAMEN);
+    }
+
 }

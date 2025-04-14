@@ -1,0 +1,63 @@
+<div class="card border bg-transparent rounded-3">
+ <div class="card-header bg-transparent border-bottom px-3">
+   <div class="row g-4 align-items-center">
+     <div class="col-md-10">
+       <h3 class="card-title mb-0">Add Question to the Exam</h3>
+     </div>
+   </div>
+ </div>
+
+ <div class="card-body p-4">
+   <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+     <!-- Examen Selection -->
+     <div class="mb-3">
+       <label for="examenSelect" class="form-label">Select Exam</label>
+       <select 
+         class="form-select" 
+         id="examenSelect" 
+         formControlName="examenSelect"
+         (change)="onExamenSelect()"
+         required>
+         <option value="" disabled>Select an Exam</option>
+         <option *ngFor="let examen of examens; trackBy: trackById" [value]="examen.id">
+           {{ examen.title }} (Duration: {{ examen.duration }} mins)
+         </option>
+       </select>
+     </div>
+
+     <!-- Selected Examen Info -->
+     <div *ngIf="selectedExamen" class="mb-3 p-3 bg-light rounded">
+       <h5>Selected Exam:</h5>
+       <p><strong>Title:</strong> {{ selectedExamen.title }}</p>
+       <p><strong>Duration:</strong> {{ selectedExamen.duration }} minutes</p>
+     </div>
+
+     <!-- Question Input -->
+     <div class="mb-3">
+       <label for="questionText" class="form-label">Question Text</label>
+       <textarea 
+         class="form-control" 
+         id="questionText" 
+         formControlName="questionText" 
+         rows="4"
+         placeholder="Enter the question text"
+         required></textarea>
+       <div *ngIf="questionForm.get('questionText')?.invalid && 
+                  (questionForm.get('questionText')?.touched || questionForm.get('questionText')?.dirty)" 
+            class="text-danger">
+         Question text is required
+       </div>
+     </div>
+
+     <!-- Buttons -->
+     <div class="d-flex gap-2">
+       <button type="button" class="btn btn-secondary" (click)="resetForm()">
+         Reset
+       </button>
+       <button type="submit" class="btn btn-primary" [disabled]="questionForm.invalid">
+         Add Question
+       </button>
+     </div>
+   </form>
+ </div>
+</div>

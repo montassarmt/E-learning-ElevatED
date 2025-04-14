@@ -22,6 +22,7 @@ import { provideStore } from '@ngrx/store';
 import { rootReducer } from './store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { ReactiveFormsModule } from '@angular/forms'; // Add this import
+import { provideToastr } from 'ngx-toastr';
 
 // Scroll configuration
 const scrollConfig: InMemoryScrollingOptions = {
@@ -41,5 +42,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch(), withInterceptorsFromDi()),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideAnimations(),
+    provideToastr()
+    
   ],
 };

@@ -59,6 +59,7 @@ export class QuizService {
       })
     );
   }
+  
   getQuestionsByTestId(testId: number): Observable<Question[]> {
     return this.http.get<Question[]>(`${this.apiUrl}/questions/test/${testId}`).pipe(
       catchError((error) => {
