@@ -96,7 +96,7 @@ export class PaymentFormComponent implements OnInit {
         this.dialogRef.close(true);
       },
       error => {
-        this.snackBar.open('Erreur lors de la création de l\'abonnement', 'Fermer', { duration: 3000 });
+        this.snackBar.open('Your card has insufficient funds', 'Fermer', { duration: 3000 });
         this.loading = false;
       }
     );

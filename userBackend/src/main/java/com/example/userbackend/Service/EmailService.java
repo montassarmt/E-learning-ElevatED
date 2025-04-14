@@ -57,8 +57,9 @@ public class EmailService {
         String subject = "Payment failed for your " + planName + " subscription";
         String text = String.format(
                 "Dear subscriber,\n\n" +
-                        "We were unable to process the payment for your %s subscription renewal.\n" +
-                        "Please update your payment information to avoid service interruption.\n\n" +
+                        "We were unable to process the payment for your %s subscription.\n" +
+                        "Reason: Your card has insufficient funds\n\n" +
+                        "Please update your payment information or try another payment method.\n\n" +
                         "Best regards,\nThe Subscription Team",
                 planName
         );
