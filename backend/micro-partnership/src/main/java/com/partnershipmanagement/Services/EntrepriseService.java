@@ -1,34 +1,36 @@
 package com.partnershipmanagement.Services;
 
+import com.partnershipmanagement.DTO.UserDTO;
 import com.partnershipmanagement.Entities.Entreprise;
 import com.partnershipmanagement.Entities.Role;
 import com.partnershipmanagement.Entities.User;
+import com.partnershipmanagement.Feign.UserClient;
 import com.partnershipmanagement.Repositories.EntrepriseRepository;
 import com.partnershipmanagement.Repositories.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class EntrepriseService implements IEntrepriseService{
+@Slf4j
+public class EntrepriseService {
+    @Autowired
+    UserClient userClient;
     @Autowired
     EntrepriseRepository entrepriseRepository;
     @Autowired
     UserRepository userRepository;
 
-    @Override
     public Entreprise createEntreprise(Entreprise ent) {
         return entrepriseRepository.save(ent);
     }
 
-    @Override
     public void removeEntreprise(int id) {
         entrepriseRepository.deleteById(id);
     }
 
-    @Override
     public Entreprise updateEntreprise(int id, Entreprise ent) {
         Entreprise existingEntreprise = entrepriseRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Entreprise not found with ID: " + id));
@@ -44,16 +46,14 @@ public class EntrepriseService implements IEntrepriseService{
         return entrepriseRepository.save(existingEntreprise);
     }
 
-   @Override
-    public Entreprise addEntrepriseAndAffectToUser(Entreprise ent, int idUser) {
-       User user = userRepository.findById(idUser).get();
-       Entreprise e = entrepriseRepository.save(ent);
-       ent.setPartner(user);
-       System.out.println(e.getDescriptionEntreprise());
-        return e;
+    public Entreprise addEntrepriseAndAffectToUser(Entreprise ent, Long userId) {
+        UserDTO user = userClient.getUserById(userId);
+        if (user == null) throw new RuntimeException("User not found");
+
+        ent.setPartnerId(userId);
+        return entrepriseRepository.save(ent);
     }
 
-    @Override
     public List<Entreprise> getAllEntreprises() {
         return entrepriseRepository.findAll();
     }
@@ -63,7 +63,7 @@ public class EntrepriseService implements IEntrepriseService{
                 .orElseThrow(() -> new RuntimeException("Entreprise not found with ID: " + id));
     }
 
-    public String assignEntrepriseToUser(String nameEnt, String cin) {
+   /* public String assignEntrepriseToUser(String nameEnt, String cin) {
         Entreprise ent = entrepriseRepository.findByName(nameEnt);
         if (ent == null) {
             return "Entreprise does not exist";
@@ -85,7 +85,7 @@ public class EntrepriseService implements IEntrepriseService{
         entrepriseRepository.save(ent);
 
         return "Entreprise successfully assigned to user";
-    }
+    }*/
 
     }
 

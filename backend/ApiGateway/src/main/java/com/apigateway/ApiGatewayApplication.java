@@ -55,6 +55,10 @@ public class ApiGatewayApplication {
                 .route("question", r->r.path("/api/questions/**")
                         .uri("lb://learning"))
 
+                    // ✅ Route vers le microservice Node.js Subscription
+                .route("subscription-service", r -> r.path("/api/subscriptions/**")
+                        .uri("lb://subscription-service"))
+
 
                 .build();
 

@@ -1,7 +1,7 @@
 package com.partnershipmanagement.Entities;
 
 public enum PartnershipStatus {
-    PENDING,
+    pending,
     TERMINATED,
     COMPLETED,
     REJECTED,

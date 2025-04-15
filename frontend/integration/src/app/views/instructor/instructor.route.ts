@@ -5,7 +5,7 @@ import { EarningComponent } from './earning/earning.component'
 import { EditProfileComponent } from './edit-profile/edit-profile.component'
 import { OrderComponent } from './order/order.component'
 import { PayoutComponent } from './payout/payout.component'
-import { QuizComponent } from './quiz/quiz.component'
+import { QuizComponent } from './quiz-component/quiz-component.component'
 import { ReviewComponent } from './review/review.component'
 import { SettingComponent } from './setting/setting.component'
 import { StudentlistComponent } from './studentlist/studentlist.component'
@@ -23,11 +23,11 @@ export const INSTRUCTOR_ROUTES: Route[] = [
     component: DashboardComponent,
     data: { title: 'Instructor Dashboard' },
   },
-  {
-    path: 'quiz',
-    component: QuizComponent,
-    data: { title: 'Instructor Quiz' },
-  },
+  // {
+  //   path: 'quiz',
+  //   component: QuizComponent,
+  //   data: { title: 'Instructor Quiz' },
+  // },
   {
     path: 'earning',
     component: EarningComponent,
@@ -101,7 +101,12 @@ export const INSTRUCTOR_ROUTES: Route[] = [
     path: 'edit-coaching/:id',
     component: EditCoachingComponent ,
     data: { title: 'Coaching Sessions' },
-  }
+  },
+  {
+    path:'Tests',
+    component: QuizComponent,
+    data: { title: 'Instructor Quiz' },
+  },
 
 
 

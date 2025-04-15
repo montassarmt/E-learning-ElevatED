@@ -1,5 +1,7 @@
 package com.example.elearning.services;
 
+import com.example.elearning.Clients.UserClient;
+import com.example.elearning.DTO.UserDTO;
 import com.example.elearning.entities.Feedback;
 import com.example.elearning.entities.User;
 import com.example.elearning.repositories.FeedbackRepository;
@@ -20,6 +22,9 @@ import java.util.stream.Collectors;
 public class FeedbackService {
 
     @Autowired
+    private UserClient userClient;
+
+    @Autowired
     private FeedbackRepository feedbackRepository;
 
     @Autowired
@@ -31,10 +36,14 @@ public class FeedbackService {
             throw new RuntimeException("User ID is required");
         }
 
-        User user = userRepository.findById(feedback.getUserId())
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + feedback.getUserId()));
+        // Vérifie que l'utilisateur existe via Feign
+        try {
+            UserDTO user = userClient.getUserById(feedback.getUserId());
+            System.out.println("User trouvé : " + user.getUsername());
+        } catch (Exception e) {
+            throw new RuntimeException("User not found with id: " + feedback.getUserId());
+        }
 
-        feedback.setUser(user);
         feedback.setTimestamp(new Date());
         return feedbackRepository.save(feedback);
     }

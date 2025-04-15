@@ -29,11 +29,7 @@ public class Feedback {
 
     private String audioFilePath; // Chemin du fichier audio (si feedbackType = AUDIO)
     private Date timestamp;
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false) // Clé étrangère vers la table User
-    @JsonIgnore
-    private User user;
+    private Long userId;
 
-    @Transient // Ce champ ne sera pas persistant en base de données
-    private Long userId;// Utilisateur associé à ce feedback
+
 }

@@ -20,6 +20,7 @@ import {
 } from '@angular/common/http'
 
 import { FormsModule } from '@angular/forms';
+import { provideToastr } from 'ngx-toastr';
 
 import { AuthInterceptor } from './UserFrontEnd/authHelpers/AuthInterceptor'
 import { provideEffects } from '@ngrx/effects'
@@ -43,7 +44,7 @@ export const appConfig: ApplicationConfig = {
     //{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     //{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-   
+
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, inMemoryScrollingFeature),
     provideStore(rootReducer),
@@ -51,5 +52,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch(), withInterceptorsFromDi()),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideAnimations(),
+    provideToastr()
   ],
 }

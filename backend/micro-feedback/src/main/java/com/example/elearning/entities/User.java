@@ -27,7 +27,5 @@ public class User {
     private List<String> skills; // Compétences (uniquement pour les tuteurs)
 
     private String status; // Par exemple : STUDENT, INSTRUCTOR, ADMIN
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<Feedback> feedbacks; // Liste des feedbacks associés à cet utilisateur
+
 }

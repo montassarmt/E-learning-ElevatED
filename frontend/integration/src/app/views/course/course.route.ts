@@ -4,11 +4,11 @@ import { GridComponent } from './grid/grid.component'
 import { Grid2Component } from './grid2/grid2.component'
 import { ListComponent } from './list/list.component'
 import { List2Component } from './list2/list2.component'
-import { DetailComponent } from './detail/detail.component'
 import { DetailMinimalComponent } from './detail-minimal/detail-minimal.component'
 import { DetailAdvanceComponent } from './detail-advance/detail-advance.component'
 import { DetailModuleComponent } from './detail-module/detail-module.component'
 import { VideoPlayerComponent } from './video-player/video-player.component'
+import { DetailComponent } from '@views/admin/courses/detail/detail.component'
 
 export const COURSE_ROUTES: Route[] = [
   {

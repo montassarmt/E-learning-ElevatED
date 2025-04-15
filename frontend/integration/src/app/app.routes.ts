@@ -17,6 +17,15 @@ import { AuthGuard } from './UserFrontEnd/authHelpers/AuthGuard'
 import { ForgetPasswordComponent } from './UserFrontEnd/components/forget-password/forget-password.component'
 import { VerifyCodeComponent } from './UserFrontEnd/components/verify-code/verify-code.component'
 import { ResetPasswordComponent } from './UserFrontEnd/components/reset-password/reset-password.component'
+import { ProposalFormComponent } from './PartnershipManagement/Back/components/proposal/proposal-form/proposal-form.component'
+import { ProposalListFrontComponent } from './PartnershipManagement/Front/Proposal/proposal-list-front/proposal-list-front.component'
+import { PartnershipFormComponent } from './PartnershipManagement/Back/components/partnership/partnership-form/partnership-form.component'
+import { PartnershipDetailsComponent } from './PartnershipManagement/Back/components/partnership/partnership-details/partnership-details.component'
+import { ScrapingComponent } from './PartnershipManagement/Back/components/webScraping/scraping/scraping.component'
+import { PartnershipListComponent } from './PartnershipManagement/Back/components/partnership/partnership-list/partnership-list.component'
+import { ProposalListComponent } from './PartnershipManagement/Back/components/proposal/proposal-list/proposal-list.component'
+import { EntrepriseListComponent } from './PartnershipManagement/Back/components/entreprise/entreprise-list/entreprise-list.component'
+import { EntrepriseFormComponent } from './PartnershipManagement/Back/components/entreprise/entreprise-form/entreprise-form.component'
 
 // @ts-ignore
 // @ts-ignore
@@ -85,6 +94,34 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'proposalf',
+    component: AccountLayoutComponent,
+    canActivate: [
+      (url: any) => {
+        return true; // Add authentication logic if needed
+      },
+    ],
+    children: [
+      {
+        path: '',
+        component: ProposalListFrontComponent, // List of proposals
+      },
+      {
+        path: 'add',
+        component: ProposalFormComponent, // Form to add a new proposal
+      },
+      {
+        path: 'edit/:id',
+        component: ProposalFormComponent, // Form to edit an existing proposal
+      },
+      {
+        path: 'apply',
+        component: PartnershipFormComponent, // Form to add a new proposal
+      },
+      { path: 'partnership/details/:id', component: PartnershipDetailsComponent },
+    ],
+  },
+  {
     path: 'student',
     component: AccountLayoutComponent,
     canActivate: [
@@ -120,6 +157,100 @@ export const routes: Routes = [
     ],
     loadChildren: () =>
       import('./views/admin/admin.route').then((mod) => mod.ADMIN_ROUTES),
+  },
+  {
+    path: 'admin/entreprises', // You can choose a different path if needed
+    component: AdminLayoutComponent, // Use the appropriate layout
+    canActivate: [
+      (url: any) => {
+       // const router = inject(Router);
+       // const authService = inject(AuthService);
+       // if (!authService.session) {
+        //  return router.createUrlTree(['/sign-in'], {
+         ///   queryParams: { returnUrl: url._routerState.url },
+         // });
+      //  }
+        return true;
+      },
+    ],
+    children: [
+      {
+        path: '',
+        component: EntrepriseListComponent, // List of entreprises
+      },
+      {
+        path: 'add',
+        component: EntrepriseFormComponent, // Form to add a new entreprise
+      },
+      {
+        path: 'edit/:id', 
+        component: EntrepriseFormComponent
+            }
+    ],
+  },
+  {
+    path: 'admin/proposals',
+    component: AdminLayoutComponent,
+    canActivate: [
+      (url: any) => {
+        return true; // Add authentication logic if needed
+      },
+    ],
+    children: [
+      {
+        path: '',
+        component: ProposalListComponent, // List of proposals
+      },
+      {
+        path: 'add',
+        component: ProposalFormComponent, // Form to add a new proposal
+      },
+      {
+        path: 'edit/:id',
+        component: ProposalFormComponent, // Form to edit an existing proposal
+      },
+  
+    ],
+  },
+
+  {
+    path: 'admin/partnerships',
+    component: AdminLayoutComponent,
+    canActivate: [
+      (url: any) => {
+        return true; // Add authentication logic if needed
+      },
+    ],
+    children: [
+      {
+        path: '',
+        component: PartnershipListComponent // List of proposals
+      },
+      {
+        path: 'add',
+        component: PartnershipFormComponent, // Form to add a new proposal
+      },
+      {
+        path: 'edit/:id',
+        component: PartnershipFormComponent, // Form to edit an existing proposal
+      },
+    ],
+  },
+
+  {
+    path: 'admin/webScraping',
+    component: AdminLayoutComponent,
+    canActivate: [
+      (url: any) => {
+        return true; // Add authentication logic if needed
+      },
+    ],
+    children: [
+      {
+        path: '',
+        component: ScrapingComponent  // List of data
+      },
+    ],
   },
   {
     path: '',

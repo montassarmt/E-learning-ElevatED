@@ -1,0 +1,64 @@
+<section class="pt-4">
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">List of Proposals</h4>
+        <!-- Add Proposal Button -->
+        <a class="btn btn-success btn-sm" href="/admin/proposals/add">Add Proposal</a>
+      </div>
+     
+
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Proposal Name</th>
+              <th>Description</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Planned Amount</th>
+              <th>Status</th>
+              <th>Type</th>
+              <th>Applications</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let proposal of proposals">
+              <td>{{ proposal.idProposal }}</td>
+              <td><a href="javascript:void(0);">{{ proposal.proposalName }}</a></td>
+              <td class="text-truncate">{{ proposal.proposalDescription }}</td>
+              <td>{{ proposal.startDate | date }}</td>
+              <td>{{ proposal.endDate | date }}</td>
+              <td>{{ proposal.plannedAmount | currency }}</td>
+              <td class="text-orange">{{ proposal.proposalStatus }}</td>
+              <td>{{ proposal.proposalType }}</td>
+              <td>{{ proposal.applications?.length || 0 }}</td>
+              <td>
+                <!-- Edit Button (Yellow Color) -->
+                <a href="/admin/proposals/edit/{{ proposal.idProposal }}" class="btn btn-primary btn-sm">Edit</a>
+                <!-- Space between buttons -->
+                <span>&nbsp;&nbsp;</span>
+                <!-- Delete Button (Red Color) -->
+                <button class="btn btn-danger btn-sm" (click)="confirmDelete(proposal.idProposal)">
+                  Delete
+                </button>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <nav class="mt-4 d-flex justify-content-center" aria-label="navigation">
+      <ng-template ngbPaginationPrevious>
+        <i class="fas fa-angle-double-left"></i>
+      </ng-template>
+      <ng-template ngbPaginationNext>
+        <i class="fas fa-angle-double-right"></i>
+      </ng-template>
+    </nav>
+  </div>
+</section>

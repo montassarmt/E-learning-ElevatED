@@ -106,7 +106,7 @@ public class PartnershipService implements IPartnershipService {
         Partnership partnership = new Partnership();
         partnership.setEntreprise(entreprise);
         partnership.setProposals(proposal);
-        partnership.setPartnershipStatus(PartnershipStatus.PENDING);
+        partnership.setPartnershipStatus(PartnershipStatus.pending);
 
         return partnershipRepository.save(partnership);
     }

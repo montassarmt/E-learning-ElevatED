@@ -1,0 +1,49 @@
+<section>
+  <div class="row g-4 justify-content-center">
+    <div *ngFor="let proposal of proposals" class="col-lg-8 col-xl-4">
+      <div class="card shadow p-2">
+        <div class="row g-0">
+          <div class="col-md-8">
+            <div class="card-body">
+              <div class="d-sm-flex justify-content-sm-between mb-2 mb-sm-3">
+                <div>
+                  <h5 class="card-title mb-0">
+                    <a href="javascript:void(0);">{{ proposal.proposalName }}</a>
+                  </h5>
+                  <p class="small mb-2 mb-sm-0">{{ proposal.proposalType }}</p>
+                </div>
+                <span class="h6 fw-light">
+                  <i class="fas fa-star text-warning ms-1"></i>
+                </span>
+              </div>
+              <p class="text-truncate-2 mb-3">{{ proposal.proposalDescription }}</p>
+
+              <div class="d-sm-flex justify-content-sm-between align-items-center mb-3">
+                <h6 class="text-orange mb-0">{{ proposal.proposalStatus }}</h6>
+              </div>
+
+              <!-- Buttons Row -->
+              <div class="row g-2">
+                <div class="col-6">
+                  <a href="/proposalf/apply" class="btn btn-primary w-100"  [class.disabled]="proposal?.proposalStatus == 'fulfilled'">Apply</a>
+                </div>
+                <div class="col-6">
+                  <button class="btn btn-outline-secondary w-100">View</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="mt-4 d-flex justify-content-center" aria-label="navigation">
+    <ng-template ngbPaginationPrevious>
+      <i class="fas fa-angle-double-left"></i>
+    </ng-template>
+    <ng-template ngbPaginationNext>
+      <i class="fas fa-angle-double-right"></i>
+    </ng-template>
+  </nav>
+</section>

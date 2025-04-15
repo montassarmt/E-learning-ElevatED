@@ -1,0 +1,137 @@
+version: '3.8'
+
+services:
+
+  # Eureka Server
+  eureka-server:
+    build: ./Eureka
+    container_name: eureka
+    ports:
+      - "8761:8761"
+
+  # API Gateway
+  apigateway:
+    build: ./ApiGateway
+    container_name: apigateway
+    ports:
+      - "8085:8085"
+    depends_on:
+      - eureka-server
+      - micro-event
+      - micro-test
+      - micro-user
+      - micro-partnership
+      - micro-feedback
+      - subscription-service
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+
+  # Microservices Spring Boot
+  micro-event:
+    build: ./micro-event
+    container_name: micro-event
+    ports:
+      - "8087:8087"
+    depends_on:
+      - db-mysql
+      - eureka-server
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/evenements?createDatabaseIfNotExist=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  micro-test:
+    build: ./micro-test
+    container_name: micro-test
+    ports:
+      - "8089:8089"
+    depends_on:
+      - db-mysql
+      - eureka-server
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/e-learning?createDatabaseIfNotExist=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  micro-user:
+    build: ./micro-user
+    container_name: micro-user
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db-mysql
+      - eureka-server
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/db_Elearning?createDatabaseIfNotExist=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  micro-partnership:
+    build: ./micro-partnership
+    container_name: micro-partnership
+    ports:
+      - "8088:8088"
+    depends_on:
+      - db-mysql
+      - eureka-server
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/MicroServiceProjetDB?createDatabaseIfNotExist=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  micro-feedback:
+    build: ./micro-feedback
+    container_name: micro-feedback
+    ports:
+      - "8090:8090"
+    depends_on:
+      - db-mysql
+      - eureka-server
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/elearningdb?createDatabaseIfNotExist=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  # Subscription-service Node.js + MongoDB
+  subscription-service:
+    build: ./subscription-service
+    container_name: subscription-service
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongodb
+      - eureka-server
+    environment:
+      - PORT=5001
+      - DB_URL=mongodb://mongodb:27017/subscriptions
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+
+
+  # Base de données MongoDB
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  # Base de données MySQL partagée
+  db-mysql:
+    image: mysql:5.7
+    container_name: db-mysql
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+  mongo_data:

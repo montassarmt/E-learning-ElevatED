@@ -1,34 +1,10 @@
 <div class="row mb-4">
-  <h5 class="mb-4">Our Student Reviews</h5>
+  
 
-  <div class="col-md-4 mb-3 mb-md-0">
-    <div class="text-center">
-      <h2 class="mb-0">4.5</h2>
-
-      <ul class="list-inline mb-0">
-        <ng-template #t let-fill="fill">
-          <i class="far fa-star text-warning me-1">
-            @if (fill > 0) {
-              <i
-                class="fas fa-star text-warning filled"
-                [style.width.%]="fill"
-              ></i>
-            }
-          </i>
-        </ng-template>
-        <ngb-rating
-          [rate]="4.5"
-          [starTemplate]="t"
-          [readonly]="true"
-          [max]="5"
-        />
-      </ul>
-      <p class="mb-0">(Based on todays review)</p>
-    </div>
-  </div>
-
+  <!-- Section des barres de progression -->
   <div class="col-md-8">
     <div class="row align-items-center">
+      <!-- Répétez cette section pour chaque évaluation -->
       <div class="col-6 col-sm-8">
         <ngb-progressbar
           type="warning"
@@ -36,7 +12,6 @@
           [height]="'5px'"
         ></ngb-progressbar>
       </div>
-
       <div class="col-6 col-sm-4">
         <ul class="list-inline mb-0">
           <ng-template #t let-fill="fill">
@@ -57,127 +32,13 @@
           />
         </ul>
       </div>
-
-      <div class="col-6 col-sm-8">
-        <ngb-progressbar
-          type="warning"
-          [value]="80"
-          [height]="'5px'"
-        ></ngb-progressbar>
-      </div>
-
-      <div class="col-6 col-sm-4">
-        <ul class="list-inline mb-0">
-          <ng-template #t let-fill="fill">
-            <i class="far fa-star text-warning me-1">
-              @if (fill > 0) {
-                <i
-                  class="fas fa-star text-warning filled"
-                  [style.width.%]="fill"
-                ></i>
-              }
-            </i>
-          </ng-template>
-          <ngb-rating
-            [rate]="4"
-            [starTemplate]="t"
-            [readonly]="true"
-            [max]="5"
-          />
-        </ul>
-      </div>
-
-      <div class="col-6 col-sm-8">
-        <ngb-progressbar
-          type="warning"
-          [value]="60"
-          [height]="'5px'"
-        ></ngb-progressbar>
-      </div>
-
-      <div class="col-6 col-sm-4">
-        <ul class="list-inline mb-0">
-          <ng-template #t let-fill="fill">
-            <i class="far fa-star text-warning me-1">
-              @if (fill > 0) {
-                <i
-                  class="fas fa-star text-warning filled"
-                  [style.width.%]="fill"
-                ></i>
-              }
-            </i>
-          </ng-template>
-          <ngb-rating
-            [rate]="3"
-            [starTemplate]="t"
-            [readonly]="true"
-            [max]="5"
-          />
-        </ul>
-      </div>
-
-      <div class="col-6 col-sm-8">
-        <ngb-progressbar
-          type="warning"
-          [value]="40"
-          [height]="'5px'"
-        ></ngb-progressbar>
-      </div>
-
-      <div class="col-6 col-sm-4">
-        <ul class="list-inline mb-0">
-          <ng-template #t let-fill="fill">
-            <i class="far fa-star text-warning me-1">
-              @if (fill > 0) {
-                <i
-                  class="fas fa-star text-warning filled"
-                  [style.width.%]="fill"
-                ></i>
-              }
-            </i>
-          </ng-template>
-          <ngb-rating
-            [rate]="2"
-            [starTemplate]="t"
-            [readonly]="true"
-            [max]="5"
-          />
-        </ul>
-      </div>
-
-      <div class="col-6 col-sm-8">
-        <ngb-progressbar
-          type="warning"
-          [value]="20"
-          [height]="'5px'"
-        ></ngb-progressbar>
-      </div>
-
-      <div class="col-6 col-sm-4">
-        <ul class="list-inline mb-0">
-          <ng-template #t let-fill="fill">
-            <i class="far fa-star text-warning me-1">
-              @if (fill > 0) {
-                <i
-                  class="fas fa-star text-warning filled"
-                  [style.width.%]="fill"
-                ></i>
-              }
-            </i>
-          </ng-template>
-          <ngb-rating
-            [rate]="1"
-            [starTemplate]="t"
-            [readonly]="true"
-            [max]="5"
-          />
-        </ul>
-      </div>
+      <!-- Répétez pour les autres évaluations -->
     </div>
   </div>
 </div>
 
-<div class="row">
+<!-- Section des commentaires existants -->
+<!--<div class="row">
   <div class="d-md-flex my-4">
     <div class="avatar avatar-xl me-4 flex-shrink-0">
       <img
@@ -186,11 +47,9 @@
         alt="avatar"
       />
     </div>
-
     <div>
       <div class="d-sm-flex mt-1 mt-md-0 align-items-center">
         <h5 class="me-3 mb-0">Jacqueline Miller</h5>
-
         <ul class="list-inline mb-0">
           <ng-template #t let-fill="fill">
             <i class="far fa-star text-warning me-1">
@@ -210,7 +69,6 @@
           />
         </ul>
       </div>
-
       <p class="small mb-2">2 days ago</p>
       <p class="mb-2">
         Perceived end knowledge certainly day sweetness why cordially. Ask a
@@ -223,100 +81,118 @@
       >
     </div>
   </div>
-
   <hr />
+  
+</div>-->
 
-  <div class="d-md-flex my-4">
-    <div class="avatar avatar-xl me-4 flex-shrink-0">
-      <img
-        class="avatar-img rounded-circle"
-        src="assets/images/avatar/07.jpg"
-        alt="avatar"
-      />
-    </div>
-
-    <div>
-      <div class="d-sm-flex mt-1 mt-md-0 align-items-center">
-        <h5 class="me-3 mb-0">Dennis Barrett</h5>
-
-        <ul class="list-inline mb-0">
-          <ng-template #t let-fill="fill">
-            <i class="far fa-star text-warning me-1">
-              @if (fill > 0) {
-                <i
-                  class="fas fa-star text-warning filled"
-                  [style.width.%]="fill"
-                ></i>
-              }
-            </i>
-          </ng-template>
-          <ngb-rating
-            [rate]="4"
-            [starTemplate]="t"
-            [readonly]="true"
-            [max]="5"
-          />
-        </ul>
-      </div>
-
-      <p class="small mb-2">2 days ago</p>
-      <p class="mb-2">
-        Handsome met debating sir dwelling age material. As style lived he worse
-        dried. Offered related so visitors we private removed. Moderate do
-        subjects to distance.
-      </p>
-      <a href="javascript:void(0);" class="text-body mb-0"
-        ><i class="fas fa-reply me-2"></i>Reply</a
-      >
-    </div>
-  </div>
-
-  <hr />
-</div>
-
+<!-- Nouveau formulaire de feedback -->
 <div class="mt-2">
   <h5 class="mb-4">Leave a Review</h5>
-  <form class="row g-3">
-    <div class="col-md-6">
-      <input
-        type="text"
-        class="form-control"
-        id="inputtext"
-        placeholder="Name"
-        aria-label="First name"
-      />
-    </div>
-
-    <div class="col-md-6">
-      <input
-        type="email"
-        class="form-control"
-        placeholder="Email"
-        id="inputEmail4"
-      />
-    </div>
-
-    <div class="col-12">
-      <select id="inputState2" class="form-select js-choice">
-        <option selected="">★★★★★ (5/5)</option>
-        <option>★★★★☆ (4/5)</option>
-        <option>★★★☆☆ (3/5)</option>
-        <option>★★☆☆☆ (2/5)</option>
-        <option>★☆☆☆☆ (1/5)</option>
-      </select>
-    </div>
-
-    <div class="col-12">
+  <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" class="row g-3">
+    <!--<div class="col-12">
+      <label for="comments">Comments:</label>
       <textarea
+        id="comments"
+        formControlName="comments"
         class="form-control"
-        id="exampleFormControlTextarea1"
         placeholder="Your review"
         rows="3"
+        required
       ></textarea>
+    </div>-->
+    <div class="col-12">
+      <label for="rating">Rating:</label>
+      <select
+        id="rating"
+        formControlName="rating"
+        class="form-select js-choice"
+        required
+      >
+        <option value="1">★☆☆☆☆ (1/5)</option>
+        <option value="2">★★☆☆☆ (2/5)</option>
+        <option value="3">★★★☆☆ (3/5)</option>
+        <option value="4">★★★★☆ (4/5)</option>
+        <option value="5">★★★★★ (5/5)</option>
+      </select>
+    </div>
+    <div class="col-12">
+      <label for="feedbackType">Feedback Type:</label>
+      <select
+        id="feedbackType"
+        formControlName="feedbackType"
+        class="form-select"
+        required
+      >
+      <option value="TEXT">Text</option>
+      <option value="AUDIO">Audio</option>
+    </select>
+  </div>
+
+  <!-- Text Feedback -->
+  <div class="col-12" *ngIf="feedbackForm.get('feedbackType')?.value === 'TEXT'">
+    <label class="form-label">Comments</label>
+    <textarea 
+      class="form-control" 
+      formControlName="comments" 
+      rows="3"
+      placeholder="Share your experience..."></textarea>
+    @if (feedbackForm.get('comments')?.invalid && feedbackForm.get('comments')?.touched) {
+      <div class="text-danger small">Comments are required</div>
+    }
+  </div>
+
+  <!-- Audio Feedback -->
+  <div class="col-12" *ngIf="feedbackForm.get('feedbackType')?.value === 'AUDIO'">
+    <label class="form-label">Audio Feedback</label>
+    
+    <div class="d-flex gap-2 mb-2">
+      <!-- Record Button -->
+      <button type="button" class="btn btn-primary" (click)="toggleRecording()">
+        <i class="fas" [class.fa-microphone]="!isRecording" [class.fa-stop]="isRecording"></i>
+        {{ isRecording ? 'Stop Recording' : 'Record Audio' }}
+      </button>
+      
+      <!-- Upload Button -->
+      <button type="button" class="btn btn-secondary" (click)="audioUpload.click()" [disabled]="isRecording">
+        <i class="fas fa-upload"></i> Upload File
+      </button>
+      <input #audioUpload type="file" accept="audio/*" (change)="onFileSelected($event)" hidden>
     </div>
 
+    <!-- Recording Indicator -->
+    @if (isRecording) {
+      <div class="text-muted small mb-2">
+        <span class="recording-indicator"></span>
+        Recording: {{ formatTime(recordingTime) }}
+      </div>
+    }
+
+    <!-- Audio Preview -->
+    @if (audioUrl) {
+      <div class="mt-2">
+        <audio controls [src]="audioUrl" class="w-100"></audio>
+        <button type="button" class="btn btn-sm btn-danger mt-2" (click)="clearAudio()">
+          <i class="fas fa-trash"></i> Remove Audio
+        </button>
+      </div>
+    }
+  
+    </div>
     <div class="col-12">
-      <button type="submit" class="btn btn-primary mb-0">Post Review</button>
+      <label for="userId">User ID:</label>
+      <input
+        id="userId"
+        type="number"
+        formControlName="userId"
+        class="form-control"
+        placeholder="User ID"
+        required
+      />
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary mb-0" [disabled]="feedbackForm.invalid">
+        Post Review
+      </button>
     </div>
   </form>
 </div>

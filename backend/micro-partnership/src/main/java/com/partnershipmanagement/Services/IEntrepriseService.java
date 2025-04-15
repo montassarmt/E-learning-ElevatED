@@ -10,6 +10,8 @@ public interface IEntrepriseService {
     Entreprise updateEntreprise(int id, Entreprise ent);
     public Entreprise addEntrepriseAndAffectToUser(Entreprise ent, int idUser);
 
+    Entreprise addEntrepriseAndAffectToUser(Entreprise ent, Long userId);
+
     List<Entreprise> getAllEntreprises();
 
 

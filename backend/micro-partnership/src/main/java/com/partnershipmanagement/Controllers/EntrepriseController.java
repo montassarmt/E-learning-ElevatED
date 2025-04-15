@@ -5,6 +5,7 @@ import com.partnershipmanagement.Entities.Entreprise;
 import com.partnershipmanagement.Repositories.EntrepriseRepository;
 import com.partnershipmanagement.Services.EntrepriseService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("entreprises")
 @RestController
+@Slf4j
 public class EntrepriseController {
     @Autowired
     private EntrepriseService serviceEntreprise;
@@ -46,8 +48,9 @@ public class EntrepriseController {
     }
 
     // Add entreprise and assign to a user
+
     @PostMapping("/AddEntrepriseandAssignToUser/{idUser}")
-    public Entreprise addEntrepriseAndAffectToUser(@RequestBody Entreprise ent, @RequestParam int idUser) {
+    public Entreprise addEntrepriseAndAffectToUser(@RequestBody Entreprise ent, @PathVariable Long idUser) {
         return serviceEntreprise.addEntrepriseAndAffectToUser(ent, idUser);
     }
 
@@ -61,10 +64,10 @@ public class EntrepriseController {
         }
     }
 
-    @PutMapping("/assignEntrepriseToUser/{entrepriseName}/{cin}")
+  /*  @PutMapping("/assignEntrepriseToUser/{entrepriseName}/{cin}")
     public String assignEntrepriseToUser(@RequestParam String entrepriseName, @RequestParam String cin) {
         return serviceEntreprise.assignEntrepriseToUser(entrepriseName, cin);
-    }
+    }*/
 
     @GetMapping("/{id}")
     public Entreprise getEntrepriseById(@PathVariable int id) {

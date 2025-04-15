@@ -1,0 +1,54 @@
+<div *ngIf="isLoading" class="loading">
+  <p>Loading data...</p>
+</div>
+
+<div *ngIf="errorMessage" class="error">
+  <p>{{ errorMessage }}</p>
+</div>
+
+<div *ngIf="scrapedData.length > 0">
+  <h2>Scraped Data</h2>
+  <div class="filter-container">
+    <!-- Search Bar Container -->
+    <div class="search-container">
+      <div class="form-control">
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()"
+          class="search-input"
+          placeholder="Search by title or description"
+        />
+      </div>
+    </div>
+
+    <!-- Filter Button -->
+    <!-- Filter Buttons -->
+    <div class="filter-buttons">
+      <button (click)="filterByHighestScore()" class="filter-button">
+        Sort by Highest Score
+      </button>
+      <button (click)="filterByMostPopular()" class="filter-button">
+        Filter by Most Popular
+      </button>
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Reviews</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of filteredData">
+        <td>{{ item.Title }}</td>
+        <td>{{ item.Description }}</td>
+        <td>{{ item.Reviews }}</td>
+        <td>{{ item.Score }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

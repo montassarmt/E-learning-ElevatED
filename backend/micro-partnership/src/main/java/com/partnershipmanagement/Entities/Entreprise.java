@@ -1,6 +1,7 @@
 package com.partnershipmanagement.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.partnershipmanagement.DTO.UserDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -26,9 +27,12 @@ public class Entreprise {
     String emailEntreprise;
     String descriptionEntreprise;
 
-    @JsonIgnore
-    @OneToOne
-    User partner;
+ //   @JsonIgnore
+ //   @OneToOne
+  //  User partner;
+
+    private Long partnerId;
+
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy="entreprise")

@@ -613,6 +613,42 @@ export const DEMO_MENU_ITEMS: MenuItemType[] = [
         ],
       },
       {
+        key: 'Partner',
+        title: 'Partner',
+        icon: 'fas fa-user-tie',
+        parentKey: 'accounts',
+        subItems: [
+          {
+            key: 'adminDashboard',
+            title: 'Entreprise',
+            icon: 'fas fa-walletl',
+            link: '/admin/entreprises',
+            parentKey: 'Partner',
+          },
+          {
+            key: 'adminDashboard',
+            title: 'Proposal',
+            icon: 'bi bi-grid-fill',
+            link: '/admin/proposals',
+            parentKey: 'Partner',
+          },
+          {
+            key: 'adminDashboard',
+            title: 'Partnerships',
+            icon: 'bi bi-grid-fill',
+            link: '/admin/partnerships',
+            parentKey: 'Partner',
+          },
+          {
+            key: 'adminDashboard',
+            title: 'Web scraping',
+            icon: 'bi bi-star-fill',
+            link: '/admin/webScraping',
+            parentKey: 'Partner',
+          }
+        ]
+      },
+      {
         key: 'student',
         title: 'Student',
         icon: 'fas fa-user-graduate',
@@ -940,6 +976,12 @@ export const INSTRUCTOR_MENU_ITEMS: MenuItemType[] = [
     title: 'Update Coaching',
     icon: 'bi bi-ui-checks-grid',
     link: '/instructor/edit-coaching/:id',
+  },
+  {
+    key: 'quiz',
+    title: 'Tests',
+    icon: 'bi bi-clipboard-data', // Represents general tests
+    link: '/instructor/Tests',
   },
   {
     key: 'settings',

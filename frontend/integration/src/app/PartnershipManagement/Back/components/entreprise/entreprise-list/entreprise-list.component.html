@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">List of Entreprises</h4>
+    <!-- Add Entreprise Button -->
+    <a class="btn btn-success btn-sm" href="/admin/entreprises/add">Add Entreprise</a>  </div>
+  <div class="card-body">
+
+    <div class="mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by name or description..."
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="filterEntreprises()"
+      />
+    </div>
+</div>
+
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ent of filteredEntreprises">
+            <td>{{ ent.nameEntreprise }}</td>
+            <td>{{ ent.descriptionEntreprise }}</td>
+            <td>{{ ent.addressEntreprise }}</td>
+            <td>{{ ent.emailEntreprise }}</td>
+            <td>{{ ent.phoneEntreprise }}</td>
+            <td>
+              <!-- Edit Button (Yellow Color) -->
+              <a href="/admin/entreprises/edit/{{ent.idEntreprise}}" class="btn btn-primary">Edit</a>
+              <!-- Space between buttons -->
+              <span>&nbsp;&nbsp;</span>
+              <!-- Delete Button (Red Color) -->
+              <button class="btn btn-danger btn-sm" (click)="confirmDelete(ent.idEntreprise)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

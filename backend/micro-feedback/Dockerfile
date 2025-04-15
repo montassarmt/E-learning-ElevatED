@@ -1,6 +1,5 @@
-FROM ubuntu:latest
-LABEL authors="monta"
-EXPOSE 8089
-ADD E-learning-001-SNAPSHOT.jar E-learning.jar
-
+FROM openjdk:17
+EXPOSE 8090
+ADD target/E-learning-0.0.1-SNAPSHOT.jar E-learning.jar
 ENTRYPOINT ["java", "-jar", "E-learning.jar"]
+
