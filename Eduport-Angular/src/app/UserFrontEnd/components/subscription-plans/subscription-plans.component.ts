@@ -5,6 +5,7 @@ import { PaymentFormComponent } from '../payment-form/payment-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { MaterialModule } from '../../../../app/material.module';
+import { Router } from '@angular/router'; // Ajouté
 
 @Component({
   standalone: true,
@@ -25,7 +26,8 @@ export class SubscriptionPlansComponent implements OnInit {
   constructor(
     private subscriptionService: SubscriptionService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router // Ajouté
   ) { }
 
   ngOnInit(): void {
@@ -46,6 +48,16 @@ export class SubscriptionPlansComponent implements OnInit {
   }
 
   subscribe(plan: SubscriptionPlan): void {
+    // Vérifier si l'utilisateur est connecté
+    const userData = localStorage.getItem('user');
+    if (!userData) {
+      // Si non connecté, rediriger vers la page de login
+      this.snackBar.open('Veuillez vous connecter pour souscrire à un abonnement', 'Fermer', { duration: 3000 });
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    // Si connecté, ouvrir le formulaire de paiement
     const dialogRef = this.dialog.open(PaymentFormComponent, {
       width: '500px',
       data: { plan }

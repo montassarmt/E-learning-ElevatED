@@ -9,6 +9,11 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { MaterialModule } from '../../../../app/material.module';
 import { StripeElementsDirective, StripeCardComponent as StripeCard } from 'ngx-stripe';
 
+interface PaymentDialogData {
+  plan: any;
+  userId: number;
+}
+
 @Component({
   standalone: true,
   selector: 'app-payment-form',
@@ -51,7 +56,7 @@ export class PaymentFormComponent implements OnInit {
     private subscriptionService: SubscriptionService,
     private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<PaymentFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { plan: any }
+    @Inject(MAT_DIALOG_DATA) public data: PaymentDialogData
   ) {
     this.paymentForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -75,30 +80,31 @@ export class PaymentFormComponent implements OnInit {
         if (result.token) {
           this.createSubscription(result.token.id);
         } else if (result.error) {
-          this.snackBar.open(result.error.message || 'Erreur de paiement', 'Fermer', { duration: 3000 });
+          this.snackBar.open(result.error.message || 'Payment error', 'Close', { duration: 3000 });
           this.loading = false;
         }
       });
   }
 
   createSubscription(token: string): void {
-    const userId = 16 ; // À remplacer par l'ID de l'utilisateur connecté
+    const { userId, plan } = this.data;
     const autoRenew = this.paymentForm.get('autoRenew')?.value;
     
     this.subscriptionService.createSubscription(
       userId,
-      this.data.plan.id,
+      plan.id,
       token,
       autoRenew
-    ).subscribe(
-      () => {
-        this.snackBar.open('Abonnement créé avec succès', 'Fermer', { duration: 3000 });
+    ).subscribe({
+      next: () => {
+        this.snackBar.open('Subscription created successfully', 'Close', { duration: 3000 });
         this.dialogRef.close(true);
       },
-      error => {
-        this.snackBar.open('Your card has insufficient funds', 'Fermer', { duration: 3000 });
+      error: (error) => {
+        const errorMessage = error.error?.message || 'Payment failed';
+        this.snackBar.open(errorMessage, 'Close', { duration: 3000 });
         this.loading = false;
       }
-    );
+    });
   }
 }
