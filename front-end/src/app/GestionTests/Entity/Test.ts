@@ -9,7 +9,12 @@ export interface Test {
   id: number;
   title: string;
   duration: number;
-  type: TestType; // Use the enum here
+  type: TestType;
   resultat: string;
   questions: Question[];
+  createdBy?: {  // Add createdBy field
+    id: number;
+    username: string;
+    email: string;
+  };
 }

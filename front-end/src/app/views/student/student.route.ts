@@ -6,6 +6,7 @@ import { CourseResumeComponent } from './course-resume/course-resume.component'
 import { QuizComponent } from './quiz/quiz.component'
 import { PaymentInfoComponent } from './payment-info/payment-info.component'
 import { BookmarkComponent } from './bookmark/bookmark.component'
+import { StudentQuizComponent } from './student-quiz/student-quiz.component'
 
 export const STUDENT_ROUTES: Route[] = [
   {
@@ -28,11 +29,7 @@ export const STUDENT_ROUTES: Route[] = [
     component: CourseResumeComponent,
     data: { title: 'Course Resume' },
   },
-  {
-    path: 'quiz',
-    component: QuizComponent,
-    data: { title: 'Student Quiz' },
-  },
+  
   {
     path: 'payment-info',
     component: PaymentInfoComponent,
@@ -43,4 +40,12 @@ export const STUDENT_ROUTES: Route[] = [
     component: BookmarkComponent,
     data: { title: 'Wishlist' },
   },
+  {
+    path: 'StudentQuizComponent',
+    component: StudentQuizComponent,
+    data: { title: 'StudentQuizComponent' },
+  },
+  
+
+  
 ]

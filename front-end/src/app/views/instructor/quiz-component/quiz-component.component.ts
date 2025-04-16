@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { User } from '../../../GestionTests/Entity/User';
 
 @Component({
   selector: 'app-quiz',
@@ -21,7 +22,9 @@ export class QuizComponent implements OnInit {
 
   tests: Test[] = [];
   filteredTests: Test[] = [];
+  tutors: User[] = [];
   selectedTest: Test | null = null;
+  selectedTutorId: number | null = null;
 
   newTest: Test = {
     id: 0,
@@ -46,17 +49,19 @@ export class QuizComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTests();
-  }
-
-  someAction(): void {
-    this.toastr.success('Well done!', 'Success');
-    this.toastr.error('Oops! Something went wrong.', 'Error');
+    this.loadTutors(); 
   }
 
   loadTests(): void {
     this.quizService.getTests().subscribe((tests) => {
       this.tests = tests;
       this.filteredTests = [...this.tests];
+    });
+  }
+
+  loadTutors(): void {
+    this.quizService.getTutors().subscribe((tutors) => {
+      this.tutors = tutors;
     });
   }
 
@@ -82,18 +87,35 @@ export class QuizComponent implements OnInit {
   }
 
   saveTest(): void {
-    this.quizService.createTest(this.newTest).subscribe(
-      (savedTest) => {
+    if (!this.selectedTutorId) {
+      this.toastr.warning('Please select a tutor', 'Warning');
+      return;
+    }
+
+    this.quizService.createTest(this.newTest, this.selectedTutorId).subscribe({
+      next: (savedTest) => {
         this.tests.push(savedTest);
         this.filteredTests = [...this.tests];
-        this.newTest = { id: 0, title: '', duration: 0, type: TestType.QUIZ, resultat: '', questions: [] };
+        this.resetNewTest();
         this.modalService.dismissAll();
         this.toastr.success('Test added successfully', 'Success');
       },
-      (error) => {
+      error: (error) => {
         this.toastr.error('Failed to add the test', 'Error');
       }
-    );
+    });
+  }
+
+  private resetNewTest(): void {
+    this.newTest = {
+      id: 0,
+      title: '',
+      duration: 0,
+      type: TestType.QUIZ,
+      resultat: '',
+      questions: [],
+    };
+    this.selectedTutorId = null;
   }
 
   openModifyTestModal(test: Test): void {
@@ -114,7 +136,6 @@ export class QuizComponent implements OnInit {
           this.toastr.success('Test updated successfully', 'Success');
         },
         error: (error) => {
-          console.error('Error updating test:', error);
           this.toastr.error('Failed to update the test', 'Error');
         },
       });
@@ -128,18 +149,18 @@ export class QuizComponent implements OnInit {
 
   deleteTest(): void {
     if (this.selectedTest) {
-      this.quizService.deleteTest(this.selectedTest.id).subscribe(
-        () => {
+      this.quizService.deleteTest(this.selectedTest.id).subscribe({
+        next: () => {
           this.tests = this.tests.filter((test) => test.id !== this.selectedTest!.id);
           this.filteredTests = [...this.tests];
           this.selectedTest = null;
           this.modalRef.close();
           this.toastr.info('Test deleted successfully', 'Info');
         },
-        (error) => {
+        error: (error) => {
           this.toastr.error('Failed to delete the test', 'Error');
         }
-      );
+      });
     }
   }
 

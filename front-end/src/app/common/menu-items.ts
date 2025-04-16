@@ -1021,11 +1021,17 @@ export const STUDENT_MENU_ITEMS: MenuItemType[] = [
     icon: 'far fa-fw fa-file-alt',
     link: '/student/course-resume',
   },
+  // {
+  //   key: 'quiz',
+  //   title: 'Quiz',
+  //   icon: 'bi bi-question-diamond',
+  //   link: '/student/quiz',
+  // },
   {
-    key: 'quiz',
+    key: 'StudentQuizComponent',
     title: 'Quiz',
     icon: 'bi bi-question-diamond',
-    link: '/student/quiz',
+    link: '/student/StudentQuizComponent',
   },
   {
     key: 'paymentInfo',

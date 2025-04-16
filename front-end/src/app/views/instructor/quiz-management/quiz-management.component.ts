@@ -1,17 +1,23 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NgbModal, NgbModalModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { QuizService } from '../../../GestionTests/services/quiz-service.service';
 import { ExpandedQuestion } from '../../../GestionTests/Entity/Question';
 import { Test, TestType } from '../../../GestionTests/Entity/Test';
-import { NgbModal, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-quiz-management',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgbPaginationModule],
   templateUrl: './quiz-management.component.html',
-  styleUrls: ['./quiz-management.component.scss']
+  styleUrls: ['./quiz-management.component.scss'],
+  imports: [
+    CommonModule,
+    FormsModule,
+    NgbPaginationModule,
+    NgbModalModule
+  ]
 })
 export class QuizManagementComponent implements OnInit {
   @ViewChild('deleteConfirmationModal') deleteConfirmationModal!: TemplateRef<any>;
@@ -55,7 +61,7 @@ export class QuizManagementComponent implements OnInit {
         answers: q.answers || []
       }));
       this.filterQuestions();
-      this.page = 1; // Reset to first page when questions change
+      this.page = 1;
     });
   }
 
@@ -72,7 +78,8 @@ export class QuizManagementComponent implements OnInit {
       this.filteredQuestions = this.questions.filter(q =>
         q.text.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
         (q.testTitle && q.testTitle.toLowerCase().includes(this.searchQuery.toLowerCase()))
-    )}
+      );
+    }
   }
 
   toggleExpand(question: ExpandedQuestion): void {

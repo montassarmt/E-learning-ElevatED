@@ -31,4 +31,13 @@ public class Test {
     @OneToOne(mappedBy = "test", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Certificate certificate;
+
+
+    @JsonIgnore
+    @ManyToOne
+    private User user;
+
+    @JsonIgnore
+    @ManyToOne
+    private User createdBy;
 }

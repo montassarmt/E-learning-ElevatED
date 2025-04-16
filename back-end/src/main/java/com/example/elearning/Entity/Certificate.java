@@ -23,4 +23,8 @@ public class Certificate {
 
     private Date date;
     private String nomCertificate;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
