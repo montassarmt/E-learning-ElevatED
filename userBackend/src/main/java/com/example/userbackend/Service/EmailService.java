@@ -53,7 +53,7 @@ public class EmailService {
         sendEmail(toEmail, subject, text);
     }
 
-    public void sendPaymentFailure(String toEmail, String planName) {
+    public void sendPaymentFailure(String toEmail, String planName,String errorMessage) {
         String subject = "Payment failed for your " + planName + " subscription";
         String text = String.format(
                 "Dear subscriber,\n\n" +
@@ -61,7 +61,7 @@ public class EmailService {
                         "Reason: Your card has insufficient funds\n\n" +
                         "Please update your payment information or try another payment method.\n\n" +
                         "Best regards,\nThe Subscription Team",
-                planName
+                planName,errorMessage
         );
 
         sendEmail(toEmail, subject, text);

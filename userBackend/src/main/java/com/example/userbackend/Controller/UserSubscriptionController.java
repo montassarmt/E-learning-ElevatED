@@ -19,18 +19,17 @@ public class UserSubscriptionController {
     }
 
     @PostMapping
-    public ResponseEntity<UserSubscription> createSubscription(
+    public ResponseEntity<?> createSubscription(
             @RequestParam Long userId,
             @RequestParam Long planId,
             @RequestParam String paymentMethodId,
             @RequestParam(required = false, defaultValue = "false") boolean autoRenew) {
-        try {
-            return ResponseEntity.ok(
-                    subscriptionService.subscribe(userId, planId, paymentMethodId, autoRenew)
-            );
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+
+        UserSubscription subscription = subscriptionService.subscribe(
+                userId, planId, paymentMethodId, autoRenew
+        );
+
+        return ResponseEntity.ok(subscription);
     }
 
     @PutMapping("/{subscriptionId}")

@@ -1,5 +1,6 @@
 package com.example.userbackend.Service;
 
+import com.example.userbackend.Security.PaymentException;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
@@ -14,7 +15,7 @@ public class StripeService {
     @Value("${stripe.secret.key}")
     private String stripeSecretKey;
 
-    public String charge(String token, Double amount) throws StripeException {
+    public String charge(String token, Double amount) throws PaymentException {
         Stripe.apiKey = stripeSecretKey;
 
         Map<String, Object> chargeParams = new HashMap<>();
@@ -23,7 +24,14 @@ public class StripeService {
         chargeParams.put("source", token);
         chargeParams.put("description", "Payment via Stripe");
 
-        Charge charge = Charge.create(chargeParams);
-        return charge.getId();
+        try {
+            Charge charge = Charge.create(chargeParams);
+            return charge.getId();
+        } catch (StripeException e) {
+            throw new PaymentException(
+                    e.getCode() != null ? e.getCode() : "stripe_error",
+                    e.getMessage() != null ? e.getMessage() : "Payment processing failed"
+            );
+        }
     }
 }

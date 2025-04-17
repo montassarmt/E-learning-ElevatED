@@ -5,6 +5,8 @@ import com.example.userbackend.Entity.UserSubscription;
 import com.example.userbackend.Repository.SubscriptionPlanRepository;
 import com.example.userbackend.Repository.UserRepository;
 import com.example.userbackend.Repository.UserSubscriptionRepository;
+import com.example.userbackend.Security.NotFoundException;
+import com.example.userbackend.Security.PaymentException;
 import com.stripe.exception.StripeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -41,13 +43,12 @@ public class SubscriptionService {
 
     @Transactional
     public UserSubscription subscribe(Long userId, Long planId, String paymentMethodId, boolean autoRenew) {
-        System.out.println("=== SUBSCRIBE === userId=" + userId + " planId=" + planId + " paymentMethodId=" + paymentMethodId + " autoRenew=" + autoRenew);
         try {
             User user = userRepository.findById(userId)
-                    .orElseThrow(() -> new RuntimeException("User not found"));
+                    .orElseThrow(() -> new NotFoundException("User not found"));
 
             SubscriptionPlan plan = planRepository.findById(planId)
-                    .orElseThrow(() -> new RuntimeException("Plan not found"));
+                    .orElseThrow(() -> new NotFoundException("Plan not found"));
 
             // Désactiver les abonnements existants
             subscriptionRepository.findByUserIdAndIsActiveTrue(userId)
@@ -56,14 +57,8 @@ public class SubscriptionService {
                         subscriptionRepository.save(sub);
                     });
 
-            // Processus de paiement avec gestion d'erreur
-            String paymentId;
-            try {
-                paymentId = stripeService.charge(paymentMethodId, plan.getPrice());
-            } catch (StripeException e) {
-
-                throw new RuntimeException("Échec du paiement: " + e.getMessage());
-            }
+            // Processus de paiement
+            String paymentId = stripeService.charge(paymentMethodId, plan.getPrice());
 
             // Créer un nouvel abonnement
             UserSubscription subscription = new UserSubscription();
@@ -77,14 +72,21 @@ public class SubscriptionService {
             subscription.setPaymentMethodId(paymentMethodId);
 
             return subscriptionRepository.save(subscription);
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-            // Envoyer un email d'échec si nécessaire
+
+        } catch (NotFoundException e) {
+            throw e; // Ces exceptions sont déjà bien formées
+
+        } catch (PaymentException e) {
+            // Envoyer un email d'échec
             emailService.sendPaymentFailure(
                     userRepository.findById(userId).get().getEmail(),
-                    planRepository.findById(planId).get().getName()
+                    planRepository.findById(planId).get().getName(),
+                    e.getMessage()
             );
             throw e;
+
+        } catch (Exception e) {
+            throw new RuntimeException("An unexpected error occurred: " + e.getMessage());
         }
     }
 
@@ -181,7 +183,7 @@ public class SubscriptionService {
         } catch (Exception e) {
             emailService.sendPaymentFailure(
                     subscription.getUser().getEmail(),
-                    subscription.getPlan().getName()
+                    subscription.getPlan().getName(),e.getMessage()
             );
         }
     }

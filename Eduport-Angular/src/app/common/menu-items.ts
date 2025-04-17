@@ -1066,29 +1066,29 @@ export const ADMIN_MENU_ITEMS: MenuItemType[] = [
     isTitle: true,
   },
   {
-    key: 'adminCourses',
-    title: 'Courses',
+    key: 'adminSubscriptionPlans',
+    title: 'SubscriptionPlans',
     icon: 'bi bi-basket',
     isCollapsed: true,
     subItems: [
       {
         key: 'courseList',
-        title: 'All Courses',
+        title: 'All SubscriptionPlans',
         link: '/admin/course/list',
         parentKey: 'adminCourses',
       },
-      {
-        key: 'courseCategory',
-        title: 'Course Category',
-        link: '/admin/course/category',
-        parentKey: 'adminCourses',
-      },
-      {
-        key: 'courseDetail',
-        title: 'Course Detail',
-        link: '/admin/course/detail',
-        parentKey: 'adminCourses',
-      },
+      // {
+      //   key: 'courseCategory',
+      //   title: 'Course Category',
+      //   link: '/admin/course/category',
+      //   parentKey: 'adminCourses',
+      // },
+      // {
+      //   key: 'courseDetail',
+      //   title: 'Course Detail',
+      //   link: '/admin/course/detail',
+      //   parentKey: 'adminCourses',
+      // },
     ],
   },
   {

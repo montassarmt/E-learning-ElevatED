@@ -7,6 +7,7 @@ import {
   NgbCollapseModule,
   NgbDropdownModule,
 } from '@ng-bootstrap/ng-bootstrap'
+import { RouterModule } from '@angular/router'
 
 @Component({
   selector: 'index3-topbar',
@@ -17,6 +18,7 @@ import {
     ProfileMenuComponent,
     NgbDropdownModule,
     NgbCollapseModule,
+    RouterModule
   ],
   templateUrl: './topbar.component.html',
   styles: ``,

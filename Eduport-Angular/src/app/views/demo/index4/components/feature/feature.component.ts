@@ -25,6 +25,7 @@ import { AuthService } from '../../../../../UserFrontEnd/service/auth.service';
 export class FeatureComponent implements OnInit {
   plans: SubscriptionPlan[] = [];
   loading = true;
+  currentPlan: SubscriptionPlan | null = null;
 
   constructor(
     private subscriptionService: SubscriptionService,
@@ -44,38 +45,94 @@ export class FeatureComponent implements OnInit {
         this.plans = plans;
         this.loading = false;
       },
-      error: () => {
-        this.snackBar.open('Error loading plans', 'Close', { duration: 3000 });
+      error: (err) => {
+        this.showError(err.message || 'Erreur lors du chargement des abonnements');
         this.loading = false;
       }
     });
   }
 
   openPaymentDialog(plan: SubscriptionPlan): void {
+    this.currentPlan = plan;
+
     if (!this.authService.isAuthenticated()) {
-      this.snackBar.open('Please log in to subscribe to a plan', 'Close', { duration: 3000 });
       this.router.navigate(['/login']);
+      this.showError('Veuillez vous connecter');
       return;
     }
 
     const userId = this.authService.getUserId();
     if (!userId) {
-      this.snackBar.open('User ID not found', 'Close', { duration: 3000 });
+      this.showError('ID utilisateur introuvable');
       return;
     }
 
     const dialogRef = this.dialog.open(PaymentFormComponent, {
       width: '500px',
-      data: { 
-        plan,
-        userId
-      }
+      data: { plan, userId }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.snackBar.open('Subscription successful!', 'Close', { duration: 3000 });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result?.success) {
+        this.showSuccess(result.message || 'Paiement effectué avec succès');
+        this.loadPlans(); // Recharger les plans après succès
+      } else if (result?.error) {
+        this.showPaymentError(result.error);
       }
+    });
+  }
+
+  private showPaymentError(error: { code: string; message: string; details?: string }): void {
+    let action = 'Fermer';
+    let duration = 5000;
+    let panelClass = 'error-snackbar';
+    
+    // Personnalisation selon le type d'erreur
+    switch(error.code) {
+      case 'card_declined':
+        action = 'Réessayer';
+        duration = 7000;
+        break;
+      case 'insufficient_funds':
+        action = 'Changer de carte';
+        duration = 7000;
+        break;
+      case 'expired_card':
+        action = 'Mettre à jour';
+        duration = 6000;
+        break;
+    }
+
+    const message = error.details 
+      ? `${error.message} (${error.details})`
+      : error.message;
+
+    const snackBarRef = this.snackBar.open(`❌ ${message}`, action, {
+      duration,
+      panelClass: [panelClass],
+      verticalPosition: 'top'
+    });
+
+    snackBarRef.onAction().subscribe(() => {
+      if (this.currentPlan && action !== 'Fermer') {
+        this.openPaymentDialog(this.currentPlan);
+      }
+    });
+  }
+
+  private showSuccess(message: string): void {
+    this.snackBar.open(`✅ ${message}`, 'Fermer', {
+      duration: 5000,
+      panelClass: ['success-snackbar'],
+      verticalPosition: 'top'
+    });
+  }
+
+  private showError(message: string): void {
+    this.snackBar.open(`⚠️ ${message}`, 'Fermer', {
+      duration: 5000,
+      panelClass: ['warning-snackbar'],
+      verticalPosition: 'top'
     });
   }
 }
