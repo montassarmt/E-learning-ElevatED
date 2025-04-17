@@ -13,4 +13,8 @@ export class ScrapingService {
   getScrapedData(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/scrape`); // Make GET request to the Flask API
   }
+  getTop5RelevantCompanies(): Observable<any[]> {
+    return this.http.get<any[]>('http://localhost:8088/Partnership/scraping/top5-keywords'); // Call top5-keywords endpoint
+  }
+  
 }

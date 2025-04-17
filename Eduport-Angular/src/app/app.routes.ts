@@ -20,6 +20,7 @@ import { PartnershipFormComponent } from './PartnershipManagement/Back/component
 import { ProposalListFrontComponent } from './PartnershipManagement/Front/Proposal/proposal-list-front/proposal-list-front.component'
 import { PartnershipDetailsComponent } from './PartnershipManagement/Back/components/partnership/partnership-details/partnership-details.component'
 import { ScrapingComponent } from './PartnershipManagement/Back/components/webScraping/scraping/scraping.component'
+import { PotentialPartnersComponent } from './PartnershipManagement/Back/components/webScraping/potentialpartners/potentialpartners.component'
 
 export const routes: Routes = [
   {
@@ -106,7 +107,7 @@ export const routes: Routes = [
       { path: 'partnership/details/:id', component: PartnershipDetailsComponent },
     ],
   },
- 
+
   {
     path: 'student',
     component: AccountLayoutComponent,
@@ -220,6 +221,8 @@ export const routes: Routes = [
         path: 'edit/:id',
         component: PartnershipFormComponent, // Form to edit an existing proposal
       },
+    
+
     ],
   },
 
@@ -236,6 +239,8 @@ export const routes: Routes = [
         path: '',
         component: ScrapingComponent  // List of data
       },
+      { path: 'potentialpartners', 
+        component: PotentialPartnersComponent },
     ],
   },
 

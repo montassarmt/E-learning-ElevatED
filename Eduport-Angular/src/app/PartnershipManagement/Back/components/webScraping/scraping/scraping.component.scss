@@ -1,74 +1,180 @@
-.loading {
-    text-align: center;
+/* Loading and Error Styles */
+.loading,
+.error {
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 1.5rem 0;
+}
+
+.error {
+  color: #dc3545; // Bootstrap danger red
+}
+
+/* Card Container */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+/* Individual Cards */
+.card {
+  width: 22rem;
+  min-height: 20rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  background-color: #ffffff;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   }
-  
-  .error {
-    color: red;
-    text-align: center;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f2f2f2;
+}
+
+/* Alternate Backgrounds */
+.card:nth-child(odd) {
+  background-color: #fff9db;
+}
+
+.card:nth-child(even) {
+  background-color: #e8e0f7;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 1rem;
+}
+
+.card-text {
+  font-size: 1.05rem;
+  color: #495057;
+  margin-bottom: 1rem;
+}
+
+/* Footer Styling */
+.card-footer {
+  background-color: #f8f9fa;
+  padding: 0.75rem 1.25rem;
+  text-align: right;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #212529;
+  border-top: 1px solid #dee2e6;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75rem;
+
+  .reviews,
+  .score {
+    display: inline-block;
+    padding: 0.4rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
   }
 
- /* Container for the search bar and filter button */
+  .reviews {
+    background-color: #d4edda;
+    color: #155724;
+  }
+
+  .score {
+    background-color: #cfe2ff;
+    color: #084298;
+  }
+}
+
+/* Highlight Style */
+.highlight {
+  background-color: #ffeb3b;
+  font-weight: bold;
+  color: #d32f2f;
+  padding: 0 0.3rem;
+  border-radius: 4px;
+}
+
+/* Filter Container */
 .filter-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center; /* Vertically align items */
-  margin-bottom: 20px;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
 }
 
-/* Style for search bar container */
 .search-container {
-  flex-grow: 1; /* Let the search bar take available space */
-  max-width: 80%; /* Optional: adjust the width of the search bar */
-  margin-right: 10px; /* Space between search bar and filter button */
+  flex-grow: 1;
+  max-width: 80%;
 }
 
-/* Style for input field */
 .search-input {
   width: 100%;
-  padding: 5px 10px;  /* Smaller padding for reduced height */
-  font-size: 14px;  /* Smaller font size */
-  height: 36px;  /* Set a fixed height */
-  border-radius: 4px;  /* Optional: for rounded corners */
-  border: 1px solid #ccc;  /* Optional: border styling */
-  box-sizing: border-box; /* Ensure padding does not affect total width */
+  padding: 0.625rem;
+  font-size: 0.95rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
+  box-sizing: border-box;
 }
 
-/* Container for the filter buttons */
+/* Filter Buttons */
 .filter-buttons {
   display: flex;
-  gap: 10px; /* Space between buttons */
+  gap: 0.5rem;
 }
 
-/* Filter button styling */
 .filter-button {
-  padding: 0 20px;  /* Adjust padding for consistent height */
-  font-size: 16px;
-  background-color: #4CAF50; /* Green background */
-  color: white;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.95rem;
+  background-color: #0d6efd;
+  color: #fff;
   border: none;
+  border-radius: 0.375rem;
   cursor: pointer;
-  height: 36px; /* Same height as search bar */
-  border-radius: 4px; /* Rounded corners */
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #0a58ca;
+  }
 }
 
-.filter-button:hover {
-  background-color: #45a049;
+/* Pagination Controls */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  gap: 0.75rem;
+
+  button {
+    padding: 0.5rem 1rem;
+    background-color: #0d6efd;
+    color: #fff;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover:not(.disabled) {
+      background-color: #0a58ca;
+    }
+
+    &.disabled {
+      background-color: #adb5bd;
+      cursor: not-allowed;
+    }
+  }
 }
-
-
-  
