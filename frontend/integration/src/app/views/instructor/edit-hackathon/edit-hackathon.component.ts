@@ -17,7 +17,8 @@ export class EditHackathonComponent implements OnInit {
     theme: '',
     description: '',
     dateDebut: '',
-    dateFin: ''
+    dateFin: '',
+    probleme: ''
   };
   id!: number;
 
@@ -48,6 +49,6 @@ export class EditHackathonComponent implements OnInit {
   }
 
   private validateHackathon(): boolean {
-    return !!(this.hackathon.nom && this.hackathon.theme && this.hackathon.dateDebut && this.hackathon.dateFin);
+    return !!(this.hackathon.nom && this.hackathon.theme && this.hackathon.dateDebut && this.hackathon.dateFin && this.hackathon.probleme);
   }
 }

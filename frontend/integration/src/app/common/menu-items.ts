@@ -978,6 +978,19 @@ export const INSTRUCTOR_MENU_ITEMS: MenuItemType[] = [
     link: '/instructor/edit-coaching/:id',
   },
   {
+    key: 'updateCoaching',
+    title: 'Update Coaching',
+    icon: 'bi bi-ui-checks-grid',
+    link: '/instructor/edit-coaching/:id',
+  },
+  {
+    key: 'Response',
+    title: 'Hackathon Response',
+    icon: 'bi bi-ui-checks-grid',
+    link: '/instructor/hackathon-responses',
+  },
+
+  {
     key: 'quiz',
     title: 'Tests',
     icon: 'bi bi-clipboard-data', // Represents general tests

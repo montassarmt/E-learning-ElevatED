@@ -24,7 +24,7 @@ public class NotificationController {
     private ParticipationRepository participationRepository;
 
     // 🔔 Notifier les utilisateurs 15 minutes avant le début de leur hackathon
-    @Scheduled(fixedRate = 60000) // toutes les 60s
+    @Scheduled(fixedRate = 120000) // toutes les 60s
     public void notifyUpcomingHackathons() {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime targetTime = now.plusMinutes(15);

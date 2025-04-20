@@ -52,10 +52,12 @@ export class AddHackathonsComponent implements OnInit {
     theme: '',
     description: '',
     dateDebut: '',
-    dateFin: ''
+    dateFin: '',
+    probleme: ''
   };
 
   minDate: string = '';
+
 
   constructor(private hackathonService: HackathonService, private router: Router) {}
 
@@ -83,14 +85,17 @@ export class AddHackathonsComponent implements OnInit {
   }
 
   private validateHackathon(): boolean {
-    const { nom, theme, dateDebut, dateFin } = this.newHackathon;
+    const { nom, theme, description, probleme, dateDebut, dateFin } = this.newHackathon;
     return (
-        !!nom &&
-        !!theme &&
-        !!dateDebut &&
-        !!dateFin &&
-        new Date(dateDebut) >= new Date(this.minDate) &&
-        new Date(dateFin) >= new Date(dateDebut)
+      !!nom &&
+      !!theme &&
+      !!description &&
+      !!probleme &&
+      !!dateDebut &&
+      !!dateFin &&
+      new Date(dateDebut) >= new Date(this.minDate) &&
+      new Date(dateFin) >= new Date(dateDebut)
     );
   }
+
 }

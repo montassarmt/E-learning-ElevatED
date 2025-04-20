@@ -1,4 +1,5 @@
-import { Component } from '@angular/core'
+import { Component, Input } from '@angular/core'
+import { Hackathon } from '@/app/services/hackathon.service'
 
 @Component({
   selector: 'event-detail-banner',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core'
   templateUrl: './banner.component.html',
   styles: ``,
 })
-export class BannerComponent {}
+export class BannerComponent {
+  @Input() hackathon!: Hackathon
+}

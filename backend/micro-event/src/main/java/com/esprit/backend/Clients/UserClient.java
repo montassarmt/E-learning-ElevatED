@@ -9,4 +9,6 @@ import org.springframework.web.bind.annotation.*;
 public interface UserClient {
     @GetMapping("/api/users/email/{email}")
     User getUserByEmail(@PathVariable String email);
+    @GetMapping("/api/users/{id}")
+    User getUserById(@PathVariable("id") Long id);
 }

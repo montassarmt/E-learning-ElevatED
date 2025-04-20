@@ -80,9 +80,22 @@
                     End date is required and cannot be before the start date.
                 </small>
             </div>
+          <div class="col-12">
+            <label class="form-label">Problème</label>
+            <textarea
+              class="form-control"
+              rows="4"
+              [(ngModel)]="newHackathon.probleme"
+              name="probleme"
+              #probleme="ngModel"
+              required
+            ></textarea>
+            <small class="text-danger" *ngIf="probleme.invalid && probleme.touched">Problème is required.</small>
+          </div>
 
             <!-- Submit -->
             <div class="d-sm-flex justify-content-end">
+
                 <button
                         type="submit"
                         class="btn btn-primary mb-0"

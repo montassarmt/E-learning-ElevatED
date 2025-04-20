@@ -1,0 +1,34 @@
+  <app-menu
+    navClassName="container"
+    menuClassName="mx-auto"
+    [SearchWithText]="true"
+  />
+
+  <main>
+    <event-detail-banner [hackathon]="hackathon"/>
+    <section class="pt-0">
+      <div class="container">
+        <div class="row g-4 g-lg-5">
+          <!-- Texte + soumission -->
+          <div class="col-lg-8 order-2">
+            <event-detail-organization [hackathon]="hackathon" />
+            <p><strong>Description :</strong> {{ hackathon?.description }}</p>
+            <pre class="bg-light p-3 rounded">{{ hackathon?.probleme }}</pre>
+
+
+            <div class="mt-4">
+              <label for="response">Votre réponse :</label>
+              <textarea class="form-control" rows="6" [(ngModel)]="responseText" id="response"></textarea>
+              <button class="btn btn-primary mt-2" (click)="submitResponse()">Soumettre</button>
+            </div>
+
+            <div *ngIf="soumissionExistante" class="alert alert-info mt-3">
+              ✅ Vous avez déjà soumis votre réponse le
+              {{ soumissionExistante?.dateSoumission | date:'medium' }}.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+

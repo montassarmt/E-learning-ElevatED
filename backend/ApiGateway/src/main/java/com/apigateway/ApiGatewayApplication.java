@@ -34,7 +34,13 @@ public class ApiGatewayApplication {
 
                 .route("participation-Management", r -> r.path("/api/participations/**")
                         .uri("lb://backend2"))
-
+                .route("soumission-Management", r -> r.path("/api/soumissions/**")
+                        .uri("lb://backend2"))
+                .route("websocket-notifications", r -> r.path("/ws/**")
+                        .filters(f -> f.setRequestHeader("Connection", "Upgrade")
+                                .setRequestHeader("Upgrade", "websocket")
+                                .preserveHostHeader()) // très important
+                        .uri("lb://backend2"))
                 //route de feedbacks
                 .route("feedback", r->r.path("/api/feedbacks/**")
                         .uri("lb://e-learning"))
@@ -55,7 +61,7 @@ public class ApiGatewayApplication {
                 .route("question", r->r.path("/api/questions/**")
                         .uri("lb://learning"))
 
-                    // ✅ Route vers le microservice Node.js Subscription
+                // ✅ Route vers le microservice Node.js Subscription
                 .route("subscription-service", r -> r.path("/api/subscriptions/**")
                         .uri("lb://subscription-service"))
 

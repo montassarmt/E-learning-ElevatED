@@ -1,5 +1,8 @@
 package com.esprit.backend.DTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private Long id;
     private String username;
@@ -7,6 +10,7 @@ public class User {
     private String password;
     private String specialty;
     private String status;
+    private List<String> badges = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -54,6 +58,9 @@ public class User {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setBadges(List<String> badges) {
     }
 
 // getters & setters

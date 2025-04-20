@@ -9,6 +9,8 @@ export interface Hackathon {
   description: string;
   dateDebut: string;
   dateFin: string;
+  probleme?: string;
+  image?: string;
 }
 
 @Injectable({
@@ -37,7 +39,6 @@ export class HackathonService {
   getHackathonById(id: number): Observable<Hackathon> {
     return this.http.get<Hackathon>(`${this.apiUrl}/${id}`);
   }
-
 
   getMyHackathons(email: string) {
     return this.http.get(`/api/participations/my?email=${email}`);

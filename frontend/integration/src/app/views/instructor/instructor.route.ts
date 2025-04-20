@@ -16,6 +16,7 @@ import {EditHackathonComponent} from "@views/instructor/edit-hackathon/edit-hack
 import {CoachingComponent} from "@views/instructor/coaching/coaching.component";
 import {AddCoachingComponent} from "@views/instructor/add-coaching/add-coaching.component";
 import {EditCoachingComponent} from "@views/instructor/edit-coaching/edit-coaching.component";
+import { HackathonResponsesComponent } from '@views/instructor/hackathon-responses/hackathon-responses.component'
 
 export const INSTRUCTOR_ROUTES: Route[] = [
   {
@@ -107,7 +108,11 @@ export const INSTRUCTOR_ROUTES: Route[] = [
     component: QuizComponent,
     data: { title: 'Instructor Quiz' },
   },
-
+  {
+    path:'hackathon-responses',
+    component: HackathonResponsesComponent,
+    data: { title: 'Hackathon Responses' },
+  }
 
 
 ]

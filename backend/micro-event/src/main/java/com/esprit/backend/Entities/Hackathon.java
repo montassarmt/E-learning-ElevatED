@@ -19,10 +19,21 @@ public class Hackathon {
     private LocalDateTime dateDebut; // ✅ Ajout de la date de début
     private LocalDateTime dateFin;// ✅ Ajout de la date de fin
     private String googleCalendarEventId;
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String probleme;
+    // énoncé ou sujet
     @OneToMany(mappedBy = "hackathon", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Participation> participations;
 
 
+    public String getProbleme() {
+        return probleme;
+    }
+
+    public void setProbleme(String probleme) {
+        this.probleme = probleme;
+    }
 
     public Hackathon() {
     }

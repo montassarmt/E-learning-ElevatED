@@ -16,11 +16,11 @@ public class NotificationConfig implements WebSocketMessageBrokerConfigurer {
         config.setApplicationDestinationPrefixes("/app"); // For receiving from clients
     }
 
+
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws")
-                .setAllowedOrigins("http://localhost:5200") // ✅ Replace with your frontend URL
-                .withSockJS()
-                .setSessionCookieNeeded(true); // ✅ Important to allow credentials
+                .setAllowedOriginPatterns("*") // supporte plus de flexibilité que allowedOrigins
+                .withSockJS();
     }
 }

@@ -43,4 +43,5 @@ export const STUDENT_ROUTES: Route[] = [
     component: BookmarkComponent,
     data: { title: 'Wishlist' },
   },
+
 ]

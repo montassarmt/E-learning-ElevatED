@@ -51,21 +51,21 @@ export class LoginComponent {
     this.authService.login(this.signinForm.value).subscribe({
       next: (response) => {
         console.log('Login successful!', response);
-        localStorage.setItem('accessToken', response.accessToken);
+
+        // ✅ CORRECTION ICI
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('id', response.id.toString()); // 👈 converti en string
+        localStorage.setItem('email', response.email);
         localStorage.setItem('user', JSON.stringify(response));
+
         this.message = 'Login successful! Redirecting...';
         this.isError = false;
-        localStorage.setItem('email', response.email);
 
-        // Extraire les rôles de la réponse
+        // Redirection basée sur le rôle
         const roles = response.roles;
-
-        // Rediriger en fonction du rôle
         if (roles.includes('TUTOR')) {
           this.router.navigate(['/instructor/dashboard']);
-        } else if (roles.includes('STUDENT')) {
-          this.router.navigate(['/student/dashboard']);
-        } else if (roles.includes('PARTNER')) {
+        } else if (roles.includes('STUDENT') || roles.includes('PARTNER')) {
           this.router.navigate(['/student/dashboard']);
         } else {
           this.router.navigate(['/dashboard']);

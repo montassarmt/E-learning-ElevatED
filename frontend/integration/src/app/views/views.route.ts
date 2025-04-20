@@ -20,6 +20,7 @@ import { Error404Component } from './speciality/error404/error404.component'
 import { ComingsoonComponent } from './speciality/comingsoon/comingsoon.component'
 import { CreateCourseComponent } from './instructor/create-course/create-course.component'
 import { CourseAddedComponent } from './pages/course-added/course-added.component'
+import { HackathonDetailComponent } from '@views/pages/hackathon-detail/hackathon-detail.component'
 
 export const VIEWS_ROUTES: Route[] = [
   { path: 'about', component: AboutComponent, data: { title: 'About Us' } },
@@ -122,5 +123,9 @@ export const VIEWS_ROUTES: Route[] = [
     path: 'course-added',
     component: CourseAddedComponent,
     data: { title: 'Course Added' },
+  },
+  {
+    path: 'hackathon/:id/details',
+    component: HackathonDetailComponent,
   },
 ]

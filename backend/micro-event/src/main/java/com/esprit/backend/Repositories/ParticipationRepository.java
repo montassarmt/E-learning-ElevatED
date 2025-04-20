@@ -10,4 +10,6 @@ public interface ParticipationRepository extends JpaRepository<Participation, Lo
     boolean existsByUserEmailAndHackathonId(String email, Long hackathonId);
 
     Participation findByUserEmailAndHackathonId(String userEmail, Long hackathonId);
+
+    Participation findByUserIdAndHackathonId(Long userId, Long hackathonId);
 }
