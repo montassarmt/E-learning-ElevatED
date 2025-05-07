@@ -6,11 +6,12 @@ import { SubscriptionService, UserSubscription } from '../../../UserFrontEnd/ser
 import { AuthService } from '../../../UserFrontEnd/service/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CommonModule, DatePipe } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-subscription',
   standalone: true,
-  imports: [NgbProgressbarModule, CommonModule, DatePipe],
+  imports: [NgbProgressbarModule, CommonModule, DatePipe,RouterModule],
   templateUrl: './subscription.component.html',
   styles: ``,
 })
@@ -23,7 +24,8 @@ export class SubscriptionComponent implements OnInit {
   constructor(
     private subscriptionService: SubscriptionService,
     private authService: AuthService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {

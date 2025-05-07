@@ -39,6 +39,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private UserMetrics userMetrics;
+
     public User() {}
     public Set<Role> getRoles() {
         return roles;
