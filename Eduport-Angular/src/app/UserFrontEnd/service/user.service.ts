@@ -12,8 +12,9 @@ export class UserService {
 
   // Récupérer tous les utilisateurs
   getUsers(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(`${this.apiUrl}/`);
   }
+  
 
   // Récupérer un utilisateur par son ID
   getUserById(id: number): Observable<any> {

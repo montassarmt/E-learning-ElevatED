@@ -66,8 +66,9 @@ export class LoginComponent {
           this.router.navigate(['/index-4']); 
         } else if (roles.includes('PARTNER')) {
           this.router.navigate(['/student/dashboard']); 
-        } else {
-          this.router.navigate(['/dashboard']); 
+        }
+         else {
+          this.router.navigate(['/admin']); 
         }
       },
       error: (error) => {

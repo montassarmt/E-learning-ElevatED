@@ -3,97 +3,77 @@
     <table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
       <thead>
         <tr>
-          <th scope="col" class="border-0 rounded-start">#</th>
-          <th scope="col" class="border-0">Student Name</th>
-          <th scope="col" class="border-0">Course Name</th>
-          <th scope="col" class="border-0">Rating</th>
-          <th scope="col" class="border-0">Hide/Show</th>
-          <th scope="col" class="border-0 rounded-end">Action</th>
+          <th scope="col" class="border-0 rounded-start">ID</th>
+          <th scope="col" class="border-0">Username</th>
+          <th scope="col" class="border-0">UserSatisfaction</th>
+          <th scope="col" class="border-0 rounded-end">Predict</th>
         </tr>
       </thead>
 
       <tbody>
-        @for (item of reviews; track $index) {
+        @if (isLoading) {
           <tr>
-            <td>{{ item.id | number: '2.0' }}</td>
-
-            <td>
-              <div class="d-flex align-items-center position-relative">
-                <div class="avatar avatar-xs mb-2 mb-md-0">
-                  <img [src]="item.image" class="rounded-circle" alt="" />
-                </div>
-                <div class="mb-0 ms-2">
-                  <h6 class="mb-0">
-                    <a href="javascript:void(0);" class="stretched-link">{{
-                      item.name
-                    }}</a>
-                  </h6>
-                </div>
+            <td colspan="4" class="text-center py-4">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
               </div>
-            </td>
-
-            <td>
-              <h6 class="table-responsive-title mb-0">
-                <a href="javascript:void(0);">{{ item.course }}</a>
-              </h6>
-            </td>
-
-            <td>
-              <ul class="list-inline mb-0">
-                <ng-template #t let-fill="fill">
-                  <i class="far fa-star text-warning me-1">
-                    @if (fill > 0) {
-                      <i
-                        class="fas fa-star text-warning filled"
-                        [style.width.%]="fill"
-                      ></i>
-                    }
-                  </i>
-                </ng-template>
-
-                <ngb-rating
-                  [(rate)]="item.rating"
-                  [starTemplate]="t"
-                  [readonly]="true"
-                  [max]="5"
-                />
-              </ul>
-            </td>
-
-            <td>
-              <div class="form-check form-switch form-check-md">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="checkPrivacy1"
-                />
-              </div>
-            </td>
-
-            <td>
-              <a
-                href="javascript:void(0);"
-                class="btn btn-success-soft btn-round me-1 mb-1 mb-md-0"
-                placement="top"
-                ngbTooltip="Edit"
-              >
-                <i class="bi bi-pencil-square"></i>
-              </a>
-              <button
-                class="btn btn-danger-soft btn-round me-1 mb-1 mb-md-0 ms-1"
-                placement="top"
-                ngbTooltip="Delete"
-              >
-                <i class="bi bi-trash"></i>
-              </button>
-              <a
-                href="javascript:void(0);"
-                class="btn btn-sm btn-info-soft mb-0 ms-1"
-                (click)="openModal()"
-                >View</a
-              >
             </td>
           </tr>
+        }
+        @else {
+          @for (user of users.slice((page - 1) * pageSize, page * pageSize); track user.id) {
+            <tr>
+              <td>{{ user.id }}</td>
+
+              <td>
+                <h6 class="mb-0">
+                  {{ user.username }}
+                </h6>
+              </td>
+
+              <td>
+                @if (user.predicted) {
+                  <ul class="list-inline mb-0">
+                    <ng-template #t let-fill="fill">
+                      <i class="far fa-star text-warning me-1">
+                        @if (fill > 0) {
+                          <i
+                            class="fas fa-star text-warning filled"
+                            [style.width.%]="fill"
+                          ></i>
+                        }
+                      </i>
+                    </ng-template>
+
+                    <ngb-rating
+                      [rate]="user.rating || 0"
+                      [starTemplate]="t"
+                      [readonly]="true"
+                      [max]="5"
+                    />
+                  </ul>
+                }
+              </td>
+
+              <td>
+                <div class="form-check form-switch form-check-md">
+                  @if (user.isPredicting) {
+                    <div class="spinner-border spinner-border-sm text-primary" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  } @else {
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [id]="'toggleUser'+user.id"
+                      [checked]="user.predicted"
+                      (change)="onPredictToggle(user, $event)"
+                    />
+                  }
+                </div>
+              </td>
+            </tr>
+          }
         }
       </tbody>
     </table>
@@ -101,20 +81,24 @@
 
   <div class="card-footer bg-transparent px-0">
     <div class="d-sm-flex justify-content-sm-between align-items-sm-center">
-      <p class="mb-0 text-center text-sm-start">Showing 1 to 8 of 20 entries</p>
+      <p class="mb-0 text-center text-sm-start">
+        Showing {{ (page - 1) * pageSize + 1 }} to 
+        {{ Math.min(page * pageSize, collectionSize) }} of {{ collectionSize }} entries
+      </p>
 
       <nav class="d-flex justify-content-center mb-0" aria-label="navigation">
         <ngb-pagination
-          [collectionSize]="30"
-          [page]="2"
+          [(page)]="page"
+          [pageSize]="pageSize"
+          [collectionSize]="collectionSize"
           size="sm"
           class="pagination pagination-sm pagination-primary-soft d-inline-block d-md-flex rounded mb-0"
         >
-          <ng-template ngbPaginationPrevious
-            ><i class="fas fa-angle-left"></i>
+          <ng-template ngbPaginationPrevious>
+            <i class="fas fa-angle-left"></i>
           </ng-template>
-          <ng-template ngbPaginationNext
-            ><i class="fas fa-angle-right"></i>
+          <ng-template ngbPaginationNext>
+            <i class="fas fa-angle-right"></i>
           </ng-template>
         </ngb-pagination>
       </nav>
