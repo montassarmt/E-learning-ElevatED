@@ -1,0 +1,687 @@
+2025-05-06 09:38:36,770 - INFO - Modèle ML chargé avec succès
+2025-05-06 09:38:36,771 - INFO - Démarrage de l'API Flask
+2025-05-06 09:39:59,775 - INFO - Nouvelle requête reçue
+2025-05-06 09:39:59,889 - ERROR - Erreur lors de la prédiction: 'Engine' object has no attribute 'cursor'
+Traceback (most recent call last):
+  File "C:\Users\Ghayth\Desktop\FlaskAPI\app.py", line 58, in predict
+    df = pd.read_sql(query, engine)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 706, in read_sql
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 2738, in read_query
+    cursor = self.execute(sql, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 2672, in execute
+    cur = self.con.cursor()
+          ^^^^^^^^^^^^^^^
+AttributeError: 'Engine' object has no attribute 'cursor'
+
+2025-05-06 09:39:59,892 - INFO - 127.0.0.1 - - [06/May/2025 09:39:59] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+2025-05-06 09:47:00,230 - INFO - Modèle ML chargé avec succès
+2025-05-06 09:47:00,230 - INFO - Démarrage de l'API Flask
+2025-05-06 09:47:01,143 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.17:5000
+2025-05-06 09:47:01,145 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-06 09:47:12,117 - INFO - Nouvelle requête reçue
+2025-05-06 09:47:12,155 - ERROR - Erreur lors de la prédiction: 'Engine' object has no attribute 'cursor'
+Traceback (most recent call last):
+  File "C:\Users\Ghayth\Desktop\FlaskAPI\app.py", line 62, in predict
+    df = pd.read_sql(query, engine, params={"user_id": user_id})
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 706, in read_sql
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 2738, in read_query
+    cursor = self.execute(sql, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 2672, in execute
+    cur = self.con.cursor()
+          ^^^^^^^^^^^^^^^
+AttributeError: 'Engine' object has no attribute 'cursor'
+
+2025-05-06 09:47:12,157 - INFO - 127.0.0.1 - - [06/May/2025 09:47:12] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+2025-05-06 09:49:10,249 - INFO - Modèle ML chargé avec succès
+2025-05-06 09:49:10,251 - INFO - Démarrage de l'API Flask
+2025-05-06 09:49:11,163 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.17:5000
+2025-05-06 09:49:11,164 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-06 09:49:18,300 - INFO - Nouvelle requête reçue
+2025-05-06 09:49:18,316 - ERROR - Erreur lors de la prédiction: 'Connection' object has no attribute 'cursor'
+Traceback (most recent call last):
+  File "C:\Users\Ghayth\Desktop\FlaskAPI\app.py", line 61, in predict
+    df = pd.read_sql(query, con=connection, params={"user_id": user_id})
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 706, in read_sql
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 2738, in read_query
+    cursor = self.execute(sql, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 2672, in execute
+    cur = self.con.cursor()
+          ^^^^^^^^^^^^^^^
+AttributeError: 'Connection' object has no attribute 'cursor'
+
+2025-05-06 09:49:18,317 - INFO - 127.0.0.1 - - [06/May/2025 09:49:18] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+2025-05-06 09:51:19,157 - INFO - Modèle ML chargé avec succès
+2025-05-06 09:51:19,158 - INFO - Démarrage de l'API Flask
+2025-05-06 09:51:20,068 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.17:5000
+2025-05-06 09:51:20,069 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-06 09:51:49,338 - INFO - Nouvelle requête reçue
+2025-05-06 09:51:49,354 - ERROR - Erreur lors de la prédiction: The feature names should match those that were passed during fit.
+Feature names unseen at fit time:
+- Course_DataScience
+- Course_WebDevelopment
+Feature names seen at fit time, yet now missing:
+- Course_Adaptive system-worthy paradigm
+- Course_Ameliorated local capability
+- Course_Centralized responsive capacity
+- Course_Expanded didactic customer loyalty
+- Course_Expanded zero administration structure
+- ...
+
+Traceback (most recent call last):
+  File "C:\Users\Ghayth\Desktop\FlaskAPI\app.py", line 72, in predict
+    prediction = model.predict(df)[0]
+                 ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\ensemble\_forest.py", line 905, in predict
+    proba = self.predict_proba(X)
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\ensemble\_forest.py", line 947, in predict_proba
+    X = self._validate_X_predict(X)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\ensemble\_forest.py", line 641, in _validate_X_predict
+    X = self._validate_data(
+        ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\base.py", line 608, in _validate_data
+    self._check_feature_names(X, reset=reset)
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\base.py", line 535, in _check_feature_names
+    raise ValueError(message)
+ValueError: The feature names should match those that were passed during fit.
+Feature names unseen at fit time:
+- Course_DataScience
+- Course_WebDevelopment
+Feature names seen at fit time, yet now missing:
+- Course_Adaptive system-worthy paradigm
+- Course_Ameliorated local capability
+- Course_Centralized responsive capacity
+- Course_Expanded didactic customer loyalty
+- Course_Expanded zero administration structure
+- ...
+
+
+2025-05-06 09:51:49,356 - INFO - 127.0.0.1 - - [06/May/2025 09:51:49] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+2025-05-06 10:15:07,584 - INFO - Modèle et scaler chargés avec succès
+2025-05-06 10:15:07,585 - INFO - Démarrage de l'API Flask
+2025-05-06 10:15:08,493 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.17:5000
+2025-05-06 10:15:08,494 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-06 10:15:52,870 - INFO - Nouvelle requête reçue
+2025-05-06 10:15:52,935 - ERROR - Erreur lors de la prédiction: unsupported operand type(s) for *: 'decimal.Decimal' and 'float'
+Traceback (most recent call last):
+  File "C:\Users\Ghayth\Desktop\FlaskAPI\app.py", line 87, in predict
+    upper_limit = df[col].quantile(0.95)
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\series.py", line 2887, in quantile
+    result = df.quantile(q=q, interpolation=interpolation, numeric_only=False)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\frame.py", line 12146, in quantile
+    res_df = self.quantile(
+             ^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\frame.py", line 12191, in quantile
+    res = data._mgr.quantile(qs=q, interpolation=interpolation)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\internals\managers.py", line 1548, in quantile
+    blocks = [
+             ^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\internals\managers.py", line 1549, in <listcomp>
+    blk.quantile(qs=qs, interpolation=interpolation) for blk in self.blocks
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\internals\blocks.py", line 1891, in quantile
+    result = quantile_compat(self.values, np.asarray(qs._values), interpolation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\array_algos\quantile.py", line 39, in quantile_compat
+    return quantile_with_mask(values, mask, fill_value, qs, interpolation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\array_algos\quantile.py", line 97, in quantile_with_mask
+    result = _nanpercentile(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\array_algos\quantile.py", line 218, in _nanpercentile
+    return np.percentile(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\lib\function_base.py", line 4283, in percentile
+    return _quantile_unchecked(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\lib\function_base.py", line 4555, in _quantile_unchecked
+    return _ureduce(a,
+           ^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\lib\function_base.py", line 3823, in _ureduce
+    r = func(a, **kwargs)
+        ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\lib\function_base.py", line 4722, in _quantile_ureduce_func
+    result = _quantile(arr,
+             ^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\lib\function_base.py", line 4841, in _quantile
+    result = _lerp(previous,
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\lib\function_base.py", line 4657, in _lerp
+    lerp_interpolation = asanyarray(add(a, diff_b_a * t, out=out))
+                                           ~~~~~~~~~^~~
+TypeError: unsupported operand type(s) for *: 'decimal.Decimal' and 'float'
+
+2025-05-06 10:15:52,938 - INFO - 127.0.0.1 - - [06/May/2025 10:15:52] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+2025-05-06 10:18:16,076 - INFO - Modèle et scaler chargés avec succès
+2025-05-06 10:18:16,078 - INFO - Démarrage de l'API Flask
+2025-05-06 10:18:16,999 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.17:5000
+2025-05-06 10:18:17,000 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-06 10:18:23,160 - INFO - Nouvelle requête reçue
+2025-05-06 10:18:23,183 - ERROR - Erreur lors de la prédiction pour userID 30: unsupported operand type(s) for *: 'decimal.Decimal' and 'float'
+Traceback (most recent call last):
+  File "C:\Users\Ghayth\Desktop\FlaskAPI\app.py", line 89, in predict
+    upper_limit = df[col].quantile(0.95)
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\series.py", line 2887, in quantile
+    result = df.quantile(q=q, interpolation=interpolation, numeric_only=False)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\frame.py", line 12146, in quantile
+    res_df = self.quantile(
+             ^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\frame.py", line 12191, in quantile
+    res = data._mgr.quantile(qs=q, interpolation=interpolation)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\internals\managers.py", line 1548, in quantile
+    blocks = [
+             ^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\internals\managers.py", line 1549, in <listcomp>
+    blk.quantile(qs=qs, interpolation=interpolation) for blk in self.blocks
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\internals\blocks.py", line 1891, in quantile
+    result = quantile_compat(self.values, np.asarray(qs._values), interpolation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\array_algos\quantile.py", line 39, in quantile_compat
+    return quantile_with_mask(values, mask, fill_value, qs, interpolation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\array_algos\quantile.py", line 97, in quantile_with_mask
+    result = _nanpercentile(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\array_algos\quantile.py", line 218, in _nanpercentile
+    return np.percentile(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\lib\function_base.py", line 4283, in percentile
+    return _quantile_unchecked(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\lib\function_base.py", line 4555, in _quantile_unchecked
+    return _ureduce(a,
+           ^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\lib\function_base.py", line 3823, in _ureduce
+    r = func(a, **kwargs)
+        ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\lib\function_base.py", line 4722, in _quantile_ureduce_func
+    result = _quantile(arr,
+             ^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\lib\function_base.py", line 4841, in _quantile
+    result = _lerp(previous,
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\lib\function_base.py", line 4657, in _lerp
+    lerp_interpolation = asanyarray(add(a, diff_b_a * t, out=out))
+                                           ~~~~~~~~~^~~
+TypeError: unsupported operand type(s) for *: 'decimal.Decimal' and 'float'
+
+2025-05-06 10:18:23,185 - INFO - 127.0.0.1 - - [06/May/2025 10:18:23] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+2025-05-06 10:21:19,550 - INFO - Modèle et scaler chargés avec succès
+2025-05-06 10:21:19,550 - INFO - Démarrage de l'API Flask
+2025-05-06 10:21:20,475 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.17:5000
+2025-05-06 10:21:20,476 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-06 10:21:33,057 - INFO - Nouvelle requête reçue
+2025-05-06 10:21:33,109 - ERROR - Erreur lors de la prédiction pour userID 30: could not convert string to float: b'\x01'
+Traceback (most recent call last):
+  File "C:\Users\Ghayth\Desktop\FlaskAPI\app.py", line 119, in predict
+    prediction = model.predict(df)[0]
+                 ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\ensemble\_forest.py", line 905, in predict
+    proba = self.predict_proba(X)
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\ensemble\_forest.py", line 947, in predict_proba
+    X = self._validate_X_predict(X)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\ensemble\_forest.py", line 641, in _validate_X_predict
+    X = self._validate_data(
+        ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\base.py", line 633, in _validate_data
+    out = check_array(X, input_name="X", **check_params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\utils\validation.py", line 951, in check_array
+    array = _asarray_with_order(array, order=order, dtype=dtype, xp=xp)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\utils\_array_api.py", line 521, in _asarray_with_order
+    array = numpy.asarray(array, order=order, dtype=dtype)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\generic.py", line 2153, in __array__
+    arr = np.asarray(values, dtype=dtype)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: b'\x01'
+
+2025-05-06 10:21:33,112 - INFO - 127.0.0.1 - - [06/May/2025 10:21:33] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+2025-05-06 10:24:11,039 - INFO - Modèle et scaler chargés avec succès
+2025-05-06 10:24:11,041 - INFO - Démarrage de l'API Flask
+2025-05-06 10:24:11,948 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.17:5000
+2025-05-06 10:24:11,949 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-06 10:24:17,101 - INFO - Nouvelle requête reçue
+2025-05-06 10:24:17,134 - WARNING - Des valeurs manquantes détectées pour userID 30
+2025-05-06 10:24:17,201 - INFO - Prédiction réussie pour 30: 4
+2025-05-06 10:24:17,202 - INFO - 127.0.0.1 - - [06/May/2025 10:24:17] "POST /predict HTTP/1.1" 200 -
+2025-05-06 10:25:28,457 - INFO - Nouvelle requête reçue
+2025-05-06 10:25:28,472 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-06 10:25:28,529 - INFO - Prédiction réussie pour 26: 5
+2025-05-06 10:25:28,529 - INFO - 127.0.0.1 - - [06/May/2025 10:25:28] "POST /predict HTTP/1.1" 200 -
+2025-05-06 11:16:21,902 - INFO - 172.16.6.183 - - [06/May/2025 11:16:21] "[33mGET / HTTP/1.1[0m" 404 -
+2025-05-06 11:26:53,358 - INFO - Nouvelle requête reçue
+2025-05-06 11:26:53,391 - WARNING - Des valeurs manquantes détectées pour userID 31
+2025-05-06 11:26:53,785 - INFO - Prédiction réussie pour 31: 2
+2025-05-06 11:26:53,868 - INFO - 127.0.0.1 - - [06/May/2025 11:26:53] "POST /predict HTTP/1.1" 200 -
+2025-05-08 00:17:45,262 - INFO - Modèle et scaler chargés avec succès
+2025-05-08 00:17:45,265 - INFO - Démarrage de l'API Flask
+2025-05-08 00:17:45,369 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.133:5000
+2025-05-08 00:17:45,370 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-08 00:18:18,470 - INFO - Nouvelle requête reçue
+2025-05-08 00:18:18,552 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 00:18:18,727 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 00:18:18,729 - INFO - 127.0.0.1 - - [08/May/2025 00:18:18] "POST /predict HTTP/1.1" 200 -
+2025-05-08 00:34:18,185 - INFO - Nouvelle requête reçue
+2025-05-08 00:34:18,212 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 00:34:18,336 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 00:34:18,337 - INFO - 127.0.0.1 - - [08/May/2025 00:34:18] "POST /predict HTTP/1.1" 200 -
+2025-05-08 00:34:20,621 - INFO - Nouvelle requête reçue
+2025-05-08 00:34:20,649 - WARNING - Des valeurs manquantes détectées pour userID 27
+2025-05-08 00:34:20,766 - INFO - Prédiction réussie pour 27: 1
+2025-05-08 00:34:20,768 - INFO - 127.0.0.1 - - [08/May/2025 00:34:20] "POST /predict HTTP/1.1" 200 -
+2025-05-08 00:34:22,937 - INFO - Nouvelle requête reçue
+2025-05-08 00:34:22,964 - WARNING - Des valeurs manquantes détectées pour userID 27
+2025-05-08 00:34:23,089 - INFO - Prédiction réussie pour 27: 1
+2025-05-08 00:34:23,090 - INFO - 127.0.0.1 - - [08/May/2025 00:34:23] "POST /predict HTTP/1.1" 200 -
+2025-05-08 00:34:24,587 - INFO - Nouvelle requête reçue
+2025-05-08 00:34:24,606 - WARNING - Des valeurs manquantes détectées pour userID 28
+2025-05-08 00:34:24,724 - INFO - Prédiction réussie pour 28: 1
+2025-05-08 00:34:24,726 - INFO - 127.0.0.1 - - [08/May/2025 00:34:24] "POST /predict HTTP/1.1" 200 -
+2025-05-08 00:34:33,168 - INFO - Nouvelle requête reçue
+2025-05-08 00:34:33,193 - WARNING - Des valeurs manquantes détectées pour userID 28
+2025-05-08 00:34:33,347 - INFO - Prédiction réussie pour 28: 1
+2025-05-08 00:34:33,349 - INFO - 127.0.0.1 - - [08/May/2025 00:34:33] "POST /predict HTTP/1.1" 200 -
+2025-05-08 00:34:42,614 - INFO - Nouvelle requête reçue
+2025-05-08 00:34:42,642 - WARNING - Des valeurs manquantes détectées pour userID 29
+2025-05-08 00:34:42,764 - INFO - Prédiction réussie pour 29: 3
+2025-05-08 00:34:42,766 - INFO - 127.0.0.1 - - [08/May/2025 00:34:42] "POST /predict HTTP/1.1" 200 -
+2025-05-08 00:34:53,290 - INFO - Nouvelle requête reçue
+2025-05-08 00:34:53,319 - WARNING - Des valeurs manquantes détectées pour userID 29
+2025-05-08 00:34:53,470 - INFO - Prédiction réussie pour 29: 3
+2025-05-08 00:34:53,472 - INFO - 127.0.0.1 - - [08/May/2025 00:34:53] "POST /predict HTTP/1.1" 200 -
+2025-05-08 00:35:35,450 - INFO - Nouvelle requête reçue
+2025-05-08 00:35:35,471 - WARNING - Des valeurs manquantes détectées pour userID 30
+2025-05-08 00:35:35,595 - INFO - Prédiction réussie pour 30: 4
+2025-05-08 00:35:35,596 - INFO - 127.0.0.1 - - [08/May/2025 00:35:35] "POST /predict HTTP/1.1" 200 -
+2025-05-08 00:35:48,041 - INFO - Nouvelle requête reçue
+2025-05-08 00:35:48,070 - WARNING - Des valeurs manquantes détectées pour userID 30
+2025-05-08 00:35:48,197 - INFO - Prédiction réussie pour 30: 4
+2025-05-08 00:35:48,200 - INFO - 127.0.0.1 - - [08/May/2025 00:35:48] "POST /predict HTTP/1.1" 200 -
+2025-05-08 02:12:49,694 - INFO - Nouvelle requête reçue
+2025-05-08 02:12:49,736 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 02:12:50,056 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 02:12:50,060 - INFO - 127.0.0.1 - - [08/May/2025 02:12:50] "POST /predict HTTP/1.1" 200 -
+2025-05-08 02:12:51,614 - INFO - Nouvelle requête reçue
+2025-05-08 02:12:51,653 - WARNING - Des valeurs manquantes détectées pour userID 27
+2025-05-08 02:12:51,984 - INFO - Prédiction réussie pour 27: 1
+2025-05-08 02:12:51,995 - INFO - 127.0.0.1 - - [08/May/2025 02:12:51] "POST /predict HTTP/1.1" 200 -
+2025-05-08 02:12:53,885 - INFO - Nouvelle requête reçue
+2025-05-08 02:12:53,922 - WARNING - Des valeurs manquantes détectées pour userID 28
+2025-05-08 02:12:54,063 - INFO - Prédiction réussie pour 28: 1
+2025-05-08 02:12:54,065 - INFO - 127.0.0.1 - - [08/May/2025 02:12:54] "POST /predict HTTP/1.1" 200 -
+2025-05-08 02:14:08,981 - INFO - Nouvelle requête reçue
+2025-05-08 02:14:09,003 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 02:14:09,108 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 02:14:09,108 - INFO - 127.0.0.1 - - [08/May/2025 02:14:09] "POST /predict HTTP/1.1" 200 -
+2025-05-08 02:14:10,617 - INFO - Nouvelle requête reçue
+2025-05-08 02:14:10,657 - WARNING - Des valeurs manquantes détectées pour userID 28
+2025-05-08 02:14:10,931 - INFO - Prédiction réussie pour 28: 1
+2025-05-08 02:14:10,932 - INFO - 127.0.0.1 - - [08/May/2025 02:14:10] "POST /predict HTTP/1.1" 200 -
+2025-05-08 02:14:12,501 - INFO - Nouvelle requête reçue
+2025-05-08 02:14:12,529 - WARNING - Des valeurs manquantes détectées pour userID 29
+2025-05-08 02:14:12,635 - INFO - Prédiction réussie pour 29: 3
+2025-05-08 02:14:12,637 - INFO - 127.0.0.1 - - [08/May/2025 02:14:12] "POST /predict HTTP/1.1" 200 -
+2025-05-08 02:14:14,318 - INFO - Nouvelle requête reçue
+2025-05-08 02:14:14,341 - WARNING - Des valeurs manquantes détectées pour userID 30
+2025-05-08 02:14:14,443 - INFO - Prédiction réussie pour 30: 4
+2025-05-08 02:14:14,444 - INFO - 127.0.0.1 - - [08/May/2025 02:14:14] "POST /predict HTTP/1.1" 200 -
+2025-05-08 02:14:16,128 - INFO - Nouvelle requête reçue
+2025-05-08 02:14:16,150 - WARNING - Des valeurs manquantes détectées pour userID 31
+2025-05-08 02:14:16,259 - INFO - Prédiction réussie pour 31: 2
+2025-05-08 02:14:16,261 - INFO - 127.0.0.1 - - [08/May/2025 02:14:16] "POST /predict HTTP/1.1" 200 -
+2025-05-08 02:14:31,652 - INFO - Nouvelle requête reçue
+2025-05-08 02:14:31,671 - WARNING - Des valeurs manquantes détectées pour userID 31
+2025-05-08 02:14:31,810 - INFO - Prédiction réussie pour 31: 2
+2025-05-08 02:14:31,812 - INFO - 127.0.0.1 - - [08/May/2025 02:14:31] "POST /predict HTTP/1.1" 200 -
+2025-05-08 02:14:34,568 - INFO - Nouvelle requête reçue
+2025-05-08 02:14:34,595 - WARNING - Des valeurs manquantes détectées pour userID 31
+2025-05-08 02:14:34,726 - INFO - Prédiction réussie pour 31: 2
+2025-05-08 02:14:34,727 - INFO - 127.0.0.1 - - [08/May/2025 02:14:34] "POST /predict HTTP/1.1" 200 -
+2025-05-08 02:15:09,563 - INFO - Nouvelle requête reçue
+2025-05-08 02:15:09,587 - WARNING - Des valeurs manquantes détectées pour userID 34
+2025-05-08 02:15:09,723 - INFO - Prédiction réussie pour 34: 2
+2025-05-08 02:15:09,724 - INFO - 127.0.0.1 - - [08/May/2025 02:15:09] "POST /predict HTTP/1.1" 200 -
+2025-05-08 02:15:13,662 - INFO - Nouvelle requête reçue
+2025-05-08 02:15:13,682 - WARNING - Des valeurs manquantes détectées pour userID 35
+2025-05-08 02:15:13,816 - INFO - Prédiction réussie pour 35: 2
+2025-05-08 02:15:13,817 - INFO - 127.0.0.1 - - [08/May/2025 02:15:13] "POST /predict HTTP/1.1" 200 -
+2025-05-08 02:15:15,779 - INFO - Nouvelle requête reçue
+2025-05-08 02:15:15,803 - WARNING - Des valeurs manquantes détectées pour userID 36
+2025-05-08 02:15:15,945 - INFO - Prédiction réussie pour 36: 3
+2025-05-08 02:15:15,946 - INFO - 127.0.0.1 - - [08/May/2025 02:15:15] "POST /predict HTTP/1.1" 200 -
+2025-05-08 02:25:28,391 - INFO - Nouvelle requête reçue
+2025-05-08 02:25:28,421 - WARNING - Des valeurs manquantes détectées pour userID 32
+2025-05-08 02:25:28,643 - INFO - Prédiction réussie pour 32: 4
+2025-05-08 02:25:28,646 - INFO - 127.0.0.1 - - [08/May/2025 02:25:28] "POST /predict HTTP/1.1" 200 -
+2025-05-08 02:30:37,151 - INFO - Nouvelle requête reçue
+2025-05-08 02:30:37,185 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 02:30:37,325 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 02:30:37,326 - INFO - 127.0.0.1 - - [08/May/2025 02:30:37] "POST /predict HTTP/1.1" 200 -
+2025-05-08 02:35:24,784 - INFO - Nouvelle requête reçue
+2025-05-08 02:35:24,817 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 02:35:25,135 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 02:35:25,136 - INFO - 127.0.0.1 - - [08/May/2025 02:35:25] "POST /predict HTTP/1.1" 200 -
+2025-05-08 02:35:27,145 - INFO - Nouvelle requête reçue
+2025-05-08 02:35:27,174 - WARNING - Des valeurs manquantes détectées pour userID 27
+2025-05-08 02:35:27,352 - INFO - Prédiction réussie pour 27: 1
+2025-05-08 02:35:27,356 - INFO - 127.0.0.1 - - [08/May/2025 02:35:27] "POST /predict HTTP/1.1" 200 -
+2025-05-08 03:04:34,679 - INFO - Nouvelle requête reçue
+2025-05-08 03:04:34,706 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 03:04:34,853 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 03:04:34,854 - INFO - 127.0.0.1 - - [08/May/2025 03:04:34] "POST /predict HTTP/1.1" 200 -
+2025-05-08 03:04:35,449 - INFO - Nouvelle requête reçue
+2025-05-08 03:04:35,474 - WARNING - Des valeurs manquantes détectées pour userID 27
+2025-05-08 03:04:35,617 - INFO - Prédiction réussie pour 27: 1
+2025-05-08 03:04:35,619 - INFO - 127.0.0.1 - - [08/May/2025 03:04:35] "POST /predict HTTP/1.1" 200 -
+2025-05-08 03:04:36,707 - INFO - Nouvelle requête reçue
+2025-05-08 03:04:36,733 - WARNING - Des valeurs manquantes détectées pour userID 28
+2025-05-08 03:04:36,869 - INFO - Prédiction réussie pour 28: 1
+2025-05-08 03:04:36,870 - INFO - 127.0.0.1 - - [08/May/2025 03:04:36] "POST /predict HTTP/1.1" 200 -
+2025-05-08 03:28:11,417 - INFO - Nouvelle requête reçue
+2025-05-08 03:28:11,458 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 03:28:11,633 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 03:28:11,635 - INFO - 127.0.0.1 - - [08/May/2025 03:28:11] "POST /predict HTTP/1.1" 200 -
+2025-05-08 03:28:14,947 - INFO - Nouvelle requête reçue
+2025-05-08 03:28:14,974 - WARNING - Des valeurs manquantes détectées pour userID 27
+2025-05-08 03:28:15,122 - INFO - Prédiction réussie pour 27: 1
+2025-05-08 03:28:15,125 - INFO - 127.0.0.1 - - [08/May/2025 03:28:15] "POST /predict HTTP/1.1" 200 -
+2025-05-08 03:28:20,619 - INFO - Nouvelle requête reçue
+2025-05-08 03:28:20,656 - WARNING - Des valeurs manquantes détectées pour userID 30
+2025-05-08 03:28:20,873 - INFO - Prédiction réussie pour 30: 4
+2025-05-08 03:28:20,875 - INFO - 127.0.0.1 - - [08/May/2025 03:28:20] "POST /predict HTTP/1.1" 200 -
+2025-05-08 03:28:31,735 - INFO - Nouvelle requête reçue
+2025-05-08 03:28:31,766 - WARNING - Des valeurs manquantes détectées pour userID 31
+2025-05-08 03:28:31,920 - INFO - Prédiction réussie pour 31: 2
+2025-05-08 03:28:31,922 - INFO - 127.0.0.1 - - [08/May/2025 03:28:31] "POST /predict HTTP/1.1" 200 -
+2025-05-08 03:28:50,154 - INFO - Nouvelle requête reçue
+2025-05-08 03:28:50,182 - WARNING - Des valeurs manquantes détectées pour userID 32
+2025-05-08 03:28:50,336 - INFO - Prédiction réussie pour 32: 4
+2025-05-08 03:28:50,338 - INFO - 127.0.0.1 - - [08/May/2025 03:28:50] "POST /predict HTTP/1.1" 200 -
+2025-05-08 03:32:31,441 - INFO - Nouvelle requête reçue
+2025-05-08 03:32:31,482 - WARNING - Des valeurs manquantes détectées pour userID 31
+2025-05-08 03:32:31,650 - INFO - Prédiction réussie pour 31: 2
+2025-05-08 03:32:31,651 - INFO - 127.0.0.1 - - [08/May/2025 03:32:31] "POST /predict HTTP/1.1" 200 -
+2025-05-08 03:37:22,203 - INFO - Nouvelle requête reçue
+2025-05-08 03:37:22,250 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 03:37:22,487 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 03:37:22,490 - INFO - 127.0.0.1 - - [08/May/2025 03:37:22] "POST /predict HTTP/1.1" 200 -
+2025-05-08 03:38:39,831 - INFO - Nouvelle requête reçue
+2025-05-08 03:38:39,857 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 03:38:40,052 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 03:38:40,055 - INFO - 127.0.0.1 - - [08/May/2025 03:38:40] "POST /predict HTTP/1.1" 200 -
+2025-05-08 03:38:47,275 - INFO - Nouvelle requête reçue
+2025-05-08 03:38:47,324 - WARNING - Des valeurs manquantes détectées pour userID 27
+2025-05-08 03:38:47,591 - INFO - Prédiction réussie pour 27: 1
+2025-05-08 03:38:47,593 - INFO - 127.0.0.1 - - [08/May/2025 03:38:47] "POST /predict HTTP/1.1" 200 -
+2025-05-08 03:38:54,081 - INFO - Nouvelle requête reçue
+2025-05-08 03:38:54,121 - WARNING - Des valeurs manquantes détectées pour userID 28
+2025-05-08 03:38:54,328 - INFO - Prédiction réussie pour 28: 1
+2025-05-08 03:38:54,330 - INFO - 127.0.0.1 - - [08/May/2025 03:38:54] "POST /predict HTTP/1.1" 200 -
+2025-05-08 03:45:22,512 - INFO - Nouvelle requête reçue
+2025-05-08 03:45:22,544 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 03:45:22,681 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 03:45:22,682 - INFO - 127.0.0.1 - - [08/May/2025 03:45:22] "POST /predict HTTP/1.1" 200 -
+2025-05-08 03:45:27,090 - INFO - Nouvelle requête reçue
+2025-05-08 03:45:27,118 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 03:45:27,248 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 03:45:27,249 - INFO - 127.0.0.1 - - [08/May/2025 03:45:27] "POST /predict HTTP/1.1" 200 -
+2025-05-08 03:45:41,383 - INFO - Nouvelle requête reçue
+2025-05-08 03:45:41,407 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 03:45:41,528 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 03:45:41,529 - INFO - 127.0.0.1 - - [08/May/2025 03:45:41] "POST /predict HTTP/1.1" 200 -
+2025-05-08 03:45:43,687 - INFO - Nouvelle requête reçue
+2025-05-08 03:45:43,709 - WARNING - Des valeurs manquantes détectées pour userID 27
+2025-05-08 03:45:43,833 - INFO - Prédiction réussie pour 27: 1
+2025-05-08 03:45:43,835 - INFO - 127.0.0.1 - - [08/May/2025 03:45:43] "POST /predict HTTP/1.1" 200 -
+2025-05-08 08:40:27,523 - INFO - Modèle et scaler chargés avec succès
+2025-05-08 08:40:27,526 - INFO - Démarrage de l'API Flask
+2025-05-08 08:40:28,497 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.12:5000
+2025-05-08 08:40:28,497 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-08 08:41:26,322 - INFO - Nouvelle requête reçue
+2025-05-08 08:41:26,357 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 08:41:26,425 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 08:41:26,427 - INFO - 127.0.0.1 - - [08/May/2025 08:41:26] "POST /predict HTTP/1.1" 200 -
+2025-05-08 08:41:29,280 - INFO - Nouvelle requête reçue
+2025-05-08 08:41:29,290 - WARNING - Des valeurs manquantes détectées pour userID 28
+2025-05-08 08:41:29,357 - INFO - Prédiction réussie pour 28: 1
+2025-05-08 08:41:29,359 - INFO - 127.0.0.1 - - [08/May/2025 08:41:29] "POST /predict HTTP/1.1" 200 -
+2025-05-08 09:03:40,892 - INFO - Nouvelle requête reçue
+2025-05-08 09:03:40,925 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 09:03:41,057 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 09:03:41,058 - INFO - 127.0.0.1 - - [08/May/2025 09:03:41] "POST /predict HTTP/1.1" 200 -
+2025-05-08 09:03:44,312 - INFO - Nouvelle requête reçue
+2025-05-08 09:03:44,340 - WARNING - Des valeurs manquantes détectées pour userID 27
+2025-05-08 09:03:44,464 - INFO - Prédiction réussie pour 27: 1
+2025-05-08 09:03:44,469 - INFO - 127.0.0.1 - - [08/May/2025 09:03:44] "POST /predict HTTP/1.1" 200 -
+2025-05-08 09:04:05,262 - INFO - Nouvelle requête reçue
+2025-05-08 09:04:05,286 - WARNING - Des valeurs manquantes détectées pour userID 31
+2025-05-08 09:04:05,389 - INFO - Prédiction réussie pour 31: 2
+2025-05-08 09:04:05,391 - INFO - 127.0.0.1 - - [08/May/2025 09:04:05] "POST /predict HTTP/1.1" 200 -
+2025-05-08 09:04:08,492 - INFO - Nouvelle requête reçue
+2025-05-08 09:04:08,513 - WARNING - Des valeurs manquantes détectées pour userID 30
+2025-05-08 09:04:08,631 - INFO - Prédiction réussie pour 30: 4
+2025-05-08 09:04:08,634 - INFO - 127.0.0.1 - - [08/May/2025 09:04:08] "POST /predict HTTP/1.1" 200 -
+2025-05-08 09:16:42,038 - INFO - Nouvelle requête reçue
+2025-05-08 09:16:42,062 - WARNING - Des valeurs manquantes détectées pour userID 30
+2025-05-08 09:16:42,157 - INFO - Prédiction réussie pour 30: 4
+2025-05-08 09:16:42,159 - INFO - 127.0.0.1 - - [08/May/2025 09:16:42] "POST /predict HTTP/1.1" 200 -
+2025-05-08 09:16:43,667 - INFO - Nouvelle requête reçue
+2025-05-08 09:16:43,690 - WARNING - Des valeurs manquantes détectées pour userID 30
+2025-05-08 09:16:43,819 - INFO - Prédiction réussie pour 30: 4
+2025-05-08 09:16:43,820 - INFO - 127.0.0.1 - - [08/May/2025 09:16:43] "POST /predict HTTP/1.1" 200 -
+2025-05-08 09:20:55,013 - INFO - Nouvelle requête reçue
+2025-05-08 09:20:55,034 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 09:20:55,129 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 09:20:55,131 - INFO - 127.0.0.1 - - [08/May/2025 09:20:55] "POST /predict HTTP/1.1" 200 -
+2025-05-08 09:21:05,040 - INFO - Nouvelle requête reçue
+2025-05-08 09:21:05,064 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 09:21:05,201 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 09:21:05,203 - INFO - 127.0.0.1 - - [08/May/2025 09:21:05] "POST /predict HTTP/1.1" 200 -
+2025-05-08 09:21:10,225 - INFO - Nouvelle requête reçue
+2025-05-08 09:21:10,243 - WARNING - Des valeurs manquantes détectées pour userID 27
+2025-05-08 09:21:10,337 - INFO - Prédiction réussie pour 27: 1
+2025-05-08 09:21:10,339 - INFO - 127.0.0.1 - - [08/May/2025 09:21:10] "POST /predict HTTP/1.1" 200 -
+2025-05-08 09:21:18,277 - INFO - Nouvelle requête reçue
+2025-05-08 09:21:18,298 - WARNING - Des valeurs manquantes détectées pour userID 30
+2025-05-08 09:21:18,399 - INFO - Prédiction réussie pour 30: 4
+2025-05-08 09:21:18,400 - INFO - 127.0.0.1 - - [08/May/2025 09:21:18] "POST /predict HTTP/1.1" 200 -
+2025-05-08 09:21:40,206 - INFO - Nouvelle requête reçue
+2025-05-08 09:21:40,225 - WARNING - Des valeurs manquantes détectées pour userID 31
+2025-05-08 09:21:40,324 - INFO - Prédiction réussie pour 31: 2
+2025-05-08 09:21:40,325 - INFO - 127.0.0.1 - - [08/May/2025 09:21:40] "POST /predict HTTP/1.1" 200 -
+2025-05-08 21:32:25,357 - INFO - Nouvelle requête reçue
+2025-05-08 21:32:25,360 - ERROR - Erreur lors de la récupération des données: (pymysql.err.OperationalError) (2013, 'Lost connection to MySQL server during query ([WinError 10053] Une connexion établie a été abandonnée par un logiciel de votre ordinateur hôte)')
+[SQL: 
+        SELECT 
+            session_duration AS SessionDuration,
+            sessions_per_week AS SessionsPerWeek,
+            course_completion AS CourseCompletion,
+            quiz_scores AS QuizScores,
+            account_age_days AS AccountAgeDays,
+            recent_activity_days AS RecentActivity,
+            course_data_science AS Course_DataScience,
+            course_web_development AS Course_WebDevelopment
+        FROM user_metrics
+        WHERE user_id = %(user_id)s
+    ]
+[parameters: {'user_id': 26}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2025-05-08 21:32:25,671 - ERROR - Erreur lors de la prédiction pour userID 26: (pymysql.err.OperationalError) (2013, 'Lost connection to MySQL server during query ([WinError 10053] Une connexion établie a été abandonnée par un logiciel de votre ordinateur hôte)')
+[SQL: 
+        SELECT 
+            session_duration AS SessionDuration,
+            sessions_per_week AS SessionsPerWeek,
+            course_completion AS CourseCompletion,
+            quiz_scores AS QuizScores,
+            account_age_days AS AccountAgeDays,
+            recent_activity_days AS RecentActivity,
+            course_data_science AS Course_DataScience,
+            course_web_development AS Course_WebDevelopment
+        FROM user_metrics
+        WHERE user_id = %(user_id)s
+    ]
+[parameters: {'user_id': 26}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\connections.py", line 732, in _read_bytes
+    data = self._rfile.read(num_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionAbortedError: [WinError 10053] Une connexion établie a été abandonnée par un logiciel de votre ordinateur hôte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1900, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\connections.py", line 692, in _read_packet
+    packet_header = self._read_bytes(4)
+                    ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\connections.py", line 738, in _read_bytes
+    raise err.OperationalError(
+pymysql.err.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10053] Une connexion établie a été abandonnée par un logiciel de votre ordinateur hôte)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Ghayth\Desktop\FlaskAPI\app.py", line 95, in predict
+    df = get_user_data_from_db(user_id)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\Desktop\FlaskAPI\app.py", line 60, in get_user_data_from_db
+    result = connection.execute(query, {"user_id": user_id})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1380, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1572, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1943, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 2124, in _handle_dbapi_exception
+    util.raise_(
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\util\compat.py", line 211, in raise_
+    raise exception
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1900, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\connections.py", line 692, in _read_packet
+    packet_header = self._read_bytes(4)
+                    ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ghayth\AppData\Local\Programs\Python\Python311\Lib\site-packages\pymysql\connections.py", line 738, in _read_bytes
+    raise err.OperationalError(
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2013, 'Lost connection to MySQL server during query ([WinError 10053] Une connexion établie a été abandonnée par un logiciel de votre ordinateur hôte)')
+[SQL: 
+        SELECT 
+            session_duration AS SessionDuration,
+            sessions_per_week AS SessionsPerWeek,
+            course_completion AS CourseCompletion,
+            quiz_scores AS QuizScores,
+            account_age_days AS AccountAgeDays,
+            recent_activity_days AS RecentActivity,
+            course_data_science AS Course_DataScience,
+            course_web_development AS Course_WebDevelopment
+        FROM user_metrics
+        WHERE user_id = %(user_id)s
+    ]
+[parameters: {'user_id': 26}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+
+2025-05-08 21:32:25,755 - INFO - 127.0.0.1 - - [08/May/2025 21:32:25] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+2025-05-08 21:32:27,766 - INFO - Nouvelle requête reçue
+2025-05-08 21:32:27,790 - WARNING - Des valeurs manquantes détectées pour userID 26
+2025-05-08 21:32:27,999 - INFO - Prédiction réussie pour 26: 5
+2025-05-08 21:32:28,024 - INFO - 127.0.0.1 - - [08/May/2025 21:32:28] "POST /predict HTTP/1.1" 200 -
+2025-05-08 21:32:32,501 - INFO - Nouvelle requête reçue
+2025-05-08 21:32:32,524 - WARNING - Des valeurs manquantes détectées pour userID 27
+2025-05-08 21:32:32,638 - INFO - Prédiction réussie pour 27: 1
+2025-05-08 21:32:32,639 - INFO - 127.0.0.1 - - [08/May/2025 21:32:32] "POST /predict HTTP/1.1" 200 -
+2025-05-08 21:32:56,942 - INFO - Nouvelle requête reçue
+2025-05-08 21:32:56,955 - WARNING - Des valeurs manquantes détectées pour userID 30
+2025-05-08 21:32:57,018 - INFO - Prédiction réussie pour 30: 4
+2025-05-08 21:32:57,018 - INFO - 127.0.0.1 - - [08/May/2025 21:32:57] "POST /predict HTTP/1.1" 200 -
